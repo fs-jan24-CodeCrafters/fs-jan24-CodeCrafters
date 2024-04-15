@@ -1,0 +1,41 @@
+.nav,
+.list,
+.link {
+	height: 100%;
+}
+
+.nav {
+	flex-grow: 1;
+}
+
+.list {
+	display: flex;
+	gap: clamp-calc($mobile, $pc, 32px, 64px);
+
+	@include mobile {
+		flex-direction: column;
+		align-items: center;
+		gap: 24px;
+	}
+}
+
+.link {
+	font-weight: 700;
+	font-size: 12px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--secondary);
+	display: flex;
+	align-items: center;
+	border-bottom: 3px solid transparent;
+
+	@include mobile {
+		height: initial;
+		width: fit-content;
+	}
+}
+
+.linkActive {
+	color: var(--primary);
+	border-color: var(--primary);
+}

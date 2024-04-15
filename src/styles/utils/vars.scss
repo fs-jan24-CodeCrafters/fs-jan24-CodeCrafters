@@ -1,0 +1,32 @@
+// colors
+:root {
+	--primary: #313237;
+	--secondary: #89939a;
+	--icons: #b4bdc3;
+	--elements: #e2e6e9;
+	--hover_BG: #fafbfc;
+	--white: #ffffff;
+	--green: #27ae60;
+	--red: #eb5757;
+}
+
+// grid params
+
+$grid-gap: 16px;
+
+// container params
+
+$container-width: 1136px;
+$horizontal-paddings: $grid-gap;
+
+// breakpointsWidth
+
+$pc: $container-width + ($horizontal-paddings * 2);
+$tablet: 992px;
+$mobile: 768px;
+$mobile-small: 480px;
+$min-break-point: 320px;
+
+// margins
+$section-margin-big: 80px;
+$section-margin-small: 56px;

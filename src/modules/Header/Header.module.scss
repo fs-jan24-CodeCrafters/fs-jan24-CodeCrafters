@@ -1,0 +1,14 @@
+.wrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+	height: clamp-calc($min-break-point, $pc, 48px, 64px);
+	border-bottom: 1px solid var(--elements);
+	padding-left: $grid-gap;
+	z-index: 5;
+}
+
+.logo {
+	margin-right: clamp-calc($mobile, $pc, 32px, 48px);
+	z-index: 5;
+}
