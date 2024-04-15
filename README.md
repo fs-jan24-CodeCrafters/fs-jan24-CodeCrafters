@@ -1,30 +1,100 @@
-# React + TypeScript + Vite
+# Mobile Store Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to our Mobile Store project! This project is developed using Vite, React with TypeScript.
 
-Currently, two official plugins are available:
+## Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Check out the [DEMO](https://fs-jan24-code-crafters.vercel.app) to see the project in action!
 
-## Expanding the ESLint configuration
+## Table of Contents
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [Introduction](#introduction)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the App](#running-the-app)
+- [Folder Structure](#folder-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
-- Configure the top-level `parserOptions` property like this:
+## Introduction
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+This project aims to create a mobile store application where users can browse through different mobile devices, view details, and make purchases. It provides a modern and responsive user interface built with React and TypeScript for a smooth user experience.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Features
+
+- **Browse Mobile Devices:** Users can browse through a wide range of mobile devices available in the store.
+- **View Details:** Detailed information about each mobile device, including specifications, features, and pricing.
+- **Search Functionality:** Users can filter for specific mobile devices.
+- **Shopping Cart:** Users can add mobile devices to their shopping cart and proceed to checkout.
+
+## Getting Started
+
+### Prerequisites
+
+Before running the application, make sure you have the following installed on your machine:
+
+- Node.js (v20.11.0 or later)
+- npm (v10.2.4 or later)
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/fs-jan24-CodeCrafters/fs-jan24-CodeCrafters.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd fs-jan24-CodeCrafters
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+### Installation
+
+To run the application locally, use the following command:
+
+   ```bash
+   npm start
+   ```
+
+This will start the development server and open the application in your default web browser. You can access it at http://localhost:5173/.
+
+## Folder Structure
+
+The project follows a standard folder structure for better organization:
+
+  ```graphql
+  fs-jan24-CodeCrafters/
+│
+├── public/              # Static assets and HTML template
+│
+├── src/                 # Source files
+│   ├── modules/         # React components
+│   ├── services/        # API services and utilities
+│   ├── hooks/           # custom hooks
+│   ├── styles/          # CSS stylesheets
+│   ├── App.tsx          # Main application component
+│   ├── index.tsx        # Entry point of the application
+│   └── ...
+│
+├── .gitignore           # Git ignore file
+├── package.json         # Project metadata and dependencies
+└── README.md            # Project documentation
+  ```
+
+## Contributing
+
+Contributions are welcome! If you find any bugs or have suggestions for improvements, feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License.
