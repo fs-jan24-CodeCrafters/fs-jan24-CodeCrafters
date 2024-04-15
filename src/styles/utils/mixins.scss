@@ -1,0 +1,49 @@
+@mixin transition($transition-val) {
+	transition: $transition-val 0.3s;
+}
+
+@mixin pc() {
+	@media (max-width: $pc) {
+		@content;
+	}
+}
+
+@mixin tablet() {
+	@media (max-width: $tablet) {
+		@content;
+	}
+}
+
+@mixin mobile() {
+	@media (max-width: $mobile) {
+		@content;
+	}
+}
+
+@mixin mobile-small() {
+	@media (max-width: $mobile-small) {
+		@content;
+	}
+
+}
+
+// clamp-calc
+@function clamp-calc($min-width, $max-width, $size-at-min-width, $size-at-max-width) {
+	$slope: calc(($size-at-max-width - $size-at-min-width) / ($max-width - $min-width));
+	$y-axis-intersection: -1 * $min-width * $slope + $size-at-min-width;
+	$return-value: clamp(#{$size-at-min-width}, #{$y-axis-intersection} + #{$slope} * 100vw, #{$size-at-max-width});
+
+	@return $return-value;
+}
+
+// font-connection
+@mixin font($font_name, $file_name, $weight, $style) {
+	@font-face {
+		font-family: $font_name;
+		font-display: swap;
+		src: url("/fonts/#{$file_name}.woff2") format("woff2"),
+		url("/fonts/#{$file_name}.woff") format("woff");
+		font-weight: #{$weight};
+		font-style: #{$style};
+	}
+}

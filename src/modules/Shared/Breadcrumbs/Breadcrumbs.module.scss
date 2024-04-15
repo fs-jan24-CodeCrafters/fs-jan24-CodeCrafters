@@ -1,0 +1,33 @@
+.list {
+	display: flex;
+	gap: 7px;
+	align-items: center;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	font-size: 12px;
+	line-height: 1;
+
+	&:not(:last-child) {
+		&::after {
+			content: '';
+
+			background-image: url('/icons/Chevron-Arrow-Right.svg');
+			width: 16px;
+			height: 16px;
+		}
+	}
+}
+
+.span {
+	color: var(--secondary);
+}
+
+.icon {
+	use {
+		fill: red;
+	}
+}

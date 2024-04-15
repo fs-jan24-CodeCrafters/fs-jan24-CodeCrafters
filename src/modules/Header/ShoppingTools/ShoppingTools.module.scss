@@ -1,0 +1,59 @@
+.wrapper {
+	display: flex;
+	height: 100%;
+
+	@include mobile {
+		height: 64px;
+		justify-content: space-between;
+		background-color: var(--hover_BG);
+		border-top: 1px solid var(--elements);
+	}
+}
+
+.link {
+	width: clamp-calc($mobile, $pc, 48px, 64px);
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@include mobile {
+		width: 100%;
+		border-bottom: 3px solid transparent;
+	}
+}
+
+.linkActive {
+	@include mobile {
+		border-bottom: 3px solid var(--primary);
+	}
+}
+
+.iconWrapper {
+	position: relative;
+	width: 28px;
+	height: 28px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.icon {
+	flex-shrink: 0;
+}
+
+.linkFavorite {
+	@media (min-width: $mobile) {
+		border-style: solid;
+		border-color: var(--elements);
+		border-width: 0 1px;
+	}
+
+	border-right: 1px solid var(--elements);
+}
+
+.shoppingCounter {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
