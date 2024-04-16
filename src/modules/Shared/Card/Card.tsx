@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import { Button } from '../Button';
 import { SpriteIcon } from '../SpriteIcon';
 import { Title } from '../Title';
