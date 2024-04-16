@@ -5,11 +5,24 @@
   padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  justify-content: space-between;
+
+  &:hover {
+    box-shadow: 0px 2px 16px 0px #0000001a;
+  }
 }
 
 .image {
-  height: 100%;
+  flex: 0 1 auto;
+  max-height: 196px;
+  max-width: 224px;
+
+
+  img {
+    width: 100%;
+    max-height: 196px;
+    object-fit: contain;
+  }
 }
 
 .title {

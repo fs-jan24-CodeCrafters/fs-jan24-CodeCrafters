@@ -1,39 +1,42 @@
-import classNames from 'classnames';
 import { Button } from '../Button';
 import { SpriteIcon } from '../SpriteIcon';
-import styles from './Card.module.scss';
 import { Title } from '../Title';
+import { Product } from '../../../types/Product';
+import styles from './Card.module.scss';
 
-export const Card = () => {
+interface Props {
+  product: Product;
+}
+
+export const Card: React.FC<Props> = ({ product }) => {
+  const { name, fullPrice, price, screen, capacity, ram, image } = product;
   return (
-    <div className={styles.card}>
+    <li className={styles.card}>
       <div className={styles.image}>
-        <img src="/" alt="phone" />
+        <img src={image} alt="phone" />
       </div>
       <div>
         <Title titleTag="h5" className={styles.title}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit consectetur
-          adipisicing elit. ipsum dolor sit, amet consectetur adipisicing elit
-          consectetur adipisicing elit.
+          {name}
         </Title>
-        <p className={styles.priceContainer}>
-          <Title titleTag="h3">$799</Title>
+        <div className={styles.priceContainer}>
+          <Title titleTag="h3">{`$${price}`}</Title>
           <Title titleTag="h3" className={styles.salePrice}>
-            $1199
+            {`$${fullPrice}`}
           </Title>
-        </p>
+        </div>
         <div className={styles.detailsContainer}>
           <p className={styles.details}>
             <span>Screen</span>
-            <span>6.5” OLED</span>
+            <span>{screen}</span>
           </p>
           <p className={styles.details}>
             <span>Capacity</span>
-            <span>64 GB</span>
+            <span>{capacity}</span>
           </p>
           <p className={styles.details}>
             <span>RAM</span>
-            <span>4 GB</span>
+            <span>{ram}</span>
           </p>
         </div>
         <div className={styles.buttonsContainer}>
@@ -47,6 +50,6 @@ export const Card = () => {
           </Button>
         </div>
       </div>
-    </div>
+    </li>
   );
 };
