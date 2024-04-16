@@ -30,7 +30,7 @@ export const ShoppingTools: React.FC<Props> = ({ setIsMenuOpen }) => {
         className={(props) => getLinkClassNames({ ...props, isFavorite: true })}
       >
         <div className={styles.iconWrapper}>
-          <SpriteIcon iconName="icon-Favourites" className={styles.icon} />
+          <SpriteIcon iconName="icon-Favorites" className={styles.icon} />
           <ShoppingCounter
             productsAmount={10}
             className={styles.shoppingCounter}
