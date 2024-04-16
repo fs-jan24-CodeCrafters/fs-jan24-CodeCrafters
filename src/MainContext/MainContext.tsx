@@ -1,8 +1,8 @@
 import { createContext, useReducer } from 'react';
-import { CartActionTypes, MainContextTypes } from './MainContext.types';
+import { CartActionTypes, MainContextType } from './MainContext.types';
 import { cartReducer } from './MainContextCart';
 
-export const MainContext = createContext<MainContextTypes | undefined>(
+export const MainContext = createContext<MainContextType | undefined>(
   undefined,
 );
 

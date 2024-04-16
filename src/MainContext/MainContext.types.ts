@@ -13,7 +13,7 @@ export type CartModuleContext = {
   items: CartProduct[];
 };
 
-export type MainContextTypes = {
+export type MainContextType = {
   cart: CartModuleContext;
   addToCart: (id: number) => void;
   isProductInCart: (id: number) => boolean;
