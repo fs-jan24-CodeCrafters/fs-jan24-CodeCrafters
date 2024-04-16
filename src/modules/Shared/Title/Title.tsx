@@ -1,15 +1,16 @@
 import { ReactNode } from 'react';
 import styles from './Title.module.scss';
 
-type TitleTags = 'h1' | 'h2' | 'h3' | 'h4';
+type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
 interface Props {
   titleTag: TitleTags;
   children: ReactNode;
+  className?: string;
 }
 
-export const Title: React.FC<Props> = ({ titleTag, children }) => {
+export const Title: React.FC<Props> = ({ titleTag, children, className }) => {
   const Tag = titleTag;
-
-  return <Tag className={`${styles[titleTag]}`}>{children}</Tag>;
+  const finalClassName = className || '';
+  return <Tag className={`${finalClassName} ${styles[titleTag]}`}>{children}</Tag>;
 };

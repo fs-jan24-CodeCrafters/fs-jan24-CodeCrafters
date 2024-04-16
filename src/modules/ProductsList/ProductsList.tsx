@@ -1,11 +1,18 @@
-// interface Props {
-//   products: Product[];
-// }
+import { Product } from '../../types/Product';
+import { Card } from '../Shared/Card';
 
-export const ProductsList: React.FC = () => {
+interface Props {
+  products: Product[];
+}
+
+export const ProductsList: React.FC<Props> = ({ products }) => {
   return (
     <div>
-      <ul></ul>
+      <ul>
+        {products.map((product) => (
+          <Card key={product.id} product={product} />
+        ))}
+      </ul>
     </div>
   );
 };
