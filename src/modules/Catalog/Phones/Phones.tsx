@@ -6,9 +6,8 @@ import { ProductsList } from '../../ProductsList';
 import { getProductsByCategory } from '../../../helpers/getProductsByCategory';
 import products from '../../../../public/api/products.json';
 
-
 export const Phones: React.FC = () => {
-const phonesList = getProductsByCategory(products, 'phones');
+  const phonesList = getProductsByCategory(products, 'phones');
 
   return (
     <Container>
