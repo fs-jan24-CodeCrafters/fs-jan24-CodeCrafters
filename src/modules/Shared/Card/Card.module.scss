@@ -17,7 +17,6 @@
   max-height: 196px;
   max-width: 224px;
 
-
   img {
     width: 100%;
     max-height: 196px;
@@ -62,6 +61,13 @@
 .details {
   display: flex;
   justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15.34px;
+}
+
+.detailsText {
+  color: var(--secondary);
 }
 
 .buttonsContainer {
