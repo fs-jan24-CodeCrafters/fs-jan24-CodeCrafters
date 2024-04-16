@@ -1,24 +1,32 @@
 .button {
-	width: 100%;
-	display: block;
-	color: var(--white);
-	background: var(--primary);
-	border: 1px solid transparent;
-	padding: 9px;
-	font-weight: 600;
-	@include transition(box-shadow);
-
-	&:hover {
-		box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.4);
-	}
+  width: 100%;
+  display: block;
+  border: 1px solid transparent;
+  padding: 9px;
+  font-weight: 600;
+  @include transition(box-shadow);
 }
 
-.selected {
-	background-color: transparent;
-	color: var(--green);
-	border: 1px solid var(--elements);
+.primary {
+  color: var(--white);
+  background: var(--primary);
 
-	&:hover {
-		box-shadow: none;
-	}
+  &:hover {
+    box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.4);
+  }
+
+  &.selected {
+    background-color: transparent;
+    color: var(--green);
+    border: 1px solid var(--elements);
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+.secondary {
+  height: 40px;
+  border: 1px solid var(--icons);
 }

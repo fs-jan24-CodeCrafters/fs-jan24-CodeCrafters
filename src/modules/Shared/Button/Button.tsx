@@ -4,20 +4,22 @@ import classNames from 'classnames';
 
 interface Props {
   children: ReactNode;
-  maxWidth?: number;
+  maxWidth?: number | 'auto';
   selected?: boolean;
+  variant?: 'primary' |'favorites';
 }
 
 export const Button: React.FC<Props> = ({
   children,
-  maxWidth = 160,
+  maxWidth = 'auto',
   selected = false,
+  variant = 'primary',
 }) => {
   return (
     <button
       type="button"
       style={{ maxWidth }}
-      className={classNames(styles.button, { [styles.selected]: selected })}
+      className={classNames(styles.button, { [styles.primary]: variant ==='primary', [styles.secondary]: variant ==='favorites', [styles.selected]: selected })}
     >
       {children}
     </button>
