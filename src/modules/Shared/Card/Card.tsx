@@ -12,11 +12,9 @@ interface Props {
 export const Card: React.FC<Props> = ({ product }) => {
   const { name, fullPrice, price, screen, capacity, ram, image } = product;
   return (
-    <li className={styles.card}>
-      <div className={styles.image}>
-        <img src={image} alt="phone" />
-      </div>
-      <div>
+    <article className={styles.card}>
+      <img src={image} alt="phone" className={styles.image} />
+      <div className={styles.cardBody}>
         <Title titleTag="h5" className={styles.title}>
           {name}
         </Title>
@@ -51,6 +49,6 @@ export const Card: React.FC<Props> = ({ product }) => {
           </Button>
         </div>
       </div>
-    </li>
+    </article>
   );
 };

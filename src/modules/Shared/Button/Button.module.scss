@@ -1,32 +1,33 @@
 .button {
-  width: 100%;
-  display: block;
-  border: 1px solid transparent;
-  padding: 9px;
-  font-weight: 600;
-  @include transition(box-shadow);
+	width: 100%;
+	display: block;
+	border: 1px solid transparent;
+	padding: 9px;
+	font-weight: 600;
+	line-height: 1;
+	@include transition(box-shadow);
 }
 
 .primary {
-  color: var(--white);
-  background: var(--primary);
+	color: var(--white);
+	background: var(--primary);
 
-  &:hover {
-    box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.4);
-  }
+	&:hover {
+		box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.4);
+	}
 
-  &.selected {
-    background-color: transparent;
-    color: var(--green);
-    border: 1px solid var(--elements);
+	&.selected {
+		background-color: transparent;
+		color: var(--green);
+		border: 1px solid var(--elements);
 
-    &:hover {
-      box-shadow: none;
-    }
-  }
+		&:hover {
+			box-shadow: none;
+		}
+	}
 }
 
 .secondary {
-  height: 40px;
-  border: 1px solid var(--icons);
+	height: 40px;
+	border: 1px solid var(--icons);
 }
