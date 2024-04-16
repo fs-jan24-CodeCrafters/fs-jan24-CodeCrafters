@@ -3,8 +3,8 @@ import { Breadcrumbs } from '../../Shared/Breadcrumbs';
 import { BreadcrumbsItem } from '../../Shared/Breadcrumbs/BreadcrumbsItem';
 import { Container } from '../../Shared/Container';
 import { ProductsList } from '../../ProductsList';
-import products from '../../../../public/api/products.json';
 import { getProductsByCategory } from '../../../helpers/getProductsByCategory';
+import products from '../../../../public/api/products.json';
 
 
 export const Phones: React.FC = () => {

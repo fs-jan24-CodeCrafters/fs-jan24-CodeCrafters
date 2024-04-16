@@ -27,15 +27,15 @@ export const Card: React.FC<Props> = ({ product }) => {
         </div>
         <div className={styles.detailsContainer}>
           <p className={styles.details}>
-            <span>Screen</span>
+            <span className={styles.detailsText}>Screen</span>
             <span>{screen}</span>
           </p>
           <p className={styles.details}>
-            <span>Capacity</span>
+            <span className={styles.detailsText}>Capacity</span>
             <span>{capacity}</span>
           </p>
           <p className={styles.details}>
-            <span>RAM</span>
+            <span className={styles.detailsText}>RAM</span>
             <span>{ram}</span>
           </p>
         </div>
