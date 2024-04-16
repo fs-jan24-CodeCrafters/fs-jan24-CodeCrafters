@@ -12,6 +12,7 @@ interface Props {
 
 export const MobileMenu: React.FC<Props> = ({ isMenuOpen, setIsMenuOpen }) => {
   const nodeRef = useRef(null);
+
   return (
     <CSSTransition
       nodeRef={nodeRef}
