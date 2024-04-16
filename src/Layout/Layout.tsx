@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router';
+import { Outlet } from 'react-router-dom';
 import { Header } from '../modules/Header';
 import { Main } from '../modules/Main';
 import { Footer } from '../modules/Footer';

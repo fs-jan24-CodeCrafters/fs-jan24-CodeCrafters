@@ -33,8 +33,8 @@ export const Header: React.FC = () => {
 
         {!matches && (
           <>
-            <HeaderNav />
-            <ShoppingTools />
+            <HeaderNav setIsMenuOpen={setIsMenuOpen} />
+            <ShoppingTools setIsMenuOpen={setIsMenuOpen} />
           </>
         )}
       </div>
