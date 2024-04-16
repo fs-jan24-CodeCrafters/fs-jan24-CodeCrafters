@@ -16,17 +16,19 @@ export function useMediaQuery(
     initializeWithValue = true,
   }: UseMediaQueryOptions = {},
 ): boolean {
-  const getMatches = (query: string): boolean => {
+  const getMatches = (queryVal: string): boolean => {
     if (IS_SERVER) {
       return defaultValue;
     }
-    return window.matchMedia(query).matches;
+
+    return window.matchMedia(queryVal).matches;
   };
 
   const [matches, setMatches] = useState<boolean>(() => {
     if (initializeWithValue) {
       return getMatches(query);
     }
+
     return defaultValue;
   });
 

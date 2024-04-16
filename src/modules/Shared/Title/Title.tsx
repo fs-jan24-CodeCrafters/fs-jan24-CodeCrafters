@@ -10,5 +10,6 @@ interface Props {
 
 export const Title: React.FC<Props> = ({ titleTag, children }) => {
   const Tag = titleTag;
+
   return <Tag className={`${styles[titleTag]}`}>{children}</Tag>;
 };

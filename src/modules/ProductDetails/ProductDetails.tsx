@@ -3,8 +3,6 @@ import { Breadcrumbs } from '../Shared/Breadcrumbs';
 import { BreadcrumbsItem } from '../Shared/Breadcrumbs/BreadcrumbsItem';
 import { Container } from '../Shared/Container';
 
-import styles from './ProductDetails.module.scss';
-
 export const ProductDetails: React.FC = () => {
   const location = useLocation();
   const path = location.pathname.split('/').filter((el) => el !== '')[0];

@@ -3,8 +3,6 @@ import { Container } from '../../Shared/Container';
 import { Breadcrumbs } from '../../Shared/Breadcrumbs';
 import { BreadcrumbsItem } from '../../Shared/Breadcrumbs/BreadcrumbsItem';
 
-import styles from './Accessories.module.scss';
-
 export const Accessories: React.FC = () => {
   return (
     <Container>
