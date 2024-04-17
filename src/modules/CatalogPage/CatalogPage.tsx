@@ -1,19 +1,16 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getProductsByCategory } from '../../helpers/getProductsByCategory';
 import products from '../../../public/api/products.json';
 import { Container } from '../Shared/Container';
 import { Breadcrumbs } from '../Shared/Breadcrumbs';
 import { BreadcrumbsItem } from '../Shared/Breadcrumbs/BreadcrumbsItem';
 import { ProductsList } from './ProductsList';
+import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 
 export const CatalogPage: React.FC = () => {
-  const location = useLocation();
-  const path = location.pathname.split('/').filter((el) => el !== '')[0];
-  const categoryName = path.charAt(0).toUpperCase() + path.slice(1);
+  const { path, categoryName } = getPathAndCategoryNameFromUrl();
 
   const productsList = getProductsByCategory(products, path);
-
-  console.log(path);
 
   return (
     <Container>
