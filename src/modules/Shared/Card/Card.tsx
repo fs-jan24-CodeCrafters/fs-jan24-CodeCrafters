@@ -5,13 +5,25 @@ import { Title } from '../Title';
 import { Product } from '../../../types/Product';
 import { useMainContext } from '../../../hooks/useMainContext';
 import styles from './Card.module.scss';
+import { Link } from 'react-router-dom';
 
 interface Props {
   product: Product;
 }
 
 export const Card: React.FC<Props> = ({ product }) => {
-  const { id, name, fullPrice, price, screen, capacity, ram, image } = product;
+  const {
+    id,
+    name,
+    fullPrice,
+    price,
+    screen,
+    capacity,
+    ram,
+    image,
+    category,
+    itemId,
+  } = product;
   const { addToCart, isProductInCart } = useMainContext();
 
   const productIsInCart = isProductInCart(id);
@@ -26,11 +38,15 @@ export const Card: React.FC<Props> = ({ product }) => {
 
   return (
     <article className={styles.card}>
-      <img src={image} alt="phone" className={styles.image} />
+      <Link to={`/${category}/${itemId}`}>
+        <img src={image} alt={name} className={styles.image} />
+      </Link>
       <div className={styles.cardBody}>
-        <Title titleTag="h5" className={styles.title}>
-          {name}
-        </Title>
+        <Link to={`/${category}/${itemId}`}>
+          <Title titleTag="h5" className={styles.title}>
+            {name}
+          </Title>
+        </Link>
         <div className={styles.priceContainer}>
           <Title titleTag="h3">{`$${price}`}</Title>
           <Title titleTag="h3" className={styles.salePrice}>
