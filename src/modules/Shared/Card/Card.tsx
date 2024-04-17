@@ -42,10 +42,8 @@ export const Card: React.FC<Props> = ({ product }) => {
         <img src={image} alt={name} className={styles.image} />
       </Link>
       <div className={styles.cardBody}>
-        <Link to={`/${category}/${itemId}`}>
-          <Title titleTag="h5" className={styles.title}>
-            {name}
-          </Title>
+        <Link to={`/${category}/${itemId}`} className={styles.titleLink}>
+          <Title titleTag="h5">{name}</Title>
         </Link>
         <div className={styles.priceContainer}>
           <Title titleTag="h3">{`$${price}`}</Title>
