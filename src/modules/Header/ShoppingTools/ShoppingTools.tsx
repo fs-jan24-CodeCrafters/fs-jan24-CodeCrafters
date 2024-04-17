@@ -4,12 +4,15 @@ import { ShoppingCounter } from '../ShoppingCounter';
 
 import styles from './ShoppingTools.module.scss';
 import classNames from 'classnames';
+import { useMainContext } from '../../../hooks/useMainContext';
 
 interface Props {
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const ShoppingTools: React.FC<Props> = ({ setIsMenuOpen }) => {
+  const { totalCartQuantity } = useMainContext();
+
   const getLinkClassNames = ({
     isActive,
     isFavorite = false,
@@ -47,7 +50,7 @@ export const ShoppingTools: React.FC<Props> = ({ setIsMenuOpen }) => {
           <SpriteIcon iconName="icon-Shopping-bag" className={styles.icon} />
           <ShoppingCounter
             className={styles.shoppingCounter}
-            productsAmount={1}
+            productsAmount={totalCartQuantity}
           />
         </div>
       </NavLink>

@@ -52,9 +52,20 @@ export const MainContextProvider: React.FC<Props> = ({ children }) => {
     return !!cartState.items.find((item) => item.id === id);
   };
 
+  const totalCartQuantity = cartState.items.reduce(
+    (acc: number, item) => acc + item.quantity,
+    0,
+  );
+
   return (
     <MainContext.Provider
-      value={{ cart: cartState, addToCart, removeFromCart, isProductInCart }}
+      value={{
+        cart: cartState,
+        totalCartQuantity,
+        addToCart,
+        removeFromCart,
+        isProductInCart,
+      }}
     >
       {children}
     </MainContext.Provider>
