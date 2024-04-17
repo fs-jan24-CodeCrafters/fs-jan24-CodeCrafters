@@ -1,0 +1,15 @@
+.title {
+	margin-bottom: 8px;
+}
+
+.textItem {
+	display: block;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 1.5;
+	color: var(--secondary);
+}
+
+.productsAmountText {
+	margin-bottom: clamp-calc($min-break-point, $pc, 32px, 40px);
+}
