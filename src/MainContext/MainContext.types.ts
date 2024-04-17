@@ -27,6 +27,7 @@ export type CartModuleContext = {
 
 export type MainContextType = {
   cart: CartModuleContext;
+  totalCartQuantity: number;
   addToCart: (id: number) => void;
   removeFromCart: (id: number, removeAll?: boolean) => void;
   isProductInCart: (id: number) => boolean;

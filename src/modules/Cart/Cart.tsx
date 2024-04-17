@@ -4,7 +4,8 @@ import styles from './Cart.module.scss';
 import { Product } from '../../types/Product';
 
 export const Cart: React.FC = () => {
-  const { cart, addToCart, removeFromCart } = useMainContext();
+  const { cart, totalCartQuantity, addToCart, removeFromCart } =
+    useMainContext();
 
   const productsInCart = cart.items.reduce(
     (acc: Array<Product & { quantity: number }>, item) => {
@@ -16,6 +17,11 @@ export const Cart: React.FC = () => {
     },
     [],
   );
+
+  const totalPrice = productsInCart.reduce((acc: number, item) => {
+    const price = item.price || item.fullPrice;
+    return acc + price * item.quantity;
+  }, 0);
 
   return (
     <div>
@@ -51,6 +57,8 @@ export const Cart: React.FC = () => {
           ))}
         </ul>
       )}
+      <h2>Total price: {totalPrice}</h2>
+      <h3>Total items: {totalCartQuantity}</h3>
     </div>
   );
 };

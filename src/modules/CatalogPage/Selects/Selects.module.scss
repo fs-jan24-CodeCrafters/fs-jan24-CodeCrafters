@@ -1,0 +1,37 @@
+.selectSort {
+	max-width: 176px;
+	width: 100%;
+}
+
+.selectPerPage {
+	max-width: 128px;
+	width: 100%;
+}
+
+.selectList {
+	display: flex;
+	align-items: center;
+	margin-bottom: 24px;
+	gap: $grid-gap;
+}
+
+.selectTitle {
+	margin-bottom: 4px;
+}
+
+.selectWrapper {
+	max-width: 100%;
+	font-weight: 700;
+}
+
+:global .css-1dimb5e-singleValue {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 1.5;
+	color: var(--primary);
+	padding: 10px 12px;
+}
+
+:global .css-1u9des2-indicatorSeparator {
+	display: none;
+}

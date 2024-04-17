@@ -30,7 +30,6 @@
 	max-width: 224px;
 	margin-bottom: 24px;
 	max-height: 196px;
-
 	@include transition(transform);
 
 	&:hover {
@@ -38,7 +37,7 @@
 	}
 }
 
-.title {
+.titleLink {
 	margin-bottom: 8px;
 	flex-grow: 1;
 }
