@@ -1,12 +1,10 @@
-import { useLocation } from 'react-router-dom';
 import { Breadcrumbs } from '../Shared/Breadcrumbs';
 import { BreadcrumbsItem } from '../Shared/Breadcrumbs/BreadcrumbsItem';
 import { Container } from '../Shared/Container';
+import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 
 export const ProductDetails: React.FC = () => {
-  const location = useLocation();
-  const path = location.pathname.split('/').filter((el) => el !== '')[0];
-  const categoryName = path.charAt(0).toUpperCase() + path.slice(1);
+  const { path, categoryName } = getPathAndCategoryNameFromUrl();
 
   return (
     <Container>
