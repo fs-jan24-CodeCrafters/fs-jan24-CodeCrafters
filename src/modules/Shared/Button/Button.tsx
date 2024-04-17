@@ -7,6 +7,7 @@ interface Props {
   maxWidth?: number | 'auto';
   selected?: boolean;
   variant?: 'primary' | 'favorites';
+  onClick?: () => void;
 }
 
 export const Button: React.FC<Props> = ({
@@ -14,6 +15,7 @@ export const Button: React.FC<Props> = ({
   maxWidth = 'auto',
   selected = false,
   variant = 'primary',
+  onClick = () => {},
 }) => {
   return (
     <button
@@ -24,6 +26,7 @@ export const Button: React.FC<Props> = ({
         [styles.secondary]: variant === 'favorites',
         [styles.selected]: selected,
       })}
+      onClick={onClick}
     >
       {children}
     </button>

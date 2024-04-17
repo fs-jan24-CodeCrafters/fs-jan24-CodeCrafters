@@ -3,6 +3,7 @@ import { Button } from '../Button';
 import { SpriteIcon } from '../SpriteIcon';
 import { Title } from '../Title';
 import { Product } from '../../../types/Product';
+import { useMainContext } from '../../../hooks/useMainContext';
 import styles from './Card.module.scss';
 
 interface Props {
@@ -10,7 +11,19 @@ interface Props {
 }
 
 export const Card: React.FC<Props> = ({ product }) => {
-  const { name, fullPrice, price, screen, capacity, ram, image } = product;
+  const { id, name, fullPrice, price, screen, capacity, ram, image } = product;
+  const { addToCart, isProductInCart } = useMainContext();
+
+  const productIsInCart = isProductInCart(id);
+
+  const addToCartHandler = () => {
+    if (!productIsInCart) {
+      addToCart(id);
+    }
+  };
+
+  const buttonText = productIsInCart ? 'Added to cart' : 'Add to cart';
+
   return (
     <article className={styles.card}>
       <img src={image} alt="phone" className={styles.image} />
@@ -39,7 +52,9 @@ export const Card: React.FC<Props> = ({ product }) => {
           </p>
         </div>
         <div className={styles.buttonsContainer}>
-          <Button>Add to card</Button>
+          <Button onClick={addToCartHandler} selected={productIsInCart}>
+            {buttonText}
+          </Button>
           <Button variant="favorites" maxWidth={40}>
             {true ? (
               <SpriteIcon iconName="icon-Favorites" />
