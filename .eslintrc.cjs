@@ -29,5 +29,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-shadow': 'warn',
     'react/prop-types': 'off',
+    'no-console': 'error',
   },
 };

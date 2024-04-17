@@ -1,5 +1,6 @@
 .breadcrumbs {
-	padding-top: 24px;
+	margin-top: 24px;
+	margin-bottom: clamp-calc($min-break-point, $pc, 24px, 40px);
 }
 
 .list {
