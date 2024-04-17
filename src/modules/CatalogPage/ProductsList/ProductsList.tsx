@@ -1,5 +1,5 @@
-import { Product } from '../../types/Product';
-import { Card } from '../Shared/Card';
+import { Product } from '../../../types/Product';
+import { Card } from '../../Shared/Card';
 
 import styles from './ProductsList.module.scss';
 
