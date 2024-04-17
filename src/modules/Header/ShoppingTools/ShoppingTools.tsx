@@ -48,10 +48,12 @@ export const ShoppingTools: React.FC<Props> = ({ setIsMenuOpen }) => {
       >
         <div className={styles.iconWrapper}>
           <SpriteIcon iconName="icon-Shopping-bag" className={styles.icon} />
-          <ShoppingCounter
-            className={styles.shoppingCounter}
-            productsAmount={totalCartQuantity}
-          />
+          {!!totalCartQuantity && (
+            <ShoppingCounter
+              className={styles.shoppingCounter}
+              productsAmount={totalCartQuantity}
+            />
+          )}
         </div>
       </NavLink>
     </div>
