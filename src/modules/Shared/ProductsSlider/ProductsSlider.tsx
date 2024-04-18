@@ -14,9 +14,14 @@ import styles from './ProductsSlider.module.scss';
 interface Props {
   sliderTitle: string;
   products: Product[];
+  hasDiscountPrice?: boolean;
 }
 
-export const ProductsSlider: React.FC<Props> = ({ sliderTitle, products }) => {
+export const ProductsSlider: React.FC<Props> = ({
+  sliderTitle,
+  products,
+  hasDiscountPrice,
+}) => {
   const [innerProgress, setInnerProgress] = useState(0);
 
   const handleSlideChange = (e: SwiperType) => {
@@ -61,7 +66,7 @@ export const ProductsSlider: React.FC<Props> = ({ sliderTitle, products }) => {
       >
         {products.map((product) => (
           <SwiperSlide key={product.id} className={styles.productSliderSlide}>
-            <Card product={product}></Card>
+            <Card product={product} hasDiscountPrice={hasDiscountPrice}></Card>
           </SwiperSlide>
         ))}
       </Swiper>

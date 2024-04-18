@@ -9,9 +9,10 @@ import { Link } from 'react-router-dom';
 
 interface Props {
   product: Product;
+  hasDiscountPrice?: boolean;
 }
 
-export const Card: React.FC<Props> = ({ product }) => {
+export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
   const {
     id,
     name,
@@ -47,9 +48,11 @@ export const Card: React.FC<Props> = ({ product }) => {
         </Link>
         <div className={styles.priceContainer}>
           <Title titleTag="h3">{`$${price}`}</Title>
-          <Title titleTag="h3" className={styles.salePrice}>
-            {`$${fullPrice}`}
-          </Title>
+          {hasDiscountPrice && (
+            <Title titleTag="h3" className={styles.salePrice}>
+              {`$${fullPrice}`}
+            </Title>
+          )}
         </div>
         <div className={styles.detailsContainer}>
           <p className={styles.details}>

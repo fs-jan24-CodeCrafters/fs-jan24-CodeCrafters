@@ -16,3 +16,7 @@ body {
 		flex: 1 1 auto;
 	}
 }
+
+.section {
+	margin-bottom: clamp-calc($min-break-point, $pc, $section-margin-small, $section-margin-big);
+}
