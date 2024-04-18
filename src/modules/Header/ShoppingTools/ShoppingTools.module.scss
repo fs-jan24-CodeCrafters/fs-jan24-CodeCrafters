@@ -16,17 +16,15 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-bottom: 3px solid transparent;
 
 	@include mobile {
 		width: 100%;
-		border-bottom: 3px solid transparent;
 	}
 }
 
 .linkActive {
-	@include mobile {
-		border-bottom: 3px solid var(--primary);
-	}
+	border-bottom: 3px solid var(--primary);
 }
 
 .iconWrapper {
@@ -44,9 +42,8 @@
 
 .linkFavorite {
 	@media (min-width: $mobile) {
-		border-style: solid;
-		border-color: var(--elements);
-		border-width: 0 1px;
+		border-right: 1px solid var(--elements);
+		border-left: 1px solid var(--elements);
 	}
 
 	border-right: 1px solid var(--elements);
