@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
 import { HomePage } from './modules/HomePage';
 import { ProductDetails } from './modules/ProductDetails';
@@ -23,7 +23,8 @@ export const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/favorites/:productId" element={<ProductDetails />} />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="/not-found" element={<ErrorPage />} />
+        <Route path="*" element={<Navigate replace to="/not-found" />} />
       </Route>
     </Routes>
   );

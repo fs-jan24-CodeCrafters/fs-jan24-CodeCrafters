@@ -1,21 +1,22 @@
 import { Title } from '../../Shared/Title';
 import { ProductDescription } from '../../../types/ProductDescription';
-import { getProductById } from '../../../helpers/getProductById';
-import products from '../../../../public/api/phones.json';
 import styles from './ProductInfo.module.scss';
+import { ProductDetails } from '../../../types/ProductDetails';
 
-export const ProductInfo: React.FC = () => {
-  const currentProduct = getProductById(
-    products,
-    'apple-iphone-11-128gb-black',
-  );
+interface Props {
+  product: ProductDetails;
+}
+
+export const ProductInfo: React.FC<Props> = ({ product }) => {
+  const currentProduct = product;
+
   const techSpecs = {
     Screen: currentProduct?.screen,
     Resolution: currentProduct?.resolution,
     Processor: currentProduct?.processor,
     RAM: currentProduct?.ram,
-    Camera: currentProduct?.camera,
-    Zoom: currentProduct?.zoom,
+    Camera: currentProduct?.camera || '-',
+    Zoom: currentProduct?.zoom || '-',
     Cell: currentProduct?.cell.join(', '),
   };
 
