@@ -1,45 +1,52 @@
 .productSliderHeader {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 24px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 24px;
 }
 
 .productSliderNavigation {
-    display: flex;
-    gap: 16px;
+	display: flex;
+	gap: 16px;
 }
 
 .productSliderButtonPrev,
 .productSliderButtonNext {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    border: 1px solid var(--icons);
-    cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 32px;
+	height: 32px;
+	border: 1px solid var(--icons);
+	cursor: pointer;
 
 
-    &:hover {
-        border-color: var(--primary);
-    }
+	&:hover {
+		border-color: var(--primary);
+	}
 }
 
 .disabled {
-    cursor: auto;
-    border-color: var(--elements);
+	cursor: auto;
+	border-color: var(--elements);
 
-    svg {
-        fill: var(--elements)
-    }
+	svg {
+		fill: var(--elements)
+	}
 
-    &:hover {
-        border-color: var(--elements);
-    }
+	&:hover {
+		border-color: var(--elements);
+	}
+}
+
+.swiperWrapper {
+	display: grid;
+	grid-auto-flow: column;
 }
 
 .productSliderSlide {
-    @include tablet {
-        width: auto;
-    }
+	@include tablet {
+		width: auto;
+	}
+
+	min-width: clamp-calc($min-break-point, $pc, 240px, 272px);
 }

@@ -52,6 +52,7 @@ export const ProductsSlider: React.FC<Props> = ({ sliderTitle, products }) => {
           nextEl: `.${styles.productSliderButtonNext}`,
         }}
         spaceBetween={16}
+        wrapperClass={styles.swiperWrapper}
         breakpoints={{
           320: { slidesPerView: 'auto' },
           992: { slidesPerView: 4 },
