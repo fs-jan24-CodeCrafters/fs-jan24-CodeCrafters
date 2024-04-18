@@ -10,6 +10,9 @@ import { getProductIdFromUrl } from '../../helpers/getProductIdFromUrl';
 import { findProductById } from '../../helpers/findProductById';
 import { ProductInfo } from './ProductInfo';
 import products from '../../../public/api/products.json';
+import styles from './ProductDetails.module.scss';
+import { Title } from '../Shared/Title';
+import { VariantsSection } from './VariantsSection';
 
 export const ProductDetails: React.FC = () => {
   const { path, categoryName } = getPathAndCategoryNameFromUrl();
@@ -44,7 +47,14 @@ export const ProductDetails: React.FC = () => {
               {currentProduct.name}
             </BreadcrumbsItem>
           </Breadcrumbs>
+          <Title titleTag="h1" className={styles.productTitle}>
+            {currentProduct.name}
+          </Title>
+
+          <VariantsSection product={currentProduct} />
+
           <ProductInfo product={currentProduct} />
+
           <ProductsSlider
             sliderTitle="You may also like"
             products={recommendedProducts}

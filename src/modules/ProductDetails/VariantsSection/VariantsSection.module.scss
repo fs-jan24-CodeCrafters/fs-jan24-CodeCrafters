@@ -1,0 +1,94 @@
+.variantsSection {
+  display: flex;
+  margin-bottom: 80px;
+
+  @include tablet {
+    margin-bottom: 64px;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 56px;
+  }
+}
+
+.imagesBlock {
+  display: flex;
+  align-items: start;
+  gap: $grid-gap;
+  width: 50%;
+
+  @include mobile {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .squareImagesContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $grid-gap;
+    max-width: 80px;
+    width: 20%;
+  
+    @include tablet {
+      max-width: 50px;
+      gap: 8px;
+    }
+  
+    @include mobile {
+      flex-direction: row;
+      max-width: 50px;
+      margin: 0 auto;
+    }
+
+    .squareImageWrapper {
+      position: relative;
+      flex-shrink: 0;
+      
+      width: 100%;
+      height: 0;
+      padding-bottom: 100%;
+      overflow: hidden;
+
+      .squareImage {
+        position: absolute;
+        
+        border: var(--elements) solid 1px;
+        padding: 7%;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      
+      .selectedSquareImage {
+        border: black solid 1px;
+      }
+    }
+  }
+  
+  .selectedImageWrapper {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    margin: 0 auto;
+    
+    .selectedImage {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      max-height: 465px;
+    
+      @include tablet {
+        max-height: 350px;
+      }
+    
+      @include mobile-small {
+        max-height: 290px;
+      }
+    }
+  }
+}
+
+
