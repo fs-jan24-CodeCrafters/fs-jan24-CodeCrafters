@@ -1,15 +1,11 @@
 import { Container } from '../Shared/Container';
-import { SpriteIcon } from '../Shared/SpriteIcon';
-import styles from './Footer.module.scss';
+import { Title } from '../Shared/Title';
 
 export const Footer: React.FC = () => {
   return (
     <footer>
       <Container>
-        <SpriteIcon
-          iconName="icon-Chevron-Arrow-Left"
-          className={styles.icon}
-        />
+        <Title titleTag="h4">Footer Waiting For Dima)))</Title>
       </Container>
     </footer>
   );
