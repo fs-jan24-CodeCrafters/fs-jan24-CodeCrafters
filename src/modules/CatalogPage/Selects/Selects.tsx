@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import Select, { SingleValue } from 'react-select';
 import styles from './Selects.module.scss';
+import { Product } from '../../../types/Product';
 
 export interface OptionsEntries {
   value: string | number;
@@ -10,7 +11,8 @@ export interface OptionsEntries {
 interface Props {
   setSearchParams: ReturnType<typeof useSearchParams>[1];
   currentSortBy: string;
-  currentPerPageOptions: string | number;
+  itemsPerPage: number;
+  products: Product[];
 }
 
 const sortByOptions = [
@@ -19,18 +21,19 @@ const sortByOptions = [
   { value: 'price', label: 'Cheapest' },
 ];
 
-const perPageOptions = [
-  { value: 4, label: '4' },
-  { value: 8, label: '8' },
-  { value: 16, label: '16' },
-  { value: 'all', label: 'all' },
-];
-
 export const Selects: React.FC<Props> = ({
   setSearchParams,
   currentSortBy,
-  currentPerPageOptions,
+  itemsPerPage,
+  products,
 }) => {
+  const perPageOptions = [
+    { value: 4, label: '4' },
+    { value: 8, label: '8' },
+    { value: 16, label: '16' },
+    { value: products.length, label: 'all' },
+  ];
+
   const handleOptionChange = (
     newValue: SingleValue<OptionsEntries>,
     paramKey: string,
@@ -39,6 +42,9 @@ export const Selects: React.FC<Props> = ({
       setSearchParams((prevParams) => {
         const newParams = new URLSearchParams(prevParams);
         newParams.set(paramKey, newValue.label);
+        if (paramKey === 'perPage') {
+          newParams.delete('page');
+        }
         return newParams;
       });
     }
@@ -65,7 +71,7 @@ export const Selects: React.FC<Props> = ({
         <Select
           isSearchable={false}
           value={perPageOptions.find(
-            (el) => el.value.toString() === currentPerPageOptions.toString(),
+            (el) => el.value.toString() === itemsPerPage.toString(),
           )}
           onChange={(newValue) => handleOptionChange(newValue, 'perPage')}
           options={perPageOptions}

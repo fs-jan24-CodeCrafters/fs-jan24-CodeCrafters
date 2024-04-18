@@ -2,6 +2,7 @@
 	display: grid;
 	gap: $grid-gap;
 	grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+	margin-bottom: clamp-calc($min-break-point, $pc, 24px, 40px);
 }
 
 .item {

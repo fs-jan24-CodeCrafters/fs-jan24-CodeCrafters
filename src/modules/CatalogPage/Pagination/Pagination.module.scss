@@ -1,0 +1,38 @@
+.linkList {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+}
+
+.link {
+	font-weight: 600;
+	border: 1px solid var(--secondary);
+	width: 32px;
+	height: 32px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.linkActive {
+	color: var(--white);
+	background-color: var(--primary);
+}
+
+.linkPrev {
+	margin-right: 8px;
+}
+
+.linkNext {
+	margin-left: 8px;
+}
+
+.linkDisabled {
+	pointer-events: none;
+
+	svg {
+		use {
+			fill: var(--secondary);
+		}
+	}
+}
