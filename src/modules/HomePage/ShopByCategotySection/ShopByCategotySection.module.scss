@@ -1,0 +1,15 @@
+.categoryItems {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: $grid-gap;
+
+	@include mobile {
+		gap: 8px;
+	}
+
+	@include mobile-small {
+		flex-direction: column;
+		gap: $grid-gap * 2;
+	}
+}
