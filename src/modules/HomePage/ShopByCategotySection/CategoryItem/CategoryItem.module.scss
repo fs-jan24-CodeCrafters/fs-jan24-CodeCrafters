@@ -1,0 +1,39 @@
+.categoryItem {
+	@media (min-width:$mobile-small) {
+		width: clamp-calc($mobile-small, $pc, 187px, 368px);
+	}
+
+	width: 100%;
+}
+
+.imgWrap {
+	@media (min-width:$mobile-small) {
+		min-height: clamp-calc($mobile-small, $pc, 187px, 368px);
+	}
+
+	position: relative;
+	display: flex;
+	align-items: end;
+	justify-content: end;
+	margin-bottom: 24px;
+}
+
+.title {
+	margin-bottom: 4px;
+}
+
+.text {
+	color: var(--secondary);
+}
+
+.violet {
+	background: #6d6474;
+}
+
+.gray {
+	background: #8D8D92;
+}
+
+.pink {
+	background: #973D5F;
+}
