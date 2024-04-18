@@ -1,11 +1,7 @@
 .productInfo {
   display: flex;
-
-  @include pc {
-    flex-direction: column;
-  }
-
   gap: 64px;
+  margin-bottom: 80px;
 
   .about {
     max-width: 560px;
@@ -15,13 +11,18 @@
     max-width: 512px;
   }
 
-  @include mobile-small {
-    gap: 54px;
-  }
-
   .about,
   .techSpecs {
     width: 100%;
+  }
+
+  @include pc {
+    flex-direction: column;
+  }
+
+  @include mobile-small {
+    gap: 54px;
+    margin-bottom: 54px;
   }
 }
 
