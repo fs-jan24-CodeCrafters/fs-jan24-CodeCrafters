@@ -4,10 +4,10 @@ import { HeaderNav } from './HeaderNav';
 import { ShoppingTools } from './ShoppingTools';
 import { BurgerButton } from './BurgerButton';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
-import { MobileMenu } from './MobileMenu';
 import { useState } from 'react';
 
 import styles from './Header.module.scss';
+import classNames from 'classnames';
 
 const mobileBreakPoint = '768px';
 
@@ -31,16 +31,13 @@ export const Header: React.FC = () => {
           <BurgerButton setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
         )}
 
-        {!matches && (
-          <>
-            <HeaderNav setIsMenuOpen={setIsMenuOpen} />
-            <ShoppingTools setIsMenuOpen={setIsMenuOpen} />
-          </>
-        )}
+        <div
+          className={classNames(styles.menu, { [styles.menuOpen]: isMenuOpen })}
+        >
+          <HeaderNav setIsMenuOpen={setIsMenuOpen} />
+          <ShoppingTools setIsMenuOpen={setIsMenuOpen} />
+        </div>
       </div>
-      {matches && (
-        <MobileMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-      )}
     </header>
   );
 };
