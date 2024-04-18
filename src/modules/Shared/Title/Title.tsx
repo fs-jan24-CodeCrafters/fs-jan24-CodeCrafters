@@ -8,11 +8,23 @@ interface Props {
   titleTag: TitleTags;
   children: ReactNode;
   className?: string;
+  sectionTitle?: boolean;
 }
 
-export const Title: React.FC<Props> = ({ titleTag, children, className }) => {
+export const Title: React.FC<Props> = ({
+  titleTag,
+  children,
+  className,
+  sectionTitle,
+}) => {
   const Tag = titleTag;
   return (
-    <Tag className={classNames(styles[titleTag], className)}>{children}</Tag>
+    <Tag
+      className={classNames(styles[titleTag], className, {
+        [styles.sectionTitle]: sectionTitle,
+      })}
+    >
+      {children}
+    </Tag>
   );
 };

@@ -37,7 +37,7 @@ const sliderItems: SliderItem[] = [
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className={styles.hero}>
+    <section className="section">
       <Container className={styles.container}>
         <Title className={styles.title} titleTag="h1">
           Welcome to Nice Gadgets store!
