@@ -19,7 +19,7 @@ export const CatalogPage: React.FC = () => {
 
   const productsList = getProductsByCategory(products, path);
 
-  const currentSortBy = searchParams.get('sort') || 'Newest';
+  const currentSortBy = searchParams.get('sort') || 'All';
   const currentPerPageOptions = searchParams.get('perPage') || 16;
   const currentPage = Number(searchParams.get('page')) || 1;
 
