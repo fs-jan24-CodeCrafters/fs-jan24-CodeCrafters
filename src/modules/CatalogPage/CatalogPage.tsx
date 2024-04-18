@@ -11,18 +11,32 @@ import styles from './CatalogPage.module.scss';
 import { useSearchParams } from 'react-router-dom';
 import { getSortedProducts } from '../../helpers/getSortedProducts';
 import { Selects } from './Selects';
+import { Pagination } from './Pagination';
 
 export const CatalogPage: React.FC = () => {
   const { path, categoryName } = getPathAndCategoryNameFromUrl();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const productsList = getProductsByCategory(products, path);
+
   const currentSortBy = searchParams.get('sort') || 'Newest';
   const currentPerPageOptions = searchParams.get('perPage') || 16;
+  const currentPage = Number(searchParams.get('page')) || 1;
+
   const sortedByFormUrl = getSortedProducts(productsList, currentSortBy);
+
+  const itemsPerPage = Number(currentPerPageOptions) || sortedByFormUrl.length;
 
   const catalogPageTitle =
     categoryName === 'Phones' ? 'Mobile phones' : categoryName;
+
+  const indexOfLastProduct = currentPage * itemsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+
+  const visibleProducts = sortedByFormUrl.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct,
+  );
 
   return (
     <Container>
@@ -35,12 +49,21 @@ export const CatalogPage: React.FC = () => {
       <span className={`${styles.textItem} ${styles.productsAmountText}`}>
         {`${productsList.length} models`}
       </span>
+
       <Selects
         setSearchParams={setSearchParams}
         currentSortBy={currentSortBy}
-        currentPerPageOptions={currentPerPageOptions}
+        itemsPerPage={itemsPerPage}
+        products={sortedByFormUrl}
       />
-      <ProductsList products={sortedByFormUrl} />
+
+      <ProductsList products={visibleProducts} />
+
+      <Pagination
+        products={sortedByFormUrl}
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
+      />
     </Container>
   );
 };
