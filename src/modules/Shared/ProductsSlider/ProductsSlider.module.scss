@@ -19,6 +19,7 @@
 	border: 1px solid var(--icons);
 	cursor: pointer;
 
+	@include transition(border-color);
 
 	&:hover {
 		border-color: var(--primary);

@@ -1,9 +1,5 @@
-import { Container } from '../Shared/Container';
+import { HeroSection } from './HeroSection';
 
 export const HomePage: React.FC = () => {
-  return (
-    <Container>
-      <div>HomePage</div>
-    </Container>
-  );
+  return <HeroSection />;
 };
