@@ -16,6 +16,7 @@ interface Props {
 }
 
 const sortByOptions = [
+  { value: 'all', label: 'All' },
   { value: 'year', label: 'Newest' },
   { value: 'name', label: 'Alphabetically' },
   { value: 'price', label: 'Cheapest' },
@@ -31,7 +32,7 @@ export const Selects: React.FC<Props> = ({
     { value: 4, label: '4' },
     { value: 8, label: '8' },
     { value: 16, label: '16' },
-    { value: products.length, label: 'all' },
+    { value: products.length, label: 'All' },
   ];
 
   const handleOptionChange = (
