@@ -13,6 +13,7 @@
   "dependencies": {
     "@types/react-transition-group": "4.4.10",
     "classnames": "2.5.1",
+    "lodash.debounce": "4.0.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "6.22.3",
@@ -22,6 +23,7 @@
     "usehooks-ts": "3.1.0"
   },
   "devDependencies": {
+    "@types/lodash.debounce": "4.0.9",
     "@types/react": "18.2.66",
     "@types/react-dom": "18.2.22",
     "@types/swiper": "6.0.0",

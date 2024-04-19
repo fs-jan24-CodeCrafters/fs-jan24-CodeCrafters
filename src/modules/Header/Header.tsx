@@ -1,13 +1,14 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { HeaderNav } from './HeaderNav';
+import classNames from 'classnames';
 
+import { HeaderNav } from './HeaderNav';
 import { ShoppingTools } from './ShoppingTools';
 import { BurgerButton } from './BurgerButton';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
-import { useState } from 'react';
+import { Search } from './Search';
 
 import styles from './Header.module.scss';
-import classNames from 'classnames';
 
 const mobileBreakPoint = '768px';
 
@@ -28,13 +29,20 @@ export const Header: React.FC = () => {
         </Link>
 
         {matches && (
-          <BurgerButton setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
+          <>
+            <Search />
+            <BurgerButton
+              setIsMenuOpen={setIsMenuOpen}
+              isMenuOpen={isMenuOpen}
+            />
+          </>
         )}
 
         <div
           className={classNames(styles.menu, { [styles.menuOpen]: isMenuOpen })}
         >
           <HeaderNav setIsMenuOpen={setIsMenuOpen} />
+          {!matches && <Search />}
           <ShoppingTools setIsMenuOpen={setIsMenuOpen} />
         </div>
       </div>
