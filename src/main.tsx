@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter as Router } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
 import { App } from './App';
-import { MainContextProvider } from './MainContext/MainContext';
 import './index.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <MainContextProvider>
+    <CartProvider>
       <Router>
         <App />
       </Router>
-    </MainContextProvider>
+    </CartProvider>
   </React.StrictMode>,
 );

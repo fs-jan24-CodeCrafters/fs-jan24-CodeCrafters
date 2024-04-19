@@ -1,39 +1,25 @@
 import { useRef, useState } from 'react';
-import { useMainContext } from '../../hooks/useMainContext';
-import products from '../../../public/api/products.json';
-import { Product } from '../../types/Product';
 import { SuccessModal } from './SuccessModal';
 import { CartItem } from './CartItem';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { CartCheckout } from './CartCheckout';
 import { Container } from '../Shared/Container';
 import { Title } from '../Shared/Title';
-
-import styles from './Cart.module.scss';
 import { BackLink } from '../Shared/BackLink';
 import { useDisableScroll } from '../../hooks/useDisableScroll';
 
+import styles from './Cart.module.scss';
+import { useCart } from '../../context/CartContext';
+
 export const Cart: React.FC = () => {
-  const { cart, totalCartQuantity, addToCart, removeFromCart } =
-    useMainContext();
+  const { cart, totalCartQuantity, dispatch } = useCart();
   const [isModalVisible, setModalVisibility] = useState(false);
 
   const nodeRef = useRef(null);
 
-  const productsInCart = cart.items.reduce(
-    (acc: Array<Product & { quantity: number }>, item) => {
-      const found = products.find((product) => product.id === item.id);
-      if (found) {
-        return [...acc, { ...found, quantity: item.quantity }];
-      }
-      return acc;
-    },
-    [],
-  );
-
-  const totalPrice = productsInCart.reduce((acc: number, item) => {
+  const totalPrice = cart.reduce((acc: number, item) => {
     const price = item.price || item.fullPrice;
-    return acc + price * item.quantity;
+    return acc + price * (item.quantity || 0);
   }, 0);
 
   useDisableScroll(isModalVisible);
@@ -46,13 +32,13 @@ export const Cart: React.FC = () => {
           Cart
         </Title>
         <div className={styles.cartWrapper}>
-          {productsInCart.length === 0 ? (
+          {!cart.length ? (
             <h1>Your cart is empty</h1>
           ) : (
             <>
               <ul className={styles.itemsList}>
                 <TransitionGroup>
-                  {productsInCart.map((product) => (
+                  {cart.map((product) => (
                     <CSSTransition
                       key={product.id}
                       timeout={300}
@@ -64,8 +50,7 @@ export const Cart: React.FC = () => {
                       <CartItem
                         key={product.id}
                         product={product}
-                        addToCart={addToCart}
-                        removeFromCart={removeFromCart}
+                        dispatch={dispatch}
                       />
                     </CSSTransition>
                   ))}
@@ -95,6 +80,7 @@ export const Cart: React.FC = () => {
             <SuccessModal
               nodeRef={nodeRef}
               setModalVisibility={setModalVisibility}
+              dispatch={dispatch}
             />
           </CSSTransition>
         </div>
