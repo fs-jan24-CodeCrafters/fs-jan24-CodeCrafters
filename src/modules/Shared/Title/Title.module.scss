@@ -20,7 +20,7 @@
 }
 
 .h2 {
-	font-size: clamp-calc($min-break-point, $pc, 32px, 22px);
+	font-size: clamp-calc($min-break-point, $pc, 22px, 32px);
 }
 
 .h3 {

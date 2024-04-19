@@ -8,6 +8,7 @@ interface Props {
   selected?: boolean;
   variant?: 'primary' | 'favorites';
   onClick?: () => void;
+  className?: string;
 }
 
 export const Button: React.FC<Props> = ({
@@ -16,12 +17,13 @@ export const Button: React.FC<Props> = ({
   selected = false,
   variant = 'primary',
   onClick = () => {},
+  className,
 }) => {
   return (
     <button
       type="button"
       style={{ maxWidth }}
-      className={classNames(styles.button, {
+      className={classNames(styles.button, className, {
         [styles.primary]: variant === 'primary',
         [styles.secondary]: variant === 'favorites',
         [styles.selected]: selected,

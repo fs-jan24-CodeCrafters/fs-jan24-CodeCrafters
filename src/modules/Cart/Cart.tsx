@@ -2,10 +2,14 @@ import { useMainContext } from '../../hooks/useMainContext';
 import products from '../../../public/api/products.json';
 import styles from './Cart.module.scss';
 import { Product } from '../../types/Product';
+import { SuccessModal } from './SuccessModal';
+import { useState } from 'react';
+import { Button } from '../Shared/Button';
 
 export const Cart: React.FC = () => {
   const { cart, totalCartQuantity, addToCart, removeFromCart } =
     useMainContext();
+  const [isModalVisible, setModalVisibility] = useState(false);
 
   const productsInCart = cart.items.reduce(
     (acc: Array<Product & { quantity: number }>, item) => {
@@ -59,6 +63,13 @@ export const Cart: React.FC = () => {
       )}
       <h2>Total price: {totalPrice}</h2>
       <h3>Total items: {totalCartQuantity}</h3>
+      <Button onClick={() => setModalVisibility(!isModalVisible)}>
+        Checkout
+      </Button>
+
+      {isModalVisible && (
+        <SuccessModal setModalVisibility={setModalVisibility} />
+      )}
     </div>
   );
 };
