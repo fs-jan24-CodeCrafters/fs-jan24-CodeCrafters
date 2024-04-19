@@ -1,4 +1,4 @@
-import styles from './FooterButton.module.scss';
+import styles from '../Footer.module.scss';
 
 export const FooterButton: React.FC = () => {
   const scrollToTop = () => {
