@@ -19,7 +19,10 @@ export const CartCheckout: React.FC<Props> = ({
     <div className={styles.checkout}>
       <div className={styles.checkoutInfo}>
         <Title titleTag="h2">{totalPrice}</Title>
-        <Title titleTag="h5">{`Total for ${totalCartQuantity}`}</Title>
+        <Title
+          className={styles.subTitle}
+          titleTag="h5"
+        >{`Total for ${totalCartQuantity}`}</Title>
       </div>
       <Button
         className={styles.button}
