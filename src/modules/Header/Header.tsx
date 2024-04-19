@@ -9,6 +9,7 @@ import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { Search } from './Search';
 
 import styles from './Header.module.scss';
+import { useDisableScroll } from '../../hooks/useDisableScroll';
 
 const mobileBreakPoint = '768px';
 
@@ -16,6 +17,8 @@ export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const matches = useMediaQuery(`(max-width: ${mobileBreakPoint})`);
+
+  useDisableScroll(isMenuOpen);
 
   return (
     <header className={styles.header}>
