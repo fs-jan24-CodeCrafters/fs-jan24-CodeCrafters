@@ -1,3 +1,30 @@
+.title {
+	margin-bottom: 32px;
+}
+
+.cartWrapper {
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+
+	@include tablet {
+		flex-direction: column;
+		align-items: center;
+		gap: 32px;
+	}
+
+}
+
+.itemsList {
+	max-width: 752px;
+	width: 100%;
+
+	@include tablet {
+		max-width: 100%;
+	}
+
+}
+
 .button {
 	width: 20px;
 	height: 20px;
@@ -13,4 +40,26 @@
 	opacity: 0;
 	transform: translateY(20px);
 	@include transition(all);
+}
+
+.modalEnter {
+	opacity: 0;
+	transform: scale(0.9);
+}
+
+.modalEnterActive {
+	opacity: 1;
+	transform: scale(1);
+	transition: opacity 300ms, transform 300ms;
+}
+
+.modalExit {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.modalExitActive {
+	opacity: 0;
+	transform: scale(0.9);
+	transition: opacity 300ms, transform 300ms;
 }

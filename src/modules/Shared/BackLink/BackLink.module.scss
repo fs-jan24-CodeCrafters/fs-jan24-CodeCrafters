@@ -1,0 +1,16 @@
+.link {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	margin: 40px 0 16px 0;
+
+	@include mobile {
+		margin: 24px 0;
+	}
+
+}
+
+.text {
+	font-weight: 600;
+	color: var(--secondary);
+}

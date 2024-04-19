@@ -6,11 +6,14 @@ import { useOnClickOutside } from 'usehooks-ts';
 
 type Props = {
   setModalVisibility: (visible: boolean) => void;
+  nodeRef: React.MutableRefObject<null>;
 };
 
-export const SuccessModal: React.FC<Props> = ({ setModalVisibility }) => {
+export const SuccessModal: React.FC<Props> = ({
+  setModalVisibility,
+  nodeRef,
+}) => {
   const handleYesClick = () => {
-    //
     setModalVisibility(false);
   };
 
@@ -21,7 +24,7 @@ export const SuccessModal: React.FC<Props> = ({ setModalVisibility }) => {
   const ref = useRef(null);
   useOnClickOutside(ref, () => setModalVisibility(false));
   return (
-    <div className={styles.modal}>
+    <div ref={nodeRef} className={styles.modal}>
       <div ref={ref} className={styles.modalContent}>
         <Title titleTag="h2" className={styles.titleModal}>
           Are you ready to complete the payment?

@@ -1,0 +1,25 @@
+.checkout {
+	text-align: center;
+	align-items: center;
+	max-width: 368px;
+	width: 100%;
+	height: fit-content;
+	border: 1px solid var(--elements);
+	padding: 24px;
+
+	@include tablet {
+		max-width: 100%;
+	}
+
+}
+
+.checkoutInfo {
+	padding-bottom: 25px;
+	border-bottom: 1px solid var(--elements);
+	margin-bottom: 24px;
+}
+
+.button {
+	max-width: 100%;
+	height: 48px;
+}

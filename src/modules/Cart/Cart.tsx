@@ -1,17 +1,23 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useMainContext } from '../../hooks/useMainContext';
 import products from '../../../public/api/products.json';
-import styles from './Cart.module.scss';
 import { Product } from '../../types/Product';
 import { SuccessModal } from './SuccessModal';
-import { Button } from '../Shared/Button';
 import { CartItem } from './CartItem';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CartCheckout } from './CartCheckout';
+import { Container } from '../Shared/Container';
+import { Title } from '../Shared/Title';
+
+import styles from './Cart.module.scss';
+import { BackLink } from '../Shared/BackLink';
 
 export const Cart: React.FC = () => {
   const { cart, totalCartQuantity, addToCart, removeFromCart } =
     useMainContext();
   const [isModalVisible, setModalVisibility] = useState(false);
+
+  const nodeRef = useRef(null);
 
   const productsInCart = cart.items.reduce(
     (acc: Array<Product & { quantity: number }>, item) => {
@@ -30,68 +36,66 @@ export const Cart: React.FC = () => {
   }, 0);
 
   return (
-    <div>
-      {productsInCart.length === 0 ? (
-        <h1>Your cart is empty</h1>
-      ) : (
-        <ul>
-          {productsInCart.map((item) => (
-            <li key={item.id}>
-              <>
-                <button
-                  className={styles.button}
-                  onClick={() => removeFromCart(item.id, true)}
-                >
-                  x
-                </button>
-                {item!.name}
-                <button
-                  className={styles.button}
-                  onClick={() => addToCart(item.id)}
-                >
-                  +
-                </button>
-                {item.quantity}
-                <button
-                  className={styles.button}
-                  onClick={() => removeFromCart(item.id)}
-                >
-                  -
-                </button>
-              </>
-            </li>
-          ))}
-        </ul>
-      )}
-      <h2>Total price: {totalPrice}</h2>
-      <h3>Total items: {totalCartQuantity}</h3>
-      <Button onClick={() => setModalVisibility(!isModalVisible)}>
-        Checkout
-      </Button>
+    <div className="section">
+      <Container>
+        <BackLink path="/" />
+        <Title className={styles.title} titleTag="h1">
+          Cart
+        </Title>
+        <div className={styles.cartWrapper}>
+          {productsInCart.length === 0 ? (
+            <h1>Your cart is empty</h1>
+          ) : (
+            <>
+              <ul className={styles.itemsList}>
+                <TransitionGroup>
+                  {productsInCart.map((product) => (
+                    <CSSTransition
+                      key={product.id}
+                      timeout={300}
+                      classNames={{
+                        exit: styles.cartItemExit,
+                        exitActive: styles.cartItemExitActive,
+                      }}
+                    >
+                      <CartItem
+                        key={product.id}
+                        product={product}
+                        addToCart={addToCart}
+                        removeFromCart={removeFromCart}
+                      />
+                    </CSSTransition>
+                  ))}
+                </TransitionGroup>
+              </ul>
+              <CartCheckout
+                totalPrice={totalPrice}
+                totalCartQuantity={totalCartQuantity}
+                isModalVisible={isModalVisible}
+                setModalVisibility={setModalVisibility}
+              />
+            </>
+          )}
 
-      {isModalVisible && (
-        <SuccessModal setModalVisibility={setModalVisibility} />
-      )}
-      <TransitionGroup>
-        {productsInCart.map((product) => (
           <CSSTransition
-            key={product.id}
+            in={isModalVisible}
+            nodeRef={nodeRef}
             timeout={300}
             classNames={{
-              enter: styles.cartItemEnter,
-              enterActive: styles.cartItemEnterActive,
-              exit: styles.cartItemExit,
-              exitActive: styles.cartItemExitActive,
+              enter: styles.modalEnter,
+              enterActive: styles.modalEnterActive,
+              exit: styles.modalExit,
+              exitActive: styles.modalExitActive,
             }}
+            unmountOnExit
           >
-            <CartItem
-              product={product}
-              addToCart={addToCart}
-              removeFromCart={removeFromCart}
+            <SuccessModal
+              nodeRef={nodeRef}
+              setModalVisibility={setModalVisibility}
             />
           </CSSTransition>
-        ))}
-      </TransitionGroup>
+        </div>
+      </Container>
     </div>
   );
 };

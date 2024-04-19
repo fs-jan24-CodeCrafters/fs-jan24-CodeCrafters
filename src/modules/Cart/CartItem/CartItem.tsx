@@ -19,7 +19,7 @@ export const CartItem: React.FC<Props> = ({
   const { image, name, price, quantity, id } = product;
 
   return (
-    <div className={styles.productItem}>
+    <li className={styles.productItem}>
       <div className={styles.productDescription}>
         <button onClick={() => removeFromCart(id, true)}>
           <SpriteIcon className={styles.closeIcon} iconName="icon-Close" />
@@ -51,6 +51,6 @@ export const CartItem: React.FC<Props> = ({
         </div>
         <Title titleTag="h3">{`$${price}`}</Title>
       </div>
-    </div>
+    </li>
   );
 };
