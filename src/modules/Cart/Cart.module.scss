@@ -1,5 +1,16 @@
 .button {
-    width: 20px;
-    height: 20px;
-    border: 1px solid black;
+	width: 20px;
+	height: 20px;
+	border: 1px solid black;
+}
+
+.cartItemExit {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.cartItemExitActive {
+	opacity: 0;
+	transform: translateY(20px);
+	@include transition(all);
 }
