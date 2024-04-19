@@ -7,6 +7,8 @@
 }
 
 .imgWrap {
+	overflow: hidden;
+
 	@media (min-width:$mobile-small) {
 		min-height: clamp-calc($mobile-small, $pc, 187px, 368px);
 	}
@@ -16,6 +18,15 @@
 	align-items: end;
 	justify-content: end;
 	margin-bottom: 24px;
+
+	img {
+		@include transition(transform);
+
+		&:hover {
+			transform: scale(1.05);
+		}
+	}
+
 }
 
 .title {
