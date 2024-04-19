@@ -22,8 +22,12 @@
     flex-grow: 1;
 
     @include mobile {
-        margin-right: 16px;
+        position: absolute;
+        left: 0;
+        right: 55px;
         height: 100%;
+        margin: 0;
+        z-index: 10;
     }
 }
 
@@ -38,6 +42,7 @@
     color: var(--primary);
 
     @include mobile {
+        max-width: 100%;
         border-inline: 1px solid var(--elements);
     }
 }
