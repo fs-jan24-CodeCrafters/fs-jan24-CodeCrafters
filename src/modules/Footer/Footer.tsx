@@ -1,14 +1,3 @@
-<<<<<<< Updated upstream
-import { Container } from '../Shared/Container';
-import { Title } from '../Shared/Title';
-
-export const Footer: React.FC = () => {
-  return (
-    <footer>
-      <Container>
-        <Title titleTag="h4">Footer Waiting For Dima)))</Title>
-      </Container>
-=======
 import { Logo } from '../Logo/Logo';
 import { FooterButton } from './FooterButton/FooterButton';
 import { FooterNav } from './FooterNav/FooterNav';
@@ -22,7 +11,6 @@ export const Footer: React.FC = () => {
       </div>
       <FooterNav />
       <FooterButton />
->>>>>>> Stashed changes
     </footer>
   );
 };
