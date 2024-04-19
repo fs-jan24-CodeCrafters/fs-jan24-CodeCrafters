@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const FooterNavLink: React.FC<Props> = ({ to, text }) => (
-  <NavLink to={to} className={styles.footer__link} target="_blank">
+  <NavLink to={to} className={styles.footerLink} target="_blank">
     {text}
   </NavLink>
 );

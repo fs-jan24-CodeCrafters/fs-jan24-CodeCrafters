@@ -9,11 +9,11 @@ export const FooterButton: React.FC = () => {
   };
 
   return (
-    <div className={styles['backToTop']}>
-      <div className={styles['backToTop__scroll']} onClick={scrollToTop}>
-        <span className={styles['backToTop__text']}>Back to top</span>
+    <div className={styles.backToTop}>
+      <div className={styles.backToTopScrol} onClick={scrollToTop}>
+        <span className={styles.backToTopText}>Back to top</span>
 
-        <div className={styles['backToTop__img']} />
+        <div className={styles.backToTopImg} />
       </div>
     </div>
   );

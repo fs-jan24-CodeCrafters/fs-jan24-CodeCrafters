@@ -3,17 +3,17 @@ import styles from '../Footer.module.scss';
 
 export const FooterNav: React.FC = () => {
   return (
-    <ul className={styles.footer__navigation}>
-      <li className={styles.footer__item}>
+    <ul className={styles.footerNavigation}>
+      <li className={styles.footerItem}>
         <FooterNavLink
           to="https://github.com/fs-jan24-CodeCrafters/fs-jan24-CodeCrafters"
           text="github"
         />
       </li>
-      <li className={styles.footer__item}>
+      <li className={styles.footerItem}>
         <FooterNavLink to="/contacts" text="contacts" />
       </li>
-      <li className={styles.footer__item}>
+      <li className={styles.footerItem}>
         <FooterNavLink to="/rights" text="rights" />
       </li>
     </ul>
