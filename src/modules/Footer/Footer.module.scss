@@ -1,4 +1,3 @@
-@import '../../styles/utils/vars.scss';
 .footer {
   display: flex;
 
@@ -100,7 +99,7 @@
   }
 
   &:hover {
-    transform: scale(0.9);
+    transform: scale(1.1);
     color: var(--primary);
     border-bottom: 1px solid var(--primary);
   }
