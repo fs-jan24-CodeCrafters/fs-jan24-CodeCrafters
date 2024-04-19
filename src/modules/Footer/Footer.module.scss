@@ -1,5 +1,111 @@
-.icon {
-	use {
-		fill: var(--icons);
-	}
+@import '../../styles/utils/vars.scss';
+.footer {
+  display: flex;
+
+  background-color: var(--white);
+
+  box-shadow: 0px -1px 0px var(--elements);
+
+  &__logo {
+    width: 89px;
+  }
+
+  @media (min-width: 1201px) {
+    height: 100px;
+
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 32px 152px;
+  }
+
+  @media (max-width: 1200px) {
+    height: 100px;
+
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 32px;
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    height: 260px;
+
+    gap: 32px;
+
+    padding: 32px 16px;
+  }
+}
+
+.navigation {
+  display: flex;
+
+  padding: 0px;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 64px;
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 16px;
+  }
+}
+
+.link {
+  position: relative;
+
+  font-family: 'Mont-SemiBold';
+
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  color: var(--secondary);
+  font-size: 12px;
+  line-height: 11px;
+  text-transform: uppercase;
+
+  border-bottom: 1px solid transparent;
+
+  &_back_to_top {
+    display: block;
+    margin-right: 42px;
+
+    font-family: 'Mont-Regular';
+
+    cursor: pointer;
+
+    @media (max-width: 640px) {
+      margin-left: 30%;
+    }
+
+    &::after {
+      content: url('./FooterButton/button.svg');
+
+      position: absolute;
+      right: -50%;
+      bottom: -100%;
+    }
+  }
+
+  &:hover {
+    transform: scale(0.9);
+    color: var(--primary);
+    border-bottom: 1px solid var(--primary);
+  }
+
+  &:active {
+    color: var(--hover_BG);
+  }
 }
