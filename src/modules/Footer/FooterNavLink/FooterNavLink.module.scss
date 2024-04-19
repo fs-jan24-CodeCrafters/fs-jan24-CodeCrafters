@@ -1,0 +1,22 @@
+link {
+  position: relative;
+
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  color: var(--secondary);
+  font-size: 12px;
+  line-height: 11px;
+  text-transform: uppercase;
+
+  border-bottom: 1px solid transparent;
+
+  &:hover {
+    transform: scale(1.1);
+    color: var(--primary);
+    border-bottom: 1px solid var(--primary);
+  }
+
+  &:active {
+    color: var(--hover_BG);
+  }
+}

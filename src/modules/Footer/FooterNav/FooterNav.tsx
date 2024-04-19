@@ -1,5 +1,5 @@
 import { FooterNavLink } from '../FooterNavLink/FooterNavLink';
-import styles from '../Footer.module.scss';
+import styles from './FooterNav.module.scss';
 
 export const FooterNav: React.FC = () => {
   return (

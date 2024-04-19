@@ -1,4 +1,4 @@
-import { Logo } from '../Logo/Logo';
+import { Logo } from '../Shared/Logo/Logo';
 import { FooterButton } from './FooterButton/FooterButton';
 import { FooterNav } from './FooterNav/FooterNav';
 import styles from './Footer.module.scss';
