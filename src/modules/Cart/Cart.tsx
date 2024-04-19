@@ -11,6 +11,7 @@ import { Title } from '../Shared/Title';
 
 import styles from './Cart.module.scss';
 import { BackLink } from '../Shared/BackLink';
+import { useDisableScroll } from '../../hooks/useDisableScroll';
 
 export const Cart: React.FC = () => {
   const { cart, totalCartQuantity, addToCart, removeFromCart } =
@@ -34,6 +35,8 @@ export const Cart: React.FC = () => {
     const price = item.price || item.fullPrice;
     return acc + price * item.quantity;
   }, 0);
+
+  useDisableScroll(isModalVisible);
 
   return (
     <div className="section">
