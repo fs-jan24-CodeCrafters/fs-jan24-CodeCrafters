@@ -18,7 +18,7 @@ export const CartCheckout: React.FC<Props> = ({
   return (
     <div className={styles.checkout}>
       <div className={styles.checkoutInfo}>
-        <Title titleTag="h2">{totalPrice}</Title>
+        <Title titleTag="h2">{`$${totalPrice}`}</Title>
         <Title
           className={styles.subTitle}
           titleTag="h5"
