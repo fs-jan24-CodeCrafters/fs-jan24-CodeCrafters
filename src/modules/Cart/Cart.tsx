@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import { useMainContext } from '../../hooks/useMainContext';
 import products from '../../../public/api/products.json';
 import styles from './Cart.module.scss';
 import { Product } from '../../types/Product';
 import { SuccessModal } from './SuccessModal';
-import { useState } from 'react';
 import { Button } from '../Shared/Button';
+import { CartItem } from './CartItem';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export const Cart: React.FC = () => {
   const { cart, totalCartQuantity, addToCart, removeFromCart } =
@@ -70,6 +72,26 @@ export const Cart: React.FC = () => {
       {isModalVisible && (
         <SuccessModal setModalVisibility={setModalVisibility} />
       )}
+      <TransitionGroup>
+        {productsInCart.map((product) => (
+          <CSSTransition
+            key={product.id}
+            timeout={300}
+            classNames={{
+              enter: styles.cartItemEnter,
+              enterActive: styles.cartItemEnterActive,
+              exit: styles.cartItemExit,
+              exitActive: styles.cartItemExitActive,
+            }}
+          >
+            <CartItem
+              product={product}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+            />
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
     </div>
   );
 };
