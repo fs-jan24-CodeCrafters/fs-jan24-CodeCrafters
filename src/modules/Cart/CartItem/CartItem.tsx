@@ -1,3 +1,4 @@
+import { Action } from '../../../context/CartContext';
 import { Product } from '../../../types/Product';
 import { SpriteIcon } from '../../Shared/SpriteIcon';
 import { Title } from '../../Shared/Title';
@@ -7,21 +8,18 @@ const MAX_QUANTITY_PER_ITEM = 99;
 
 interface Props {
   product: Product;
-  addToCart: (id: number) => void;
-  removeFromCart: (id: number, removeItem?: boolean) => void;
+  dispatch: React.Dispatch<Action>;
 }
 
-export const CartItem: React.FC<Props> = ({
-  product,
-  addToCart,
-  removeFromCart,
-}) => {
+export const CartItem: React.FC<Props> = ({ product, dispatch }) => {
   const { image, name, price, quantity, id } = product;
 
   return (
     <li className={styles.productItem}>
       <div className={styles.productDescription}>
-        <button onClick={() => removeFromCart(id, true)}>
+        <button
+          onClick={() => dispatch({ type: 'cart/removeItem', payload: id })}
+        >
           <SpriteIcon className={styles.closeIcon} iconName="icon-Close" />
         </button>
 
@@ -32,7 +30,9 @@ export const CartItem: React.FC<Props> = ({
       <div className={styles.productPrice}>
         <div className={styles.quantityButtons}>
           <button
-            onClick={() => removeFromCart(id)}
+            onClick={() =>
+              dispatch({ type: 'cart/decreaseQuantity', payload: id })
+            }
             className={styles.quantityButton}
             disabled={quantity === 1}
           >
@@ -43,7 +43,9 @@ export const CartItem: React.FC<Props> = ({
 
           <button
             disabled={quantity === MAX_QUANTITY_PER_ITEM}
-            onClick={() => addToCart(id)}
+            onClick={() =>
+              dispatch({ type: 'cart/increaseQuantity', payload: id })
+            }
             className={styles.quantityButton}
           >
             <SpriteIcon iconName="icon-Plus" />
