@@ -10,6 +10,7 @@ import { Search } from './Search';
 import styles from './Header.module.scss';
 import { useDisableScroll } from '../../hooks/useDisableScroll';
 import { Logo } from '../Shared/Logo/Logo';
+import { ThemeSwitcher } from '../Cart/ThemeSwitcher';
 
 const mobileBreakPoint = '768px';
 
@@ -27,6 +28,7 @@ export const Header: React.FC = () => {
 
         {matches && (
           <>
+            <ThemeSwitcher />
             <Search />
             <BurgerButton
               setIsMenuOpen={setIsMenuOpen}
@@ -39,7 +41,12 @@ export const Header: React.FC = () => {
           className={classNames(styles.menu, { [styles.menuOpen]: isMenuOpen })}
         >
           <HeaderNav setIsMenuOpen={setIsMenuOpen} />
-          {!matches && <Search />}
+          {!matches && (
+            <>
+              <ThemeSwitcher />
+              <Search />
+            </>
+          )}
           <ShoppingTools setIsMenuOpen={setIsMenuOpen} />
         </div>
       </div>

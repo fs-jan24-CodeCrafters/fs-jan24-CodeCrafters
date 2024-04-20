@@ -4,7 +4,26 @@
 	align-items: center;
 	width: 32px;
 	height: 32px;
-	border: 1px solid var(--icons);
+	border: 1px solid var(--second-button-border-color);
+	background-color: var(--second-button-bg);
+	@include transition(border-color);
+
+	&:disabled {
+		border-color: var(--elements);
+		background-color: transparent;
+
+		svg {
+			fill: var(--elements)
+		}
+
+		&:hover {
+			border-color: var(--elements);
+		}
+	}
+
+	&:hover {
+		border-color: var(--second-button-border-hover);
+	}
 }
 
 %hover-underline {

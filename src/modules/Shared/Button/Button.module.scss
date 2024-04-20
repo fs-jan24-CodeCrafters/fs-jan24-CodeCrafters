@@ -10,14 +10,17 @@
 
 .primary {
 	color: var(--white);
-	background: var(--primary);
+	background: var(--button-color);
+
+	@include transition(all);
 
 	&:hover {
 		box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.4);
+		background-color: var(--primary-button-hover);
 	}
 
 	&.selected {
-		background-color: transparent;
+		background-color: var(--primary-button-selected);
 		color: var(--green);
 		border: 1px solid var(--elements);
 
@@ -29,5 +32,6 @@
 
 .secondary {
 	height: 40px;
-	border: 1px solid var(--icons);
+	border: 1px solid var(--second-button-border-color);
+	background-color: var(--second-button-bg);
 }

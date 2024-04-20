@@ -2,8 +2,9 @@ body {
 	font-family: "Mont", sans-serif;
 	line-height: 1.5;
 	font-size: 14px;
-	color: var(--primary);
-	background-color: var(--hover_BG);
+	color: var(--text-color_icons);
+	background-color: var(--BG-color);
+	transition: all 0.1s;
 }
 
 .lock {
@@ -30,4 +31,10 @@ body {
 
 .section {
 	margin-bottom: clamp-calc($min-break-point, $pc, $section-margin-small, $section-margin-big);
+}
+
+svg {
+	use {
+		fill: var(--text-color_icons);
+	}
 }

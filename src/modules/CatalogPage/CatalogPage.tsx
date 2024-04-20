@@ -39,7 +39,7 @@ export const CatalogPage: React.FC = () => {
   );
 
   return (
-    <Container>
+    <Container className="section">
       <Breadcrumbs>
         <BreadcrumbsItem tagType="span">{categoryName}</BreadcrumbsItem>
       </Breadcrumbs>
