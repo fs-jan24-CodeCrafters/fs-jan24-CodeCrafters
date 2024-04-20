@@ -1,12 +1,20 @@
-import { Container } from '../Shared/Container';
-import { Title } from '../Shared/Title';
+import { Logo } from '../Shared/Logo/Logo';
+// import { Container } from '../Shared/Container/Container';
+import { FooterButton } from './FooterButton/FooterButton';
+import { FooterNav } from './FooterNav/FooterNav';
+import styles from './Footer.module.scss';
 
 export const Footer: React.FC = () => {
   return (
-    <footer>
-      <Container>
-        <Title titleTag="h4">Footer Waiting For Dima)))</Title>
-      </Container>
+    <footer className={styles.footer}>
+      <div className={styles.footerWrapper}>
+        <div className={styles.footerLogo}>
+          <Logo />
+        </div>
+        <FooterNav />
+
+        <FooterButton />
+      </div>
     </footer>
   );
 };

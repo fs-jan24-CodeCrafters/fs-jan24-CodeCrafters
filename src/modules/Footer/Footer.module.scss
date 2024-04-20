@@ -1,5 +1,124 @@
-.icon {
-	use {
-		fill: var(--icons);
-	}
+.footer {
+  display: flex;
+  width: 100%;
+  background-color: transparent;
+  box-shadow: 0px -1px 0px var(--elements);
+
+  &Logo {
+    width: 89px;
+  }
+  &Wrapper {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 32px 16px;
+    gap: 32px;
+
+    @media (max-width: 639px) {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    @media (min-width: 640px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+  &Navigation {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 16px;
+
+    @media (max-width: 639px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    @media (min-width: 640px) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  &Item {
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 11px;
+    letter-spacing: 0.04em;
+  }
+
+  &Link {
+    text-decoration: none;
+    color: var(--secondary);
+    border-bottom: 1px solid transparent;
+
+    &:hover {
+      transform: scale(1.1);
+      color: var(--primary);
+      border-bottom: 1px solid var(--primary);
+    }
+
+    &:active {
+      color: var(--hover_BG);
+    }
+  }
+}
+
+.backToTop {
+  width: fit-content;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &Scrol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    height: 32px;
+    width: fit-content;
+    cursor: pointer;
+  }
+
+  &Text {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--secondary);
+  }
+
+  &Img {
+    display: flex;
+    height: 100%;
+    background-image: url(./FooterButton/button.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    aspect-ratio: 1;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  @media (max-width: 639px) {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    width: fit-content;
+  }
+  &:hover {
+    transform: scale(1.1);
+    color: var(--primary);
+    border-bottom: 1px solid var(--primary);
+  }
+
+  &:active {
+    color: var(--hover_BG);
+  }
 }
