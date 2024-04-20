@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { Button } from '../../Shared/Button';
 import styles from './SuccessModal.module.scss';
 import { Title } from '../../Shared/Title';
@@ -17,14 +16,12 @@ export const SuccessModal: React.FC<Props> = ({
   dispatch,
   nodeRef,
 }) => {
-  const navigate = useNavigate();
   const ref = useRef(null);
   useOnClickOutside(ref, () => setModalVisibility(false));
 
   const handleYesClick = () => {
     setModalVisibility(false);
     dispatch({ type: 'cart/clearCart' });
-    navigate('/');
   };
 
   return (
