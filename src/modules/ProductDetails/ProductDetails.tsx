@@ -51,7 +51,7 @@ export const ProductDetails: React.FC = () => {
             {currentProduct.name}
           </Title>
 
-          <VariantsSection product={currentProduct} />
+          <VariantsSection productDetails={currentProduct} />
 
           <ProductInfo product={currentProduct} />
 
