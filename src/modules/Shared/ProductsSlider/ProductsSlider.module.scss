@@ -17,27 +17,27 @@
 	width: 32px;
 	height: 32px;
 	border: 1px solid var(--icons);
-	cursor: pointer;
 
 	@include transition(border-color);
 
 	&:hover {
 		border-color: var(--primary);
 	}
-}
 
-.disabled {
-	cursor: auto;
-	border-color: var(--elements);
-
-	svg {
-		fill: var(--elements)
-	}
-
-	&:hover {
+	&:disabled {
 		border-color: var(--elements);
+
+		svg {
+			fill: var(--elements)
+		}
+
+		&:hover {
+			border-color: var(--elements);
+		}
 	}
 }
+
+
 
 .swiperWrapper {
 	display: grid;
