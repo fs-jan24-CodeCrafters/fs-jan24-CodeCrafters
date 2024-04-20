@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { SuccessModal } from './SuccessModal';
-import { CartItem } from './CartItem';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CartItems } from './CartItems';
+import { CSSTransition } from 'react-transition-group';
 import { CartCheckout } from './CartCheckout';
 import { Container } from '../Shared/Container';
 import { Title } from '../Shared/Title';
@@ -36,26 +36,8 @@ export const Cart: React.FC = () => {
             <h1>Your cart is empty</h1>
           ) : (
             <>
-              <ul className={styles.itemsList}>
-                <TransitionGroup>
-                  {cart.map((product) => (
-                    <CSSTransition
-                      key={product.id}
-                      timeout={300}
-                      classNames={{
-                        exit: styles.cartItemExit,
-                        exitActive: styles.cartItemExitActive,
-                      }}
-                    >
-                      <CartItem
-                        key={product.id}
-                        product={product}
-                        dispatch={dispatch}
-                      />
-                    </CSSTransition>
-                  ))}
-                </TransitionGroup>
-              </ul>
+              <CartItems cart={cart} dispatch={dispatch} />
+
               <CartCheckout
                 totalPrice={totalPrice}
                 totalCartQuantity={totalCartQuantity}

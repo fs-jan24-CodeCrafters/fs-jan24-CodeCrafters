@@ -92,3 +92,14 @@
 .quantityCounter {
 	font-weight: 600;
 }
+
+.cartItemExit {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.cartItemExitActive {
+	opacity: 0;
+	transform: translateY(20px);
+	@include transition(all);
+}
