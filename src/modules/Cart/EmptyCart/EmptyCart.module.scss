@@ -1,0 +1,98 @@
+.body {
+	width: 100%;
+	text-align: center;
+}
+
+.titleBox {
+	margin-bottom: clamp-calc($min-break-point, $pc, 24px, 44px);
+}
+
+.image {
+	overflow: hidden;
+	width: 100%;
+
+	img {
+		max-width: clamp-calc($min-break-point, $pc, 150px, 317px);
+		position: relative;
+		left: 0;
+		animation: moveImageRight 5s linear infinite;
+	}
+}
+
+@keyframes moveImageRight {
+	0% {
+		opacity: 0;
+		left: 0;
+	}
+
+	20% {
+		opacity: 1;
+	}
+
+	60% {
+		opacity: 1;
+	}
+
+	75% {
+		opacity: 0;
+	}
+
+	100% {
+		left: 100%;
+		opacity: 0;
+	}
+}
+
+@include mobile-small {
+	@keyframes moveImageRight {
+		0% {
+			opacity: 0;
+			left: 0;
+		}
+
+		20% {
+			opacity: 1;
+		}
+
+		50% {
+			opacity: 1;
+		}
+
+		60% {
+			opacity: 0;
+		}
+
+		100% {
+			left: 100%;
+			opacity: 0;
+		}
+	}
+}
+
+.line {
+	position: relative;
+	display: flex;
+	align-items: center;
+	height: 2px;
+	width: 100%;
+	background-color: var(--elements);
+	margin-top: -2px;
+
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		background-color: var(--elements);
+		border-radius: 50%;
+	}
+
+	&::before {
+		left: 0;
+	}
+
+	&::after {
+		right: 0;
+	}
+}

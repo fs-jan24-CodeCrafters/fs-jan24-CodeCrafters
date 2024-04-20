@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SuccessModal } from './SuccessModal';
 import { CartItems } from './CartItems';
 import { CSSTransition } from 'react-transition-group';
@@ -6,10 +6,10 @@ import { CartCheckout } from './CartCheckout';
 import { Container } from '../Shared/Container';
 import { Title } from '../Shared/Title';
 import { BackLink } from '../Shared/BackLink';
-import { useDisableScroll } from '../../hooks/useDisableScroll';
 
 import styles from './Cart.module.scss';
 import { useCart } from '../../context/CartContext';
+import { EmptyCart } from './EmptyCart';
 
 export const Cart: React.FC = () => {
   const { cart, totalCartQuantity, dispatch } = useCart();
@@ -22,7 +22,21 @@ export const Cart: React.FC = () => {
     return acc + price * (item.quantity || 0);
   }, 0);
 
-  useDisableScroll(isModalVisible);
+  useEffect(() => {
+    const body = document.body;
+    body.classList.add(styles.bodyOverlay);
+    if (isModalVisible) {
+      body.classList.add('lock');
+      body.classList.add(styles.bodyOverlayActive);
+    } else {
+      body.classList.remove('lock');
+      body.classList.remove(styles.bodyOverlayActive);
+    }
+
+    return () => {
+      document.body.classList.remove(styles.bodyOverlay);
+    };
+  }, [isModalVisible]);
 
   return (
     <div className="section">
@@ -33,7 +47,7 @@ export const Cart: React.FC = () => {
         </Title>
         <div className={styles.cartWrapper}>
           {!cart.length ? (
-            <h1>Your cart is empty</h1>
+            <EmptyCart />
           ) : (
             <>
               <CartItems cart={cart} dispatch={dispatch} />

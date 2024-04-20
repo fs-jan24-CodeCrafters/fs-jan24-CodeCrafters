@@ -37,7 +37,6 @@ export const SuccessModal: React.FC<Props> = ({
           <Button className={styles.buttonYes} onClick={handleYesClick}>
             Yes
           </Button>
-          <button>asdasd</button>
           <Button
             className={styles.buttonNo}
             onClick={() => setModalVisibility(false)}
