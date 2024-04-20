@@ -1,20 +1,32 @@
+import { Container } from '../Shared/Container';
 import { Logo } from '../Shared/Logo/Logo';
-// import { Container } from '../Shared/Container/Container';
-import { FooterButton } from './FooterButton/FooterButton';
 import { FooterNav } from './FooterNav/FooterNav';
+import { SpriteIcon } from '../Shared/SpriteIcon';
+
 import styles from './Footer.module.scss';
 
 export const Footer: React.FC = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <footer className={styles.footer}>
-      <div className={styles.footerWrapper}>
-        <div className={styles.footerLogo}>
-          <Logo />
-        </div>
+      <Container className={styles.container}>
+        <Logo className={styles.logo} />
+
         <FooterNav />
 
-        <FooterButton />
-      </div>
+        <button onClick={scrollToTop} className={styles.upButton}>
+          <span className={styles.buttonText}>Back to top</span>
+          <span className={styles.buttonIcon}>
+            <SpriteIcon iconName="icon-Chevron-Arrow-Up" />
+          </span>
+        </button>
+      </Container>
     </footer>
   );
 };

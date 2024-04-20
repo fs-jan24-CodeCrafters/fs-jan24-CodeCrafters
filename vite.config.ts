@@ -13,6 +13,7 @@ export default defineConfig({
 				@import './src/styles/utils/mixins.scss';
 				@import './src/styles/helpers.scss';
 				@import './src/styles/fonts';
+				@import './src/styles/utils/extends';
 				`,
       },
     },

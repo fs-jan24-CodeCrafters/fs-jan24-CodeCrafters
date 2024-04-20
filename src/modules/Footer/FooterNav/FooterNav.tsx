@@ -1,20 +1,22 @@
-import { FooterNavLink } from '../FooterNavLink/FooterNavLink';
+import { NavLink } from 'react-router-dom';
 import styles from '../Footer.module.scss';
 
 export const FooterNav: React.FC = () => {
   return (
-    <ul className={styles.footerNavigation}>
-      <li className={styles.footerItem}>
-        <FooterNavLink
+    <ul className={styles.nav}>
+      <li className={styles.navItem}>
+        <NavLink
+          className={styles.navLink}
           to="https://github.com/fs-jan24-CodeCrafters/fs-jan24-CodeCrafters"
-          text="github"
-        />
+        >
+          github
+        </NavLink>
       </li>
-      <li className={styles.footerItem}>
-        <FooterNavLink to="/contacts" text="contacts" />
+      <li className={styles.navItem}>
+        <NavLink to="/contacts">contacts</NavLink>
       </li>
-      <li className={styles.footerItem}>
-        <FooterNavLink to="/rights" text="rights" />
+      <li className={styles.navItem}>
+        <NavLink to="/rights">rights</NavLink>
       </li>
     </ul>
   );

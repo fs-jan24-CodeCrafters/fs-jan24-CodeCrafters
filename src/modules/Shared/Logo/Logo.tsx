@@ -1,11 +1,21 @@
 import { Link } from 'react-router-dom';
 import logo from './Logo.svg';
 import styles from './Logo.module.scss';
+import classNames from 'classnames';
 
-export const Logo: React.FC = () => {
+interface Props {
+  onClick?: () => void;
+  className?: string;
+}
+
+export const Logo: React.FC<Props> = ({ onClick = () => {}, className }) => {
   return (
-    <Link className={styles.logo} to="/">
-      <img src={logo} className={styles.logo__image} alt="NiceGadgets" />
+    <Link
+      onClick={onClick}
+      className={classNames(styles.logo, className)}
+      to="/"
+    >
+      <img src={logo} alt="NiceGadgets" />
     </Link>
   );
 };
