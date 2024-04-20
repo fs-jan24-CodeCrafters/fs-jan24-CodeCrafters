@@ -24,6 +24,21 @@
 	font-weight: 700;
 }
 
+:global .reactSelect__control--is-focused {
+	box-shadow: none !important;
+	border-color: var(--secondary) !important;
+}
+
+:global .reactSelect__option--is-focused {
+	background-color: var(--elements) !important;
+	cursor: pointer !important;
+}
+
+:global .reactSelect__option--is-selected {
+	background-color: var(--secondary) !important;
+	color: var(--white);
+}
+
 :global .css-1dimb5e-singleValue {
 	font-weight: 700;
 	font-size: 14px;

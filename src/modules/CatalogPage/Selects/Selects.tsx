@@ -58,6 +58,8 @@ export const Selects: React.FC<Props> = ({
           Sort by
         </span>
         <Select
+          className="selectContainer"
+          classNamePrefix="reactSelect"
           isSearchable={false}
           value={sortByOptions.find((el) => el.label === currentSortBy)}
           onChange={(newValue) => handleOptionChange(newValue, 'sort')}
@@ -70,6 +72,8 @@ export const Selects: React.FC<Props> = ({
           Items on page
         </span>
         <Select
+          className="selectContainer"
+          classNamePrefix="reactSelect"
           isSearchable={false}
           value={perPageOptions.find(
             (el) => el.value.toString() === itemsPerPage.toString(),
