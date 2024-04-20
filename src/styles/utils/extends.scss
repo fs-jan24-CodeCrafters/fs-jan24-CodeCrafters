@@ -1,0 +1,31 @@
+%small-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 32px;
+	height: 32px;
+	border: 1px solid var(--icons);
+}
+
+%hover-underline {
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+		height: 3px;
+		width: 100%;
+		bottom: 0;
+		transform: scale(0);
+		transform-origin: center;
+
+		@include transition(transform)
+	}
+
+	&:hover {
+		&::before {
+			transform: scale(1);
+		}
+	}
+
+}
