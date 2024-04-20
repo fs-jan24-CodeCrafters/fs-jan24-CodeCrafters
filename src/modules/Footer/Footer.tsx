@@ -1,11 +1,31 @@
 import { Container } from '../Shared/Container';
-import { Title } from '../Shared/Title';
+import { Logo } from '../Shared/Logo/Logo';
+import { FooterNav } from './FooterNav/FooterNav';
+import { SpriteIcon } from '../Shared/SpriteIcon';
+
+import styles from './Footer.module.scss';
 
 export const Footer: React.FC = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
-    <footer>
-      <Container>
-        <Title titleTag="h4">Footer Waiting For Dima)))</Title>
+    <footer className={styles.footer}>
+      <Container className={styles.container}>
+        <Logo className={styles.logo} />
+
+        <FooterNav />
+
+        <button onClick={scrollToTop} className={styles.upButton}>
+          <span className={styles.buttonText}>Back to top</span>
+          <span className={styles.buttonIcon}>
+            <SpriteIcon iconName="icon-Chevron-Arrow-Up" />
+          </span>
+        </button>
       </Container>
     </footer>
   );

@@ -2,11 +2,11 @@ import { Button } from '../Button';
 import { SpriteIcon } from '../SpriteIcon';
 import { Title } from '../Title';
 import { Product } from '../../../types/Product';
-import { useMainContext } from '../../../hooks/useMainContext';
 import styles from './Card.module.scss';
 import { Link } from 'react-router-dom';
 import { FavoritesContext } from '../../../MainContext/FavouritesContext';
 import { useContext } from 'react';
+import { useCart } from '../../../context/CartContext';
 
 interface Props {
   product: Product;
@@ -26,14 +26,14 @@ export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
     category,
     itemId,
   } = product;
-  const { addToCart, isProductInCart } = useMainContext();
   const { isFavorite, toggleFavorite } = useContext(FavoritesContext);
+  const { cart, dispatch } = useCart();
 
-  const productIsInCart = isProductInCart(id);
+  const isProductInCart = cart.some((item) => item.id === id);
 
-  const addToCartHandler = () => {
-    if (!productIsInCart) {
-      addToCart(id);
+  const addToCartHandler = (productItem: Product) => {
+    if (!isProductInCart) {
+      dispatch({ type: 'cart/addItem', payload: productItem });
     }
   };
 
@@ -41,7 +41,9 @@ export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
     toggleFavorite(product);
   };
 
-  const buttonText = productIsInCart ? 'Added to cart' : 'Add to cart';
+
+  const buttonText = isProductInCart ? 'Added to cart' : 'Add to cart';
+
 
   return (
     <article className={styles.card}>
@@ -75,7 +77,10 @@ export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
           </p>
         </div>
         <div className={styles.buttonsContainer}>
-          <Button onClick={addToCartHandler} selected={productIsInCart}>
+          <Button
+            onClick={() => addToCartHandler(product)}
+            selected={isProductInCart}
+          >
             {buttonText}
           </Button>
           <Button

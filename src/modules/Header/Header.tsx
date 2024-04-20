@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import { HeaderNav } from './HeaderNav';
@@ -10,6 +9,7 @@ import { Search } from './Search';
 
 import styles from './Header.module.scss';
 import { useDisableScroll } from '../../hooks/useDisableScroll';
+import { Logo } from '../Shared/Logo/Logo';
 
 const mobileBreakPoint = '768px';
 
@@ -23,13 +23,7 @@ export const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
-        <Link
-          to="/"
-          className={styles.logo}
-          onClick={() => setIsMenuOpen(false)}
-        >
-          <img src="/icons/Logo.svg" alt="Nice Gadgets Logo" />
-        </Link>
+        <Logo className={styles.logo} onClick={() => setIsMenuOpen(false)} />
 
         {matches && (
           <>

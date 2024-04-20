@@ -3,26 +3,27 @@ import styles from './SuccessModal.module.scss';
 import { Title } from '../../Shared/Title';
 import { useRef } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
+import { Action } from '../../../context/CartContext';
 
 type Props = {
   setModalVisibility: (visible: boolean) => void;
   nodeRef: React.MutableRefObject<null>;
+  dispatch: React.Dispatch<Action>;
 };
 
 export const SuccessModal: React.FC<Props> = ({
   setModalVisibility,
+  dispatch,
   nodeRef,
 }) => {
-  const handleYesClick = () => {
-    setModalVisibility(false);
-  };
-
-  const handleNoClick = () => {
-    setModalVisibility(false);
-  };
-
   const ref = useRef(null);
   useOnClickOutside(ref, () => setModalVisibility(false));
+
+  const handleYesClick = () => {
+    setModalVisibility(false);
+    dispatch({ type: 'cart/clearCart' });
+  };
+
   return (
     <div ref={nodeRef} className={styles.modal}>
       <div ref={ref} className={styles.modalContent}>
@@ -33,7 +34,10 @@ export const SuccessModal: React.FC<Props> = ({
           <Button className={styles.buttonYes} onClick={handleYesClick}>
             Yes
           </Button>
-          <Button className={styles.buttonNo} onClick={handleNoClick}>
+          <Button
+            className={styles.buttonNo}
+            onClick={() => setModalVisibility(false)}
+          >
             No
           </Button>
         </div>

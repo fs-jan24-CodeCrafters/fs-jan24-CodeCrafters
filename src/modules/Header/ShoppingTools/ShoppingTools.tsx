@@ -4,17 +4,18 @@ import { ShoppingCounter } from '../ShoppingCounter';
 
 import styles from './ShoppingTools.module.scss';
 import classNames from 'classnames';
-import { useMainContext } from '../../../hooks/useMainContext';
 import { useContext } from 'react';
 import { FavoritesContext } from '../../../MainContext/FavouritesContext';
+import { useCart } from '../../../context/CartContext';
+
 
 interface Props {
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const ShoppingTools: React.FC<Props> = ({ setIsMenuOpen }) => {
-  const { totalCartQuantity } = useMainContext();
   const { countFavorites } = useContext(FavoritesContext);
+  const { totalCartQuantity } = useCart();
 
   const getLinkClassNames = ({
     isActive,

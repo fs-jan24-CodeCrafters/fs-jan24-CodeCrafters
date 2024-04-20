@@ -1,5 +1,65 @@
-.icon {
-	use {
-		fill: var(--icons);
+.footer {
+	padding: 32px 0;
+	border-top: 1px solid var(--elements);
+	color: var(--secondary);
+}
+
+.container {
+	justify-content: space-between;
+	gap: 32px;
+}
+
+.logo {
+	flex-shrink: 0;
+}
+
+.nav {
+	justify-content: center;
+	gap: clamp-calc($mobile, $pc, 16px, 106px);
+}
+
+.container,
+.nav {
+	display: flex;
+	align-items: center;
+
+	@media (max-width:550px) {
+		flex-direction: column;
+		align-items: start;
 	}
+
+}
+
+.navItem {
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 0.91667;
+	letter-spacing: 0.04em;
+	padding-bottom: 4px;
+	@extend %hover-underline;
+
+	&::before {
+		content: '';
+		background-color: var(--secondary);
+	}
+
+}
+
+.upButton {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+
+	@media (max-width:550px) {
+		margin: 0 auto;
+	}
+}
+
+.buttonText {
+	color: var(--secondary);
+}
+
+.buttonIcon {
+	@extend %small-button;
 }

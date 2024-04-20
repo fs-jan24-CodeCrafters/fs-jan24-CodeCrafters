@@ -1,42 +1,42 @@
-import { useRef, useState } from 'react';
-import { useMainContext } from '../../hooks/useMainContext';
-import products from '../../../public/api/products.json';
-import { Product } from '../../types/Product';
+import { useEffect, useRef, useState } from 'react';
 import { SuccessModal } from './SuccessModal';
-import { CartItem } from './CartItem';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CartItems } from './CartItems';
+import { CSSTransition } from 'react-transition-group';
 import { CartCheckout } from './CartCheckout';
 import { Container } from '../Shared/Container';
 import { Title } from '../Shared/Title';
+import { BackLink } from '../Shared/BackLink';
 
 import styles from './Cart.module.scss';
-import { BackLink } from '../Shared/BackLink';
-import { useDisableScroll } from '../../hooks/useDisableScroll';
+import { useCart } from '../../context/CartContext';
+import { EmptyCart } from './EmptyCart';
 
 export const Cart: React.FC = () => {
-  const { cart, totalCartQuantity, addToCart, removeFromCart } =
-    useMainContext();
+  const { cart, totalCartQuantity, dispatch } = useCart();
   const [isModalVisible, setModalVisibility] = useState(false);
 
   const nodeRef = useRef(null);
 
-  const productsInCart = cart.items.reduce(
-    (acc: Array<Product & { quantity: number }>, item) => {
-      const found = products.find((product) => product.id === item.id);
-      if (found) {
-        return [...acc, { ...found, quantity: item.quantity }];
-      }
-      return acc;
-    },
-    [],
-  );
-
-  const totalPrice = productsInCart.reduce((acc: number, item) => {
+  const totalPrice = cart.reduce((acc: number, item) => {
     const price = item.price || item.fullPrice;
-    return acc + price * item.quantity;
+    return acc + price * (item.quantity || 0);
   }, 0);
 
-  useDisableScroll(isModalVisible);
+  useEffect(() => {
+    const body = document.body;
+    body.classList.add(styles.bodyOverlay);
+    if (isModalVisible) {
+      body.classList.add('lock');
+      body.classList.add(styles.bodyOverlayActive);
+    } else {
+      body.classList.remove('lock');
+      body.classList.remove(styles.bodyOverlayActive);
+    }
+
+    return () => {
+      document.body.classList.remove(styles.bodyOverlay);
+    };
+  }, [isModalVisible]);
 
   return (
     <div className="section">
@@ -46,31 +46,12 @@ export const Cart: React.FC = () => {
           Cart
         </Title>
         <div className={styles.cartWrapper}>
-          {productsInCart.length === 0 ? (
-            <h1>Your cart is empty</h1>
+          {!cart.length ? (
+            <EmptyCart />
           ) : (
             <>
-              <ul className={styles.itemsList}>
-                <TransitionGroup>
-                  {productsInCart.map((product) => (
-                    <CSSTransition
-                      key={product.id}
-                      timeout={300}
-                      classNames={{
-                        exit: styles.cartItemExit,
-                        exitActive: styles.cartItemExitActive,
-                      }}
-                    >
-                      <CartItem
-                        key={product.id}
-                        product={product}
-                        addToCart={addToCart}
-                        removeFromCart={removeFromCart}
-                      />
-                    </CSSTransition>
-                  ))}
-                </TransitionGroup>
-              </ul>
+              <CartItems cart={cart} dispatch={dispatch} />
+
               <CartCheckout
                 totalPrice={totalPrice}
                 totalCartQuantity={totalCartQuantity}
@@ -95,6 +76,7 @@ export const Cart: React.FC = () => {
             <SuccessModal
               nodeRef={nodeRef}
               setModalVisibility={setModalVisibility}
+              dispatch={dispatch}
             />
           </CSSTransition>
         </div>

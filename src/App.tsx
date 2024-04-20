@@ -1,15 +1,21 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { useLayoutEffect } from 'react';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Layout } from './Layout';
 import { HomePage } from './modules/HomePage';
 import { ProductDetails } from './modules/ProductDetails';
 import { Favorites } from './modules/Favorites';
 import { Cart } from './modules/Cart';
 import { ErrorPage } from './modules/ErrorPage';
-
-import './App.scss';
 import { CatalogPage } from './modules/CatalogPage/CatalogPage';
 
+import './App.scss';
+
 export const App = () => {
+  const { pathname } = useLocation();
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

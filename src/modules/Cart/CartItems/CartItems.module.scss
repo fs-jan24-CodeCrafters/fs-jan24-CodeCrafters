@@ -62,12 +62,7 @@
 }
 
 .quantityButton {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 32px;
-	height: 32px;
-	border: 1px solid var(--icons);
+	@extend %small-button;
 
 	@include transition(border-color);
 
@@ -91,4 +86,15 @@
 
 .quantityCounter {
 	font-weight: 600;
+}
+
+.cartItemExit {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.cartItemExitActive {
+	opacity: 0;
+	transform: translateY(20px);
+	@include transition(all);
 }
