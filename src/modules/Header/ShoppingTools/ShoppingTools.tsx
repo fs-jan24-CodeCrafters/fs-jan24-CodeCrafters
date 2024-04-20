@@ -5,6 +5,8 @@ import { ShoppingCounter } from '../ShoppingCounter';
 import styles from './ShoppingTools.module.scss';
 import classNames from 'classnames';
 import { useMainContext } from '../../../hooks/useMainContext';
+import { useContext } from 'react';
+import { FavoritesContext } from '../../../MainContext/FavouritesContext';
 
 interface Props {
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,6 +14,7 @@ interface Props {
 
 export const ShoppingTools: React.FC<Props> = ({ setIsMenuOpen }) => {
   const { totalCartQuantity } = useMainContext();
+  const { countFavorites } = useContext(FavoritesContext);
 
   const getLinkClassNames = ({
     isActive,
@@ -34,10 +37,12 @@ export const ShoppingTools: React.FC<Props> = ({ setIsMenuOpen }) => {
       >
         <div className={styles.iconWrapper}>
           <SpriteIcon iconName="icon-Favorites" className={styles.icon} />
-          <ShoppingCounter
-            productsAmount={10}
-            className={styles.shoppingCounter}
-          />
+          {countFavorites > 0 && (
+            <ShoppingCounter
+              productsAmount={countFavorites}
+              className={styles.shoppingCounter}
+            />
+          )}
         </div>
       </NavLink>
 
