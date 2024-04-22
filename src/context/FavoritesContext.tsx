@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Product } from '../types/Product';
 import useLocalStorage from '../hooks/useLocalStorage';
 
@@ -24,7 +24,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const FavoritesProvider: React.FC<Props> = ({ children }) => {
+const FavoritesProvider: React.FC<Props> = ({ children }) => {
   const [favorites, setFavorites] = useLocalStorage<Product[]>(
     FAVORITES_KEY,
     [],
@@ -60,3 +60,15 @@ export const FavoritesProvider: React.FC<Props> = ({ children }) => {
     </FavoritesContext.Provider>
   );
 };
+
+const useFavorites = () => {
+  const context = useContext(FavoritesContext);
+
+  if (!context) {
+    throw new Error('CartContext was used outside of the PostProvider');
+  }
+
+  return context;
+};
+
+export { useFavorites, FavoritesProvider };
