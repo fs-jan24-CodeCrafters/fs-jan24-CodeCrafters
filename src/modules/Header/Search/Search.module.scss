@@ -1,57 +1,57 @@
 .searchButton {
-    width: clamp-calc($mobile, $pc, 48px, 64px);
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 3px solid transparent;
-    border-left: 1px solid var(--elements);
+	width: clamp-calc($mobile, $pc, 48px, 64px);
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 3px solid transparent;
+	border-left: 1px solid var(--elements);
 
-    @include mobile {
-        width: 64px;
-        flex-grow: 5;
-        justify-content: flex-end;
-        padding-right: 30px;
-        border: none;
-    }
+	@include mobile {
+		width: 64px;
+		justify-content: flex-end;
+		padding-right: 30px;
+		border: none;
+	}
+
 }
 
 .searchInputContainer {
-    position: relative;
-    margin-left: 20px;
-    flex-grow: 1;
+	position: relative;
+	margin-left: 20px;
+	flex-grow: 1;
 
-    @include mobile {
-        position: absolute;
-        left: 0;
-        right: 55px;
-        height: 100%;
-        margin: 0;
-        z-index: 10;
-    }
+	@include mobile {
+		position: absolute;
+		left: 0;
+		right: 55px;
+		height: 100%;
+		margin: 0;
+		z-index: 10;
+	}
 }
 
 .searchInput {
-    position: relative;
-    min-width: 250px;
-    max-width: 500px;
-    width: 100%;
-    height: 100%;
-    padding: 10px 40px 10px 10px;
-    border-left: 1px solid var(--elements);
-    color: var(--primary);
+	position: relative;
+	min-width: 250px;
+	max-width: 500px;
+	width: 100%;
+	height: 100%;
+	padding: 10px 40px 10px 10px;
+	border-left: 1px solid var(--elements);
+	color: var(--primary);
 
-    @include mobile {
-        max-width: 100%;
-        border-inline: 1px solid var(--elements);
-    }
+	@include mobile {
+		max-width: 100%;
+		border-inline: 1px solid var(--elements);
+	}
 }
 
 .closeButton {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
 }

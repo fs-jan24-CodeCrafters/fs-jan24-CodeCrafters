@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import logo from './Logo.svg';
 import styles from './Logo.module.scss';
 import classNames from 'classnames';
+import { SpriteIcon } from '../SpriteIcon';
 
 interface Props {
   onClick?: () => void;
@@ -15,7 +15,7 @@ export const Logo: React.FC<Props> = ({ onClick = () => {}, className }) => {
       className={classNames(styles.logo, className)}
       to="/"
     >
-      <img src={logo} alt="NiceGadgets" />
+      <SpriteIcon className={styles.logoIconSvg} iconName="icon-Nice-Gadgets" />
     </Link>
   );
 };

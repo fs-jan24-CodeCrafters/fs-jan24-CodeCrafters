@@ -14,7 +14,7 @@
 	border-radius: 15px;
 	max-width: 700px;
 	max-height: 400px;
-	background-color: white;
+	background-color: var(--BG-color);
 	box-shadow: rgba($color: #000000, $alpha: 1.0) 0 5px 15px;
 	display: flex;
 	flex-direction: column;
@@ -36,10 +36,4 @@
 .buttonYes,
 .buttonNo {
 	width: 30%;
-}
-
-.buttonNo {
-	background-color: var(--white);
-	color: var(--primary);
-	border: 1px solid var(--primary);
 }

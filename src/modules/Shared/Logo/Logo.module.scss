@@ -5,4 +5,18 @@
 	&:hover {
 		transform: scale(1.05);
 	}
+
+}
+
+.logoIconSvg {
+	width: 92px;
+	height: 32px;
+	padding-right: 15px;
+	background-image: url('../Logo/logo-icon.png');
+	background-repeat: no-repeat;
+	background-position: top;
+
+	use {
+		fill: var(--primary);
+	}
 }

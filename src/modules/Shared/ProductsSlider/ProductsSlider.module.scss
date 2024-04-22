@@ -12,27 +12,7 @@
 .productSliderButtonPrev,
 .productSliderButtonNext {
 	@extend %small-button;
-
-	@include transition(border-color);
-
-	&:hover {
-		border-color: var(--primary);
-	}
-
-	&:disabled {
-		border-color: var(--elements);
-
-		svg {
-			fill: var(--elements)
-		}
-
-		&:hover {
-			border-color: var(--elements);
-		}
-	}
 }
-
-
 
 .swiperWrapper {
 	display: grid;

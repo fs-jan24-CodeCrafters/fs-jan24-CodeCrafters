@@ -41,12 +41,13 @@
 .buttonPrev,
 .buttonNext {
 	width: 32px;
-	border: 1px solid var(--icons);
+	border: 1px solid var(--second-button-border-color);
+	background-color: var(--second-button-bg);
 	flex-shrink: 0;
-	@include transition(border-color);
+	@include transition(all);
 
 	&:hover {
-		border-color: var(--primary);
+		border-color: var(--second-button-border-hover);
 	}
 
 	@include mobile {

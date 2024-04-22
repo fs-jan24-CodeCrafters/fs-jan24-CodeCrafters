@@ -1,28 +1,32 @@
 // colors
 :root {
 	--primary: #313237;
-	--accent: #313237;
 	--secondary: #89939a;
-	--icons: #b4bdc3;
+	--button-color: #313237;
+	--primary-button-hover: #313237;
+	--primary-button-selected: #ffffff;
+	--second-button-bg: transparent;
+	--second-button-border-color: #b4bdc3;
+	--second-button-border-hover: #313237;
+	--BG-color: #fafbfc;
 	--elements: #e2e6e9;
-	--hover_BG: #fafbfc;
 	--white: #ffffff;
-	--surface: #ffffff;
 	--green: #27ae60;
 	--red: #eb5757;
-	--background: #ffffff;
 }
 
 .dark-theme {
 	--primary: #f1f2f9;
-	--accent: #905BFF;
 	--secondary: #75767f;
-	--icons: #4a4d58;
+	--button-color: #905BFF;
+	--primary-button-hover: #a378ff;
+	--primary-button-selected: #323542;
+	--BG-color: #0f1121;
+	--second-button-bg: #323542;
+	--second-button-border-color: #323542;
+	--second-button-border-hover: #89939a;
 	--elements: #3b3e4a;
-	--hover_BG: #a378ff;
 	--white: #f1f2f9;
-	--surface: #161827;
-	--background: #0F1121;
 	--green: #27ae60;
 	--red: #eb5757;
 }

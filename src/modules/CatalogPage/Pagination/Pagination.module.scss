@@ -6,17 +6,12 @@
 
 .link {
 	font-weight: 600;
-	border: 1px solid var(--secondary);
-	width: 32px;
-	height: 32px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@extend %small-button;
 }
 
 .linkActive {
 	color: var(--white);
-	background-color: var(--primary);
+	background-color: var(--button-color);
 }
 
 .linkPrev {
