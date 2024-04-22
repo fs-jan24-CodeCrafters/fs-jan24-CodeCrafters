@@ -23,11 +23,18 @@ const getNewLinkByVariant = (
   id: string,
   index: number,
   param: string,
-  isAccessories: boolean,
+  type: string,
 ): string => {
   let link: string | string[] = id.split('-');
-  if (isAccessories && id.includes('space')) {
-    link.splice(index - 1, param.includes('mm') ? 1 : 2, param);
+  const isTrickyColor =
+    !link[link.length - 2].includes('mm') &&
+    !link[link.length - 2].includes('gb') &&
+    !link[link.length - 2].includes('tb');
+
+  if (isTrickyColor && type === 'color') {
+    link.splice(index - 1, 2, param);
+  } else if (isTrickyColor) {
+    link.splice(index - 1, 1, param);
   } else {
     link.splice(index, 1, param);
   }
@@ -130,22 +137,19 @@ export const VariantsSection: React.FC<Props> = ({
 
         <div className={styles.colorRadioWrapper}>
           {colorsAvailable.map((color) => {
+            const TYPE = 'color';
             const normalizedColor = color.split(' ').join('-');
+            const normalizedCurrentColor = currentColor.split(' ').join('-');
             const COLOR_INDEX = itemId.split('-').length - 1;
 
             const LINK =
               `/${category}/` +
-              getNewLinkByVariant(
-                itemId,
-                COLOR_INDEX,
-                normalizedColor,
-                isAccessories,
-              );
+              getNewLinkByVariant(itemId, COLOR_INDEX, normalizedColor, TYPE);
 
             return (
               <ColorRadioButton
                 key={normalizedColor}
-                currentColor={currentColor}
+                currentColor={normalizedCurrentColor}
                 color={normalizedColor}
                 LINK={LINK}
               />
@@ -160,6 +164,7 @@ export const VariantsSection: React.FC<Props> = ({
 
           <div className={styles.capacityRadioWrapper}>
             {capacityAvailable.map((capacity) => {
+              const TYPE = 'capacity';
               const CAPACITY_INDEX = itemId.split('-').length - 2;
               const LINK =
                 `/${category}/` +
@@ -167,7 +172,7 @@ export const VariantsSection: React.FC<Props> = ({
                   itemId,
                   CAPACITY_INDEX,
                   capacity.toLowerCase(),
-                  isAccessories,
+                  TYPE,
                 );
 
               return (
