@@ -91,6 +91,7 @@ export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
           </Button>
           <Button
             variant="favorites"
+            selected={isFavoriteProd}
             maxWidth={40}
             onClick={handleToggleFavorite}
           >

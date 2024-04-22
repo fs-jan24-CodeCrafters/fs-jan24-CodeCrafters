@@ -36,4 +36,15 @@
 	height: 40px;
 	border: 1px solid var(--second-button-border-color);
 	background-color: var(--second-button-bg);
+	@include transition(all);
+
+
+	&:hover {
+		border-color: var(--secondary);
+	}
+
+	&.selected {
+		background-color: var(--BG-color);
+	}
+
 }

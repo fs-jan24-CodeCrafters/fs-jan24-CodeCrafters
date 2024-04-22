@@ -205,6 +205,7 @@ export const VariantsSection: React.FC<Props> = ({
             <Button
               variant="favorites"
               maxWidth={40}
+              selected={isFavoriteProd}
               onClick={handleToggleFavorite}
             >
               {!isFavoriteProd ? (
