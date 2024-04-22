@@ -12,12 +12,12 @@ import { useDisableScroll } from '../../hooks/useDisableScroll';
 import { Logo } from '../Shared/Logo/Logo';
 import { ThemeSwitcher } from '../Cart/ThemeSwitcher';
 
-const mobileBreakPoint = '768px';
+const tabletBreakPoint = '992px';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const matches = useMediaQuery(`(max-width: ${mobileBreakPoint})`);
+  const matches = useMediaQuery(`(max-width: ${tabletBreakPoint})`);
 
   useDisableScroll(isMenuOpen);
 

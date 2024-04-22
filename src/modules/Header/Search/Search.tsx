@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import debouce from 'lodash.debounce';
 
@@ -8,10 +8,12 @@ import { SearchResults } from './SearchResults/SearchResults';
 
 import products from '../../../../public/api/products.json';
 import styles from './Search.module.scss';
+import { CSSTransition } from 'react-transition-group';
 
 export const Search = () => {
   const [isInputVisible, setInputVisible] = useState(false);
   const [searchItem, setSearchItem] = useState('');
+  const nodeRef = useRef(null);
   const location = useLocation();
 
   const handleOnClick = () => {
@@ -75,25 +77,40 @@ export const Search = () => {
           <SpriteIcon iconName="icon-Search" />
         </button>
       )}
-      {isInputVisible && (
-        <div className={styles.searchInputContainer}>
-          <input
-            type="text"
-            className={styles.searchInput}
-            onChange={debouncedResults}
-            placeholder="Search..."
-            autoFocus
-          />
-
-          <button className={styles.closeButton} onClick={handleClose}>
-            <SpriteIcon iconName="icon-Close" />
-          </button>
-
-          {searchItem && isInputVisible && (
-            <SearchResults searchResults={searchResults} />
-          )}
-        </div>
-      )}
+      <CSSTransition
+        in={isInputVisible}
+        timeout={300}
+        nodeRef={nodeRef}
+        classNames={{
+          enter: styles.searchEnter,
+          enterActive: styles.searchEnterActive,
+          exit: styles.searchExit,
+          exitActive: styles.searchExitActive,
+        }}
+        unmountOnExit
+      >
+        {(state) =>
+          isInputVisible && (
+            <div className={`${styles.searchInputContainer} ${styles[state]}`}>
+              <input
+                ref={nodeRef}
+                onBlur={handleClose}
+                type="text"
+                className={styles.searchInput}
+                onChange={debouncedResults}
+                placeholder="Search..."
+                autoFocus
+              />
+              <button className={styles.closeButton} onClick={handleClose}>
+                <SpriteIcon iconName="icon-Close" />
+              </button>
+              {searchItem && isInputVisible && (
+                <SearchResults searchResults={searchResults} />
+              )}
+            </div>
+          )
+        }
+      </CSSTransition>
     </>
   );
 };

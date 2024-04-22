@@ -10,9 +10,9 @@
 
 .list {
 	display: flex;
-	gap: clamp-calc($mobile, $pc, 32px, 64px);
+	gap: clamp-calc($tablet, $pc, 32px, 64px);
 
-	@include mobile {
+	@include tablet {
 		flex-direction: column;
 		align-items: center;
 		gap: 24px;
@@ -27,15 +27,28 @@
 	color: var(--secondary);
 	display: flex;
 	align-items: center;
-	border-bottom: 3px solid transparent;
+	@extend %hover-underline;
 
-	@include mobile {
+	@include transition(color);
+
+	&::before {
+		background-color: var(--primary);
+	}
+
+	@include tablet {
 		height: initial;
 		width: fit-content;
+	}
+
+	&:hover {
+		color: var(--primary);
 	}
 }
 
 .linkActive {
 	color: var(--primary);
-	border-color: var(--primary);
+
+	&::before {
+		transform: scale(1);
+	}
 }
