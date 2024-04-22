@@ -1,7 +1,7 @@
 // colors
 :root {
+	--primary: #313237;
 	--secondary: #89939a;
-	--text-color_icons: #313237;
 	--button-color: #313237;
 	--primary-button-hover: #313237;
 	--primary-button-selected: #ffffff;
@@ -16,8 +16,8 @@
 }
 
 .dark-theme {
+	--primary: #f1f2f9;
 	--secondary: #75767f;
-	--text-color_icons: #f1f2f9;
 	--button-color: #905BFF;
 	--primary-button-hover: #a378ff;
 	--primary-button-selected: #323542;

@@ -21,7 +21,7 @@
 			height: 2px;
 			position: relative;
 			@include transition(background-color);
-			background-color: var(--text-color_icons);
+			background-color: var(--primary);
 
 			&::before,
 			&::after {
@@ -29,7 +29,7 @@
 				right: 0;
 				width: 100%;
 				height: 100%;
-				background-color: var(--text-color_icons);
+				background-color: var(--primary);
 				position: absolute;
 				@include transition(all)
 			}

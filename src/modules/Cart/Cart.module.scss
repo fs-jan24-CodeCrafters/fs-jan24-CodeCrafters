@@ -54,8 +54,11 @@
 }
 
 .bodyOverlay {
+	transition: opacity 0.5s;
+
 	&::after {
 		content: "";
+		transition: opacity 0.5s;
 		background-color: rgba(0, 0, 0, 0.5);
 		position: fixed;
 		width: 100%;
@@ -63,7 +66,6 @@
 		top: 0;
 		left: 0;
 		opacity: 0;
-		transition: all 0.5s ease;
 		pointer-events: none;
 		z-index: 149;
 	}

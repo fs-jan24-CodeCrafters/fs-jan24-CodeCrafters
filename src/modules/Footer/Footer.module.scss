@@ -1,7 +1,6 @@
 .footer {
 	padding: 32px 0;
 	border-top: 1px solid var(--elements);
-	color: var(--secondary);
 }
 
 .container {
@@ -37,11 +36,12 @@
 	line-height: 0.91667;
 	letter-spacing: 0.04em;
 	padding-bottom: 4px;
+
 	@extend %hover-underline;
 
 	&::before {
 		content: '';
-		background-color: var(--text-color_icons);
+		background-color: var(--primary);
 	}
 
 }

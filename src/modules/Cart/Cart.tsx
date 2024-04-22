@@ -10,6 +10,7 @@ import { BackLink } from '../Shared/BackLink';
 import styles from './Cart.module.scss';
 import { useCart } from '../../context/CartContext';
 import { EmptyCart } from './EmptyCart';
+import { getScrollbarWidth } from '../../helpers/getScrollbarWidth';
 
 export const Cart: React.FC = () => {
   const { cart, totalCartQuantity, dispatch } = useCart();
@@ -24,13 +25,16 @@ export const Cart: React.FC = () => {
 
   useEffect(() => {
     const body = document.body;
+    const scrollbarWidth = getScrollbarWidth();
     body.classList.add(styles.bodyOverlay);
     if (isModalVisible) {
       body.classList.add('lock');
+      document.body.style.paddingRight = scrollbarWidth + 'px';
       body.classList.add(styles.bodyOverlayActive);
     } else {
-      body.classList.remove('lock');
       body.classList.remove(styles.bodyOverlayActive);
+      body.classList.remove('lock');
+      document.body.style.paddingRight = '0px';
     }
 
     return () => {

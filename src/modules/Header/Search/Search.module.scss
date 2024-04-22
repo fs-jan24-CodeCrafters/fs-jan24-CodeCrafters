@@ -9,13 +9,11 @@
 
 	@include mobile {
 		width: 64px;
-		flex-grow: 5;
 		justify-content: flex-end;
 		padding-right: 30px;
 		border: none;
 	}
 
-	z-index: 10;
 }
 
 .searchInputContainer {

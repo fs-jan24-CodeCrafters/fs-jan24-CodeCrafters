@@ -6,12 +6,12 @@
 
 .link {
 	font-weight: 600;
-	@extend %small-button
+	@extend %small-button;
 }
 
 .linkActive {
 	color: var(--white);
-	background-color: var(--accent);
+	background-color: var(--button-color);
 }
 
 .linkPrev {
