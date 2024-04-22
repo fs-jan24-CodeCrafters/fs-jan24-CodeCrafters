@@ -11,6 +11,7 @@
 }
 
 .productItem {
+	justify-content: space-between;
 	border: 1px solid var(--elements);
 	padding: 24px;
 
@@ -47,6 +48,7 @@
 }
 
 .productPrice {
+	min-width: 180px;
 	@include mobile-small {
 		width: 100%;
 		justify-content: space-between;
@@ -85,6 +87,8 @@
 }
 
 .quantityCounter {
+	min-width: 18px;
+	text-align: center;
 	font-weight: 600;
 }
 
