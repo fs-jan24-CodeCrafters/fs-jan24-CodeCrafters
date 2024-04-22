@@ -84,7 +84,7 @@ export const VariantsSection: React.FC<Props> = ({
   }, [product]);
 
   return (
-    <section className={styles.variantsSection}>
+    <section className={`${styles.variantsSection} section`}>
       <div className={styles.imagesBlock}>
         <div className={styles.squareImagesContainer}>
           {images.map((image) => (
