@@ -47,6 +47,14 @@
 	}
 }
 
+.searchInputLoaderContainer {
+	position: absolute;
+	top: 50%;
+	right: 40px;
+	transform: translateY(-50%);
+	font-size: 7px;
+}
+
 .closeButton {
 	position: absolute;
 	width: 20px;

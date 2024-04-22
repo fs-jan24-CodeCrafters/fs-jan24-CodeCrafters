@@ -3,16 +3,19 @@ import { useLocation } from 'react-router-dom';
 import debouce from 'lodash.debounce';
 
 import { SpriteIcon } from '../../Shared/SpriteIcon';
-import { Product } from '../../../types/Product';
+import { Loader } from '../../Shared/Loader';
 import { SearchResults } from './SearchResults/SearchResults';
+import { useProductsApi } from '../../../hooks/useProductsApi';
+import { Product } from '../../../types/Product';
 
-import products from '../../../../public/api/products.json';
 import styles from './Search.module.scss';
 
 export const Search = () => {
   const [isInputVisible, setInputVisible] = useState(false);
   const [searchItem, setSearchItem] = useState('');
   const location = useLocation();
+
+  const { products, loading, fetchData } = useProductsApi();
 
   const handleOnClick = () => {
     setInputVisible(true);
@@ -52,6 +55,9 @@ export const Search = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
     setSearchItem(searchTerm);
+    if (searchTerm) {
+      fetchData();
+    }
   };
 
   const debouncedResults = useMemo(() => {
@@ -85,11 +91,17 @@ export const Search = () => {
             autoFocus
           />
 
+          {loading && (
+            <div className={styles.searchInputLoaderContainer}>
+              <Loader />
+            </div>
+          )}
+
           <button className={styles.closeButton} onClick={handleClose}>
             <SpriteIcon iconName="icon-Close" />
           </button>
 
-          {searchItem && isInputVisible && (
+          {searchItem && isInputVisible && !loading && (
             <SearchResults searchResults={searchResults} />
           )}
         </div>
