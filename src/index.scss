@@ -32,3 +32,17 @@ svg {
 		fill: var(--primary);
 	}
 }
+
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--button-color);
+	border-radius: 10px;
+	cursor: pointer;
+}
