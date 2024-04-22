@@ -47,7 +47,7 @@ export const ProductInfo: React.FC<Props> = ({ product }) => {
         </Title>
         <ul className={styles.specList}>
           {Object.entries(techSpecs).map(([key, value]) => (
-            <li className={styles.specItem} key={value}>
+            <li className={styles.specItem} key={key}>
               <span className={styles.techKey}>{key}:</span>
               <span className={styles.techValue}>{value}</span>
             </li>

@@ -51,7 +51,10 @@ export const ProductDetails: React.FC = () => {
             {currentProduct.name}
           </Title>
 
-          <VariantsSection productDetails={currentProduct} />
+          <VariantsSection
+            productDetails={currentProduct}
+            categoryName={categoryName}
+          />
 
           <ProductInfo product={currentProduct} />
 
