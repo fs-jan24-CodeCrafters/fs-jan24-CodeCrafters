@@ -1,10 +1,11 @@
-/* eslint-disable no-constant-condition */
 import { Button } from '../Button';
 import { SpriteIcon } from '../SpriteIcon';
 import { Title } from '../Title';
 import { Product } from '../../../types/Product';
 import styles from './Card.module.scss';
 import { Link } from 'react-router-dom';
+import { FavoritesContext } from '../../../MainContext/FavouritesContext';
+import { useContext } from 'react';
 import { useCart } from '../../../context/CartContext';
 
 interface Props {
@@ -25,7 +26,7 @@ export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
     category,
     itemId,
   } = product;
-
+  const { isFavorite, toggleFavorite } = useContext(FavoritesContext);
   const { cart, dispatch } = useCart();
 
   const isProductInCart = cart.some((item) => item.id === id);
@@ -36,7 +37,13 @@ export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
     }
   };
 
+  const handleToggleFavorite = () => {
+    toggleFavorite(product);
+  };
+
+
   const buttonText = isProductInCart ? 'Added to cart' : 'Add to cart';
+
 
   return (
     <article className={styles.card}>
@@ -76,8 +83,12 @@ export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
           >
             {buttonText}
           </Button>
-          <Button variant="favorites" maxWidth={40}>
-            {true ? (
+          <Button
+            variant="favorites"
+            maxWidth={40}
+            onClick={handleToggleFavorite}
+          >
+            {!isFavorite(product) ? (
               <SpriteIcon iconName="icon-Favorites" />
             ) : (
               <SpriteIcon iconName="icon-Favorites-Filled-Heart-Like" />
