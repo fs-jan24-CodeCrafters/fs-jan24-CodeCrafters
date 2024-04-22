@@ -1,48 +1,48 @@
 .searchResultsContainer {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    max-height: 500px;
-    padding: 5px;
-    border: 1px solid var(--elements);
-    background-color: var(--hover_BG);
-    transform: translateY(calc(100% + 8px));
-    overflow: auto;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	max-height: 500px;
+	padding: 5px;
+	border: 1px solid var(--elements);
+	background-color: var(--primary-button-selected);
+	transform: translateY(calc(100% + 8px));
+	overflow: auto;
 }
 
 .searchResultsList {
-    &:last-child {
-        margin-bottom: 10px;
-    }
+	&:last-child {
+		margin-bottom: 10px;
+	}
 }
 
 .searchResultsByCategoryTitle {
-    position: relative;
+	position: relative;
 
-    &::before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        width: 100%;
-        background-color: var(--elements);
-    }
+	&::before {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		width: 100%;
+		background-color: var(--elements);
+	}
 }
 
 .searchResultItem {
-    padding: 5px;
+	padding: 5px;
 }
 
 .searchResultItemLink {
-    display: flex;
-    gap: 20px;
-    align-items: center;
+	display: flex;
+	gap: 20px;
+	align-items: center;
 }
 
 .searchResultItemImage {
-    width: 30px;
-    height: 30px;
+	width: 30px;
+	height: 30px;
 }

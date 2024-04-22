@@ -17,7 +17,7 @@
 }
 
 .logo {
-	margin-right: clamp-calc($mobile, $pc, 32px, 48px);
+	margin-right: clamp-calc($tablet, $pc, 32px, 48px);
 	z-index: 5;
 }
 
@@ -29,7 +29,7 @@
 
 	@include transition(all);
 
-	@include mobile {
+	@include tablet {
 		padding-top: 72px;
 		position: fixed;
 		top: 0;
@@ -42,6 +42,7 @@
 		background-color: var(--BG-color);
 		z-index: 4;
 	}
+
 }
 
 .menuOpen {
