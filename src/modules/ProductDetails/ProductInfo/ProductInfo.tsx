@@ -21,7 +21,7 @@ export const ProductInfo: React.FC<Props> = ({ product }) => {
   };
 
   return (
-    <div className={styles.productInfo}>
+    <div className={`${styles.productInfo} section`}>
       <div className={styles.about}>
         <Title titleTag="h3" className={styles.titleAbout}>
           About

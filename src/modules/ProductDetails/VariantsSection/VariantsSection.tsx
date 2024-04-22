@@ -1,5 +1,4 @@
-/* eslint-disable no-constant-condition */
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import styles from './VariantsSection.module.scss';
@@ -12,6 +11,7 @@ import { SpriteIcon } from '../../Shared/SpriteIcon';
 import { useCart } from '../../../context/CartContext';
 import { Product } from '../../../types/Product';
 import { getProductByItemId } from '../../../helpers/getProductByItemId';
+import { FavoritesContext } from '../../../context/FavouritesContext';
 
 interface Props {
   productDetails: ProductDetails;
@@ -61,6 +61,12 @@ export const VariantsSection: React.FC<Props> = ({
   const product = getProductByItemId(itemId) as Product;
 
   const { cart, dispatch } = useCart();
+
+  const { isFavorite, toggleFavorite } = useContext(FavoritesContext);
+
+  const handleToggleFavorite = () => {
+    toggleFavorite(product);
+  };
 
   const isProductInCart = cart.some((item) => item.id === product?.id);
   const isAccessories = categoryName === 'Accessories';
@@ -187,8 +193,12 @@ export const VariantsSection: React.FC<Props> = ({
               {buttonText}
             </Button>
 
-            <Button variant="favorites" maxWidth={40}>
-              {true ? (
+            <Button
+              variant="favorites"
+              maxWidth={40}
+              onClick={handleToggleFavorite}
+            >
+              {!isFavorite(product) ? (
                 <SpriteIcon iconName="icon-Favorites" />
               ) : (
                 <SpriteIcon iconName="icon-Favorites-Filled-Heart-Like" />
