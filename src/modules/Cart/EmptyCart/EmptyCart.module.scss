@@ -13,12 +13,11 @@
 }
 
 .icon {
-	max-width: clamp-calc($min-break-point, $pc, 150px, 317px);
-	width: 100%;
-	height: initial;
 	position: relative;
-	left: 0;
-	animation: moveImageRight 5s linear infinite;
+	max-width: clamp-calc($min-break-point, $pc, 150px, 317px);
+	height: clamp-calc($min-break-point, $pc, 105px, 150px);
+	width: 100%;
+	animation: moveImageRight 7s linear infinite;
 
 	use {
 		fill: var(--primary);
@@ -29,50 +28,24 @@
 @keyframes moveImageRight {
 	0% {
 		opacity: 0;
-		left: 0;
+		left: -40%;
 	}
 
-	20% {
+	10% {
+		opacity: 1;
+	}
+
+	50% {
 		opacity: 1;
 	}
 
 	60% {
-		opacity: 1;
-	}
-
-	75% {
 		opacity: 0;
 	}
 
 	100% {
-		left: 100%;
+		left: 90%;
 		opacity: 0;
-	}
-}
-
-@include mobile-small {
-	@keyframes moveImageRight {
-		0% {
-			opacity: 0;
-			left: 0;
-		}
-
-		20% {
-			opacity: 1;
-		}
-
-		50% {
-			opacity: 1;
-		}
-
-		60% {
-			opacity: 0;
-		}
-
-		100% {
-			left: 100%;
-			opacity: 0;
-		}
 	}
 }
 
