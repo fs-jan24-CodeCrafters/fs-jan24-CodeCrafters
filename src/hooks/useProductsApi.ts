@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchDataFromApi } from '../helpers/fetchData';
+import { fetchDataFromApi } from '../helpers/fetchDataFromApi';
 import { Product } from '../types/Product';
 
 export const useProductsApi = () => {
@@ -16,7 +16,7 @@ export const useProductsApi = () => {
       const data = await fetchDataFromApi();
       setProducts(data);
     } catch (error) {
-      // Error loading data: ' + error.message
+      throw new Error('Error fetching data');
     } finally {
       setLoading(false);
     }
