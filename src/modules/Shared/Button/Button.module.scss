@@ -36,4 +36,8 @@
 	height: 40px;
 	border: 1px solid var(--second-button-border-color);
 	background-color: var(--second-button-bg);
+
+  &:hover {
+    border: 1px solid var(--second-button-border-hover);
+  }
 }

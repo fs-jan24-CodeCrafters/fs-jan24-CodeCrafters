@@ -53,7 +53,7 @@
 
 		&--white {
 			&:before {
-				background: #fffaf5;
+				background: #f9f9f9;
 			}
 		}
 
@@ -65,19 +65,21 @@
 
 		&--gold {
 			&:before {
-				background: #e6b7af;
+				background: #fcd8b9;
 			}
 		}
 
-		&--rosegold {
+    &--rose-gold,
+		&--rosegold,
+		&--pink {
 			&:before {
-				background: #fcdbc1;
+				background: #fce1dd;
 			}
 		}
 
 		&--red {
 			&:before {
-				background: #ab001b;
+				background: #d02a40;
 			}
 		}
 
@@ -87,15 +89,47 @@
 			}
 		}
 
+    &--space-black,
+    &--space-gray,
 		&--spacegray {
 			&:before {
-				background: #232427;
+				background: #2f2f2d;
+			}
+		}
+
+		&--graphite {
+			&:before {
+				background: #504f4c;
+			}
+		}
+
+		&--sierrablue {
+			&:before {
+				background: #87a1bf;
+			}
+		}
+
+		&--blue {
+			&:before {
+				background: #266282;
+			}
+		}
+
+		&--sky-blue {
+			&:before {
+				background: #acbecc;
 			}
 		}
 
 		&--midnightgreen {
 			&:before {
 				background: #464f47;
+			}
+		}
+
+		&--midnight {
+			&:before {
+				background: #1b232c;
 			}
 		}
 
