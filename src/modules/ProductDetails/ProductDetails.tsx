@@ -58,10 +58,12 @@ export const ProductDetails: React.FC = () => {
 
           <ProductInfo product={currentProduct} />
 
-          <ProductsSlider
-            sliderTitle="You may also like"
-            products={recommendedProducts}
-          ></ProductsSlider>
+          <section className="section">
+            <ProductsSlider
+              sliderTitle="You may also like"
+              products={recommendedProducts}
+            />
+          </section>
         </Container>
       )}
     </>

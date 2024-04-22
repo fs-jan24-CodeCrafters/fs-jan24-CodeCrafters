@@ -10,17 +10,20 @@ import { Product } from '../../../types/Product';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import styles from './ProductsSlider.module.scss';
+import classNames from 'classnames';
 
 interface Props {
   sliderTitle: string;
   products: Product[];
   hasDiscountPrice?: boolean;
+  className?: string;
 }
 
 export const ProductsSlider: React.FC<Props> = ({
   sliderTitle,
   products,
   hasDiscountPrice,
+  className,
 }) => {
   const [innerProgress, setInnerProgress] = useState(0);
 
@@ -31,7 +34,7 @@ export const ProductsSlider: React.FC<Props> = ({
 
   return (
     <>
-      <div className={styles.productSliderHeader}>
+      <div className={classNames(styles.productSliderHeader, className)}>
         <Title titleTag="h2">{sliderTitle}</Title>
         <div className={styles.productSliderNavigation}>
           <button
