@@ -10,13 +10,20 @@
 .image {
 	overflow: hidden;
 	width: 100%;
+}
 
-	img {
-		max-width: clamp-calc($min-break-point, $pc, 150px, 317px);
-		position: relative;
-		left: 0;
-		animation: moveImageRight 5s linear infinite;
+.icon {
+	max-width: clamp-calc($min-break-point, $pc, 150px, 317px);
+	width: 100%;
+	height: initial;
+	position: relative;
+	left: 0;
+	animation: moveImageRight 5s linear infinite;
+
+	use {
+		fill: var(--primary);
 	}
+
 }
 
 @keyframes moveImageRight {

@@ -1,3 +1,4 @@
+import { SpriteIcon } from '../../Shared/SpriteIcon';
 import { Title } from '../../Shared/Title';
 
 import styles from './EmptyCart.module.scss';
@@ -10,7 +11,7 @@ export const EmptyCart: React.FC = () => {
         <Title titleTag="h5">Add some items to cheer it up</Title>
       </div>
       <div className={styles.image}>
-        <img src="/img/cart/1.png" alt="Man with cart" />
+        <SpriteIcon className={styles.icon} iconName="icon-man-with-cart" />
       </div>
       <span className={styles.line}></span>
     </div>
