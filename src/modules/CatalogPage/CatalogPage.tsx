@@ -12,6 +12,7 @@ import { Selects } from './Selects';
 import { Pagination } from './Pagination';
 
 import styles from './CatalogPage.module.scss';
+import { Loader } from '../Shared/Loader';
 
 export const CatalogPage: React.FC = () => {
   const { path, categoryName } = getPathAndCategoryNameFromUrl();
@@ -49,7 +50,13 @@ export const CatalogPage: React.FC = () => {
         {catalogPageTitle}
       </Title>
       <span className={`${styles.textItem} ${styles.productsAmountText}`}>
-        {`${productsList.length} models`}
+        {loading ? (
+          <span className={styles.textItemLoader}>
+            <Loader />
+          </span>
+        ) : (
+          `${productsList.length} models`
+        )}
       </span>
 
       <Selects

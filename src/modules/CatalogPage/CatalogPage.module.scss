@@ -13,3 +13,14 @@
 .productsAmountText {
 	margin-bottom: clamp-calc($min-break-point, $pc, 32px, 40px);
 }
+
+.textItemLoader {
+	display: inline-block;
+	font-size: 7px;
+	width: 14px;
+
+	div {
+		display: inline-block;
+		margin: 0;
+	}
+}
