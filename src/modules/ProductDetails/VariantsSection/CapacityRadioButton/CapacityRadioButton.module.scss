@@ -1,56 +1,56 @@
 .container {
-  display: block;
-  position: relative;
+	display: block;
+	position: relative;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	padding-left: 63px;
+	margin-bottom: 33px;
 
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  padding-left: 63px;
-  margin-bottom: 33px;
+	& input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+	}
 
-  & input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-  }
+	.checkmark {
+		position: absolute;
+		top: 0;
+		left: 0;
 
-  .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
+		height: 32px;
+		width: 63px;
+		border: var(--secondary) solid 1px;
+		background-color: var(--BG-color);
+		color: var(--primary);
+		line-height: 32px;
+		text-align: center;
+		@include transition(all);
 
-    height: 32px;
-    width: 63px;
-    border: var(--icons) solid 1px;
-    background-color: var(--white);
-    color: var(--primary);
-    line-height: 32px;
-    text-align: center;
+		&:after {
+			content: '';
+			position: absolute;
+			display: none;
+		}
+	}
 
-    &:after {
-      content: '';
-      position: absolute;
-      display: none;
-    }
-  }
+	&:hover input~.checkmark {
+		border: var(--primary) solid 1px;
+	}
 
-  &:hover input ~ .checkmark {
-    border: var(--primary) solid 1px;
-  }
+	& input:checked~.checkmark {
+		background-color: var(--primary);
+		color: var(--primary-button-selected);
+		border: transparent solid 1px;
+	}
 
-  & input:checked ~ .checkmark {
-    background-color: var(--primary);
-    color: var(--white);
-    border: transparent solid 1px;
-  }
-
-  & .checkmark:after {
-    top: -1px;
-    left: -1px;
-    width: 63px;
-    height: 32px;
-    background-color: var(--primary);
-  }
+	& .checkmark:after {
+		top: -1px;
+		left: -1px;
+		width: 63px;
+		height: 32px;
+		background-color: var(--primary);
+	}
 }

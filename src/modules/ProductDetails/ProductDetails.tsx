@@ -58,14 +58,19 @@ export const ProductDetails: React.FC = () => {
                 {currentProduct.name}
               </Title>
 
-              <VariantsSection productDetails={currentProduct} />
+              <VariantsSection
+                productDetails={currentProduct}
+                categoryName={categoryName}
+              />
 
               <ProductInfo product={currentProduct} />
 
-              <ProductsSlider
-                sliderTitle="You may also like"
-                products={recommendedProducts}
-              ></ProductsSlider>
+              <section className="section">
+                <ProductsSlider
+                  sliderTitle="You may also like"
+                  products={recommendedProducts}
+                />
+              </section>
             </>
           )}
         </Container>

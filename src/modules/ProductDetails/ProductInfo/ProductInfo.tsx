@@ -21,7 +21,7 @@ export const ProductInfo: React.FC<Props> = ({ product }) => {
   };
 
   return (
-    <div className={styles.productInfo}>
+    <div className={`${styles.productInfo} section`}>
       <div className={styles.about}>
         <Title titleTag="h3" className={styles.titleAbout}>
           About
@@ -47,7 +47,7 @@ export const ProductInfo: React.FC<Props> = ({ product }) => {
         </Title>
         <ul className={styles.specList}>
           {Object.entries(techSpecs).map(([key, value]) => (
-            <li className={styles.specItem} key={value}>
+            <li className={styles.specItem} key={key}>
               <span className={styles.techKey}>{key}:</span>
               <span className={styles.techValue}>{value}</span>
             </li>

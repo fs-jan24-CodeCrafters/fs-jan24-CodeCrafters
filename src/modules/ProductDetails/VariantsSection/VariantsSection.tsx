@@ -1,5 +1,4 @@
-/* eslint-disable no-constant-condition */
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import styles from './VariantsSection.module.scss';
@@ -12,24 +11,35 @@ import { SpriteIcon } from '../../Shared/SpriteIcon';
 import { useCart } from '../../../context/CartContext';
 import { Product } from '../../../types/Product';
 import { getProductByItemId } from '../../../helpers/getProductByItemId';
+import { FavoritesContext } from '../../../context/FavouritesContext';
 
 interface Props {
   productDetails: ProductDetails;
+  categoryName: string;
 }
 
 const getNewLinkByVariant = (
   id: string,
   index: number,
   param: string,
+  isAccessories: boolean,
 ): string => {
   let link: string | string[] = id.split('-');
-  link.splice(index, 1, param);
+  if (isAccessories && id.includes('space')) {
+    link.splice(index - 1, param.includes('mm') ? 1 : 2, param);
+  } else {
+    link.splice(index, 1, param);
+  }
+
   link = link.join('-');
 
   return link;
 };
 
-export const VariantsSection: React.FC<Props> = ({ productDetails }) => {
+export const VariantsSection: React.FC<Props> = ({
+  productDetails,
+  categoryName,
+}) => {
   const {
     id: itemId,
     images,
@@ -52,7 +62,14 @@ export const VariantsSection: React.FC<Props> = ({ productDetails }) => {
 
   const { cart, dispatch } = useCart();
 
+  const { isFavorite, toggleFavorite } = useContext(FavoritesContext);
+
+  const handleToggleFavorite = () => {
+    toggleFavorite(product);
+  };
+
   const isProductInCart = cart.some((item) => item.id === product?.id);
+  const isAccessories = categoryName === 'Accessories';
 
   const addToCartHandler = (productItem: Product) => {
     if (!isProductInCart) {
@@ -67,7 +84,7 @@ export const VariantsSection: React.FC<Props> = ({ productDetails }) => {
   }, [product]);
 
   return (
-    <section className={styles.variantsSection}>
+    <section className={`${styles.variantsSection} section`}>
       <div className={styles.imagesBlock}>
         <div className={styles.squareImagesContainer}>
           {images.map((image) => (
@@ -104,15 +121,23 @@ export const VariantsSection: React.FC<Props> = ({ productDetails }) => {
 
         <div className={styles.colorRadioWrapper}>
           {colorsAvailable.map((color) => {
+            const normalizedColor = color.split(' ').join('-');
             const COLOR_INDEX = itemId.split('-').length - 1;
+
             const LINK =
-              `/${category}/` + getNewLinkByVariant(itemId, COLOR_INDEX, color);
+              `/${category}/` +
+              getNewLinkByVariant(
+                itemId,
+                COLOR_INDEX,
+                normalizedColor,
+                isAccessories,
+              );
 
             return (
               <ColorRadioButton
-                key={color}
+                key={normalizedColor}
                 currentColor={currentColor}
-                color={color}
+                color={normalizedColor}
                 LINK={LINK}
               />
             );
@@ -120,7 +145,9 @@ export const VariantsSection: React.FC<Props> = ({ productDetails }) => {
         </div>
 
         <div className={styles.capacityContainer}>
-          <p className={styles.categoryText}>Select capacity</p>
+          <p
+            className={styles.categoryText}
+          >{`Select ${isAccessories ? 'size' : 'capacity'}`}</p>
 
           <div className={styles.capacityRadioWrapper}>
             {capacityAvailable.map((capacity) => {
@@ -131,6 +158,7 @@ export const VariantsSection: React.FC<Props> = ({ productDetails }) => {
                   itemId,
                   CAPACITY_INDEX,
                   capacity.toLowerCase(),
+                  isAccessories,
                 );
 
               return (
@@ -165,8 +193,12 @@ export const VariantsSection: React.FC<Props> = ({ productDetails }) => {
               {buttonText}
             </Button>
 
-            <Button variant="favorites" maxWidth={40}>
-              {true ? (
+            <Button
+              variant="favorites"
+              maxWidth={40}
+              onClick={handleToggleFavorite}
+            >
+              {!isFavorite(product) ? (
                 <SpriteIcon iconName="icon-Favorites" />
               ) : (
                 <SpriteIcon iconName="icon-Favorites-Filled-Heart-Like" />

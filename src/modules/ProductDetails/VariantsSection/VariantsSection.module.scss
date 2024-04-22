@@ -1,223 +1,228 @@
 .variantsSection {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
 
-  margin-bottom: 80px;
+	margin-bottom: 80px;
 
-  @include tablet {
-    margin-bottom: 64px;
-  }
+	@include tablet {
+		margin-bottom: 64px;
+	}
 
-  @include mobile {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	@include mobile {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 
-    margin-bottom: 56px;
-  }
+		margin-bottom: 56px;
+	}
 }
 
 .imagesBlock {
-  display: flex;
-  align-items: start;
-  gap: 16px;
+	display: flex;
+	align-items: start;
+	gap: 16px;
 
-  max-width: 560px;
-  width: 100%;
+	max-width: 560px;
+	width: 100%;
 
-  @include mobile {
-    flex-direction: column-reverse;
-    width: 100%;
-  }
+	@include mobile {
+		flex-direction: column-reverse;
+		width: 100%;
+	}
 
-  .squareImagesContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 16px;
+	.squareImagesContainer {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 16px;
 
-    max-width: 80px;
-    width: 20%;
+		max-width: 80px;
+		width: 20%;
 
-    @include tablet {
-      max-width: 50px;
-      gap: 8px;
-    }
+		@include tablet {
+			max-width: 50px;
+			gap: 8px;
+		}
 
-    @include mobile {
-      flex-direction: row;
-      max-width: 50px;
-      margin: 0 auto;
-    }
+		@include mobile {
+			flex-direction: row;
+			max-width: 50px;
+			margin: 0 auto;
+		}
 
-    .squareImageWrapper {
-      position: relative;
-      flex-shrink: 0;
+		.squareImageWrapper {
+			position: relative;
+			flex-shrink: 0;
 
-      width: 100%;
-      height: 0;
-      padding-bottom: 100%;
-      overflow: hidden;
+			width: 100%;
+			height: 0;
+			padding-bottom: 100%;
+			overflow: hidden;
 
-      .squareImage {
-        position: absolute;
+			.squareImage {
+				position: absolute;
 
-        object-fit: contain;
-        border: var(--elements) solid 1px;
-        padding: 7%;
-        width: 100%;
-        height: 100%;
-      }
+				object-fit: contain;
+				border: var(--elements) solid 1px;
+				padding: 7%;
+				width: 100%;
+				height: 100%;
 
-      .selectedSquareImage {
-        border: black solid 1px;
-      }
-    }
-  }
+				@include transition(border-color);
 
-  .selectedImageWrapper {
-    display: flex;
-    justify-content: center;
+				&:hover {
+					border-color: var(--primary);
+				}
+			}
 
-    height: 100%;
-    margin: 0 auto;
+			.selectedSquareImage {
+				border: solid 1px var(--primary);
+			}
+		}
+	}
 
-    .selectedImage {
-      object-fit: contain;
-      width: 100%;
-      height: 100%;
-      max-height: 465px;
+	.selectedImageWrapper {
+		display: flex;
+		justify-content: center;
 
-      @include mobile {
-        max-height: 365px;
-      }
-    }
-  }
+		height: 100%;
+		margin: 0 auto;
+
+		.selectedImage {
+			object-fit: contain;
+			width: 100%;
+			height: 100%;
+			max-height: 465px;
+
+			@include mobile {
+				max-height: 365px;
+			}
+		}
+	}
 }
 
 .availableVariantsWrapper {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-  max-width: 512px;
-  width: 100%;
-  color: var(--secondary);
+	max-width: 512px;
+	width: 100%;
+	color: var(--secondary);
 
-  @include mobile {
-    max-width: 100%;
-  }
-    
-  .categoryText {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
+	@include mobile {
+		max-width: 100%;
+	}
 
-    @include mobile {
-      max-width: 560px;
-    }
-  }
+	.categoryText {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 8px;
 
-  .colorRadioWrapper {
-    position: relative;
-    display: flex;
-    gap: 8px;
+		@include mobile {
+			max-width: 560px;
+		}
+	}
 
-    margin-bottom: 48px;
-  }
+	.colorRadioWrapper {
+		position: relative;
+		display: flex;
+		gap: 8px;
 
-  .capacityContainer {
-    position: relative;
-    max-width: 320px;
-    margin-bottom: 32px;
+		margin-bottom: 48px;
+	}
 
-    @include mobile {
-      max-width: 560px;
-    }
+	.capacityContainer {
+		position: relative;
+		max-width: 320px;
+		margin-bottom: 32px;
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: -24px;
-      left: 0;
-      right: 0;
+		@include mobile {
+			max-width: 560px;
+		}
 
-      width: 100%;
-      height: 1px;
-      background-color: var(--elements);
-    }
+		&::before {
+			content: '';
+			position: absolute;
+			top: -24px;
+			left: 0;
+			right: 0;
 
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+			width: 100%;
+			height: 1px;
+			background-color: var(--elements);
+		}
 
-      width: 100%;
-      height: 1px;
-      background-color: var(--elements);
-    }
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
 
-    .capacityRadioWrapper {
-      position: relative;
-      display: flex;
+			width: 100%;
+			height: 1px;
+			background-color: var(--elements);
+		}
 
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-  }
+		.capacityRadioWrapper {
+			position: relative;
+			display: flex;
+
+			gap: 8px;
+			margin-bottom: 24px;
+		}
+	}
 }
 
 .cardContainer {
-  color: var(--primary);
-  max-width: 320px;
-  
-  @include mobile {
-    max-width: 560px;
-  }
+	color: var(--primary);
+	max-width: 320px;
 
-  .priceContainer {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-  
-  .newPrice {
-    font-size: 2em;
-  }
-  
-  .salePrice {
-    font-weight: 600;
-    text-decoration: line-through;
-    color: var(--secondary);
-  }
-  
-  .detailsContainer {
-    margin-block: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .details {
-    display: flex;
-    justify-content: space-between;
-    
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 15.34px;
-  }
-  
-  .detailsText {
-    color: var(--secondary);
-  }
-  
-  .buttonsContainer {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 32px;
-  }
+	@include mobile {
+		max-width: 560px;
+	}
+
+	.priceContainer {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 8px;
+	}
+
+	.newPrice {
+		font-size: 2em;
+	}
+
+	.salePrice {
+		font-weight: 600;
+		text-decoration: line-through;
+		color: var(--secondary);
+	}
+
+	.detailsContainer {
+		margin-block: 8px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.details {
+		display: flex;
+		justify-content: space-between;
+
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 15.34px;
+	}
+
+	.detailsText {
+		color: var(--secondary);
+	}
+
+	.buttonsContainer {
+		display: flex;
+		gap: 8px;
+		margin-bottom: 32px;
+	}
 }
-

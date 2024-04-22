@@ -1,79 +1,84 @@
 .productInfo {
-  display: flex;
-  gap: 64px;
-  margin-bottom: 80px;
+	display: flex;
+	gap: 64px;
 
-  .about {
-    max-width: 560px;
-  }
+	.about {
+		max-width: 560px;
+	}
 
-  .techSpecs {
-    max-width: 512px;
-  }
+	.techSpecs {
+		max-width: 512px;
+	}
 
-  .about,
-  .techSpecs {
-    width: 100%;
-  }
+	.about,
+	.techSpecs {
+		width: 100%;
+	}
 
-  @include pc {
-    flex-direction: column;
-  }
+	@include tablet {
+		flex-direction: column;
+		align-items: center;
 
-  @include mobile-small {
-    gap: 54px;
-    margin-bottom: 54px;
-  }
+		.about,
+		.techSpecs {
+			max-width: 100%;
+		}
+
+	}
+
+	@include mobile-small {
+		gap: 54px;
+	}
+
 }
 
 .titleAbout,
 .titleTechSpecs {
-  position: relative;
-  padding-bottom: 16px;
+	position: relative;
+	padding-bottom: 16px;
+	margin-bottom: 25px;
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 1px;
-    background-color: var(--elements);
-  }
-}
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		height: 1px;
+		background-color: var(--elements);
+	}
 
-.specList {
-  margin-top: 25px;
 }
 
 .titleDescription {
-  margin-bottom: 16px;
-  margin-top: 32px;
+	margin-bottom: 16px;
+	margin-top: 32px;
 }
 
-
 .descriptionText {
-  color: #89939a;
-  font-weight: 500;
-  text-align: left;
+	color: var(--secondary);
+	font-weight: 500;
+	text-align: left;
 }
 
 .specItem {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  font-weight: 500;
+	display: flex;
+	justify-content: space-between;
+	gap: 15px;
+	font-weight: 500;
 
-  &:not(:last-child) {margin-bottom: 8px;}
+	&:not(:last-child) {
+		margin-bottom: 8px;
+	}
 }
 
 .techKey {
-  color: #89939a;
-  text-align: left;
+	color: var(--secondary);
+	text-align: left;
 }
 
 .techValue {
-  color: #313237;
-  text-align: right;
+	color: var(--primary);
+	text-align: right;
 }
