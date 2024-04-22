@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import styles from './VariantsSection.module.scss';
@@ -11,7 +11,7 @@ import { SpriteIcon } from '../../Shared/SpriteIcon';
 import { useCart } from '../../../context/CartContext';
 import { Product } from '../../../types/Product';
 import { getProductByItemId } from '../../../helpers/getProductByItemId';
-import { FavoritesContext } from '../../../context/FavouritesContext';
+import { useFavorites } from '../../../context/FavoritesContext';
 import toast from 'react-hot-toast';
 
 interface Props {
@@ -70,7 +70,7 @@ export const VariantsSection: React.FC<Props> = ({
 
   const { cart, dispatch } = useCart();
 
-  const { isFavorite, toggleFavorite } = useContext(FavoritesContext);
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const handleToggleFavorite = () => {
     toggleFavorite(product);
