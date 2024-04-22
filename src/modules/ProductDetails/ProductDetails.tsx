@@ -5,19 +5,22 @@ import { BreadcrumbsItem } from '../Shared/Breadcrumbs/BreadcrumbsItem';
 import { Container } from '../Shared/Container';
 import { ProductsSlider } from '../Shared/ProductsSlider';
 import { Title } from '../Shared/Title';
+import { Loader } from '../Shared/Loader';
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 import { getProductsByCategory } from '../../helpers/getProductsByCategory';
 import { getProductIdFromUrl } from '../../helpers/getProductIdFromUrl';
 import { findProductById } from '../../helpers/findProductById';
+import { useProductsApi } from '../../hooks/useProductsApi';
 import { ProductInfo } from './ProductInfo';
 import { VariantsSection } from './VariantsSection';
-import products from '../../../public/api/products.json';
 import styles from './ProductDetails.module.scss';
 
 export const ProductDetails: React.FC = () => {
   const { path, categoryName } = getPathAndCategoryNameFromUrl();
   const productId = getProductIdFromUrl();
   const navigate = useNavigate();
+
+  const { products, loading } = useProductsApi();
 
   if (!productId) {
     return;
@@ -47,23 +50,29 @@ export const ProductDetails: React.FC = () => {
               {currentProduct.name}
             </BreadcrumbsItem>
           </Breadcrumbs>
-          <Title titleTag="h1" className={styles.productTitle}>
-            {currentProduct.name}
-          </Title>
+          {loading ? (
+            <Loader />
+          ) : (
+            <>
+              <Title titleTag="h1" className={styles.productTitle}>
+                {currentProduct.name}
+              </Title>
 
-          <VariantsSection
-            productDetails={currentProduct}
-            categoryName={categoryName}
-          />
+              <VariantsSection
+                productDetails={currentProduct}
+                categoryName={categoryName}
+              />
 
-          <ProductInfo product={currentProduct} />
+              <ProductInfo product={currentProduct} />
 
-          <section className="section">
-            <ProductsSlider
-              sliderTitle="You may also like"
-              products={recommendedProducts}
-            />
-          </section>
+              <section className="section">
+                <ProductsSlider
+                  sliderTitle="You may also like"
+                  products={recommendedProducts}
+                />
+              </section>
+            </>
+          )}
         </Container>
       )}
     </>

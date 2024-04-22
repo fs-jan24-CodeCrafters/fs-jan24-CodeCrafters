@@ -1,0 +1,93 @@
+.card {
+	max-width: 288px;
+	max-height: 506px;
+	height: 100%;
+	border: 1px solid var(--elements);
+	padding: 32px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 auto;
+
+	@media (max-width:600px) {
+		max-width: 100%;
+	}
+}
+
+.cardBody {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.image {
+	max-width: 224px;
+	height: 196px;
+	width: 100%;
+	margin-bottom: 24px;
+	border-radius: 8px;
+}
+
+.titleLink {
+	margin-bottom: 8px;
+	flex-grow: 1;
+}
+
+.priceContainer {
+	position: relative;
+	display: flex;
+	gap: 8px;
+	margin-bottom: 8px;
+
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		height: 1px;
+		background-color: var(--elements);
+	}
+}
+
+.detailsContainer {
+	margin-block: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.buttonsContainer {
+	display: flex;
+	gap: 8px;
+}
+
+.skeleton {
+	animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+	0% {
+		background-color: hsl(200, 20%, 80%);
+	}
+
+	100% {
+		background-color: hsl(200, 20%, 95%);
+	}
+}
+
+.skeletonText {
+	width: 100%;
+	height: 12px;
+	margin-bottom: 8px;
+	border-radius: 8px;
+}
+
+.skeletonButton {
+	width: 100%;
+	height: 30px;
+	margin-bottom: 8px;
+	border-radius: 8px;
+}

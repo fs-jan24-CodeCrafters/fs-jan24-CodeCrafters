@@ -1,21 +1,24 @@
-import { getProductsByCategory } from '../../helpers/getProductsByCategory';
-import products from '../../../public/api/products.json';
+import { useSearchParams } from 'react-router-dom';
 import { Container } from '../Shared/Container';
 import { Breadcrumbs } from '../Shared/Breadcrumbs';
 import { BreadcrumbsItem } from '../Shared/Breadcrumbs/BreadcrumbsItem';
-import { ProductsList } from './ProductsList';
-import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 import { Title } from '../Shared/Title';
-
-import styles from './CatalogPage.module.scss';
-import { useSearchParams } from 'react-router-dom';
+import { getProductsByCategory } from '../../helpers/getProductsByCategory';
+import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 import { getSortedProducts } from '../../helpers/getSortedProducts';
+import { useProductsApi } from '../../hooks/useProductsApi';
+import { ProductsList } from './ProductsList';
 import { Selects } from './Selects';
 import { Pagination } from './Pagination';
+
+import styles from './CatalogPage.module.scss';
+import { Loader } from '../Shared/Loader';
 
 export const CatalogPage: React.FC = () => {
   const { path, categoryName } = getPathAndCategoryNameFromUrl();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const { products, loading } = useProductsApi();
 
   const productsList = getProductsByCategory(products, path);
 
@@ -47,7 +50,13 @@ export const CatalogPage: React.FC = () => {
         {catalogPageTitle}
       </Title>
       <span className={`${styles.textItem} ${styles.productsAmountText}`}>
-        {`${productsList.length} models`}
+        {loading ? (
+          <span className={styles.textItemLoader}>
+            <Loader />
+          </span>
+        ) : (
+          `${productsList.length} models`
+        )}
       </span>
 
       <Selects
@@ -57,7 +66,7 @@ export const CatalogPage: React.FC = () => {
         products={sortedByFormUrl}
       />
 
-      <ProductsList products={visibleProducts} />
+      <ProductsList products={visibleProducts} loading={loading} />
 
       <Pagination
         products={sortedByFormUrl}
