@@ -12,6 +12,7 @@ import { useCart } from '../../../context/CartContext';
 import { Product } from '../../../types/Product';
 import { getProductByItemId } from '../../../helpers/getProductByItemId';
 import { FavoritesContext } from '../../../context/FavouritesContext';
+import toast from 'react-hot-toast';
 
 interface Props {
   productDetails: ProductDetails;
@@ -66,14 +67,22 @@ export const VariantsSection: React.FC<Props> = ({
 
   const handleToggleFavorite = () => {
     toggleFavorite(product);
+    if (isFavoriteProd) {
+      toast.success('Product successfully removed from favorite!');
+    } else {
+      toast.success('Product successfully added to favorite!');
+    }
   };
 
   const isProductInCart = cart.some((item) => item.id === product?.id);
+  const isFavoriteProd = isFavorite(product);
+
   const isAccessories = categoryName === 'Accessories';
 
   const addToCartHandler = (productItem: Product) => {
     if (!isProductInCart) {
       dispatch({ type: 'cart/addItem', payload: productItem });
+      toast.success('Product successfully added to cart!');
     }
   };
 
@@ -198,7 +207,7 @@ export const VariantsSection: React.FC<Props> = ({
               maxWidth={40}
               onClick={handleToggleFavorite}
             >
-              {!isFavorite(product) ? (
+              {!isFavoriteProd ? (
                 <SpriteIcon iconName="icon-Favorites" />
               ) : (
                 <SpriteIcon iconName="icon-Favorites-Filled-Heart-Like" />

@@ -31,6 +31,21 @@
 
 }
 
+.removeBtn {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&::after {
+		content: '';
+		position: absolute;
+		width: 35px;
+		height: 35px;
+	}
+
+}
+
 .closeIcon {
 	use {
 		fill: var(--secondary);
@@ -49,6 +64,7 @@
 
 .productPrice {
 	min-width: 180px;
+
 	@include mobile-small {
 		width: 100%;
 		justify-content: space-between;
