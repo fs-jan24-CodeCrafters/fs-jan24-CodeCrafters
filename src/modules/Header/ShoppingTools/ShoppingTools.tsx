@@ -5,9 +5,8 @@ import { ShoppingCounter } from '../ShoppingCounter';
 import styles from './ShoppingTools.module.scss';
 import classNames from 'classnames';
 import { useContext } from 'react';
-import { FavoritesContext } from '../../../MainContext/FavouritesContext';
+import { FavoritesContext } from '../../../context/FavouritesContext';
 import { useCart } from '../../../context/CartContext';
-
 
 interface Props {
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;

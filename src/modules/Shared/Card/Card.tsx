@@ -4,7 +4,7 @@ import { Title } from '../Title';
 import { Product } from '../../../types/Product';
 import styles from './Card.module.scss';
 import { Link } from 'react-router-dom';
-import { FavoritesContext } from '../../../MainContext/FavouritesContext';
+import { FavoritesContext } from '../../../context/FavouritesContext';
 import { useContext } from 'react';
 import { useCart } from '../../../context/CartContext';
 
@@ -41,9 +41,7 @@ export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
     toggleFavorite(product);
   };
 
-
   const buttonText = isProductInCart ? 'Added to cart' : 'Add to cart';
-
 
   return (
     <article className={styles.card}>

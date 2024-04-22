@@ -3,7 +3,7 @@ import { Breadcrumbs } from '../Shared/Breadcrumbs';
 import { BreadcrumbsItem } from '../Shared/Breadcrumbs/BreadcrumbsItem';
 import { Container } from '../Shared/Container';
 import { useContext } from 'react';
-import { FavoritesContext } from '../../MainContext/FavouritesContext';
+import { FavoritesContext } from '../../context/FavouritesContext';
 
 export const Favorites: React.FC = () => {
   const { countFavorites } = useContext(FavoritesContext);

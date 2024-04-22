@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Product } from '../types/Product';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 interface FavoritesContextType {
   favorites: Product[];
-  setFavorites: React.Dispatch<React.SetStateAction<Product[]>>;
+  setFavorites: (v: Product[]) => void;
   toggleFavorite: (product: Product) => void;
   isFavorite: (product: Product) => boolean;
   countFavorites: number;
@@ -24,10 +25,10 @@ interface Props {
 }
 
 export const FavoritesProvider: React.FC<Props> = ({ children }) => {
-  const [favorites, setFavorites] = React.useState<Product[]>(() => {
-    const savedFavorites = localStorage.getItem(FAVORITES_KEY);
-    return savedFavorites ? JSON.parse(savedFavorites) : [];
-  });
+  const [favorites, setFavorites] = useLocalStorage<Product[]>(
+    FAVORITES_KEY,
+    [],
+  );
 
   const countFavorites = favorites.length;
   const isFavorite = (product: Product) =>
@@ -35,23 +36,14 @@ export const FavoritesProvider: React.FC<Props> = ({ children }) => {
 
   const toggleFavorite = (product: Product) => {
     if (isFavorite(product)) {
-      setFavorites((prevFavorites) =>
-        prevFavorites.filter((favorite) => favorite.id !== product.id),
-      );
+      setFavorites(favorites.filter((favorite) => favorite.id !== product.id));
     } else {
-      setFavorites((prevFavorites) => [...prevFavorites, product]);
+      setFavorites([...favorites, product]);
     }
   };
 
   useEffect(() => {
-    const savedFavorites = localStorage.getItem(FAVORITES_KEY);
-    if (savedFavorites) {
-      setFavorites(JSON.parse(savedFavorites));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+    setFavorites(favorites);
   }, [favorites]);
 
   const value = {
