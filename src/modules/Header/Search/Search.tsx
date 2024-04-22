@@ -21,8 +21,10 @@ export const Search = () => {
   };
 
   const handleClose = () => {
-    setInputVisible(false);
-    setSearchItem('');
+    setTimeout(() => {
+      setInputVisible(false);
+      setSearchItem('');
+    }, 100);
   };
 
   const getSearchResults = () => {

@@ -11,6 +11,7 @@
 	&:disabled {
 		border-color: var(--elements);
 		background-color: transparent;
+		cursor: default;
 
 		svg {
 			fill: var(--elements)
