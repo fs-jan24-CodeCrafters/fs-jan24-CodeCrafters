@@ -1,4 +1,5 @@
 import { Button } from '../Button';
+import toast from 'react-hot-toast';
 import { SpriteIcon } from '../SpriteIcon';
 import { Title } from '../Title';
 import { Product } from '../../../types/Product';
@@ -30,15 +31,22 @@ export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
   const { cart, dispatch } = useCart();
 
   const isProductInCart = cart.some((item) => item.id === id);
+  const isFavoriteProd = isFavorite(product);
 
   const addToCartHandler = (productItem: Product) => {
     if (!isProductInCart) {
       dispatch({ type: 'cart/addItem', payload: productItem });
+      toast.success('Product successfully added to cart!');
     }
   };
 
   const handleToggleFavorite = () => {
     toggleFavorite(product);
+    if (isFavoriteProd) {
+      toast.success('Product successfully removed from favorite!');
+    } else {
+      toast.success('Product successfully added to favorite!');
+    }
   };
 
   const buttonText = isProductInCart ? 'Added to cart' : 'Add to cart';
@@ -86,7 +94,7 @@ export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
             maxWidth={40}
             onClick={handleToggleFavorite}
           >
-            {!isFavorite(product) ? (
+            {!isFavoriteProd ? (
               <SpriteIcon iconName="icon-Favorites" />
             ) : (
               <SpriteIcon iconName="icon-Favorites-Filled-Heart-Like" />

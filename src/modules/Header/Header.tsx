@@ -11,6 +11,7 @@ import styles from './Header.module.scss';
 import { useDisableScroll } from '../../hooks/useDisableScroll';
 import { Logo } from '../Shared/Logo/Logo';
 import { ThemeSwitcher } from '../Cart/ThemeSwitcher';
+import { Toaster } from 'react-hot-toast';
 
 const tabletBreakPoint = '992px';
 
@@ -23,6 +24,8 @@ export const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
+      <Toaster position="top-center" reverseOrder={false} />
+
       <div className={styles.wrapper}>
         <Logo className={styles.logo} onClick={() => setIsMenuOpen(false)} />
 

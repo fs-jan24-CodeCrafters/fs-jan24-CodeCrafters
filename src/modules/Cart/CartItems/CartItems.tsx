@@ -4,6 +4,7 @@ import { Product } from '../../../types/Product';
 import { SpriteIcon } from '../../Shared/SpriteIcon';
 import { Title } from '../../Shared/Title';
 import styles from './CartItems.module.scss';
+import toast from 'react-hot-toast';
 
 const MAX_QUANTITY_PER_ITEM = 99;
 
@@ -13,6 +14,11 @@ interface Props {
 }
 
 export const CartItems: React.FC<Props> = ({ dispatch, cart }) => {
+  const handleRemoveItem = (id: number) => {
+    dispatch({ type: 'cart/removeItem', payload: id });
+    toast.success('Product successfully removed from cart!');
+  };
+
   return (
     <ul>
       <TransitionGroup>
@@ -31,9 +37,8 @@ export const CartItems: React.FC<Props> = ({ dispatch, cart }) => {
               <li className={styles.productItem}>
                 <div className={styles.productDescription}>
                   <button
-                    onClick={() =>
-                      dispatch({ type: 'cart/removeItem', payload: id })
-                    }
+                    className={styles.removeBtn}
+                    onClick={() => handleRemoveItem(id)}
                   >
                     <SpriteIcon
                       className={styles.closeIcon}
