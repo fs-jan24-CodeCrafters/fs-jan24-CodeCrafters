@@ -8,24 +8,31 @@ import styles from './ErrorPage.module.scss';
 
 export const ErrorPage: React.FC = () => {
   return (
-    <Container className={styles.container}>
-      <div className={styles.errorWrapper}>
-        <Title titleTag="h1">404</Title>
+    <section className={styles.section}>
+      <Container className={styles.container}>
+        <div className={styles.errorWrapper}>
+          <Title titleTag="h1">404</Title>
 
-        <Title titleTag="h2" className={styles.errorName}>
-          Page not found
-        </Title>
+          <Title titleTag="h2" className={styles.errorName}>
+            Page not found
+          </Title>
 
-        <p className={styles.text}>
-          Opps, sorry you&apos;ve to go back. Your page is not found.
-        </p>
+          <p className={styles.text}>
+            Opps, sorry you&apos;ve to go back. Your page is not found.
+          </p>
 
-        <div className={styles.button}>
-          <Link to={'/'}>
-            <Button>Back Home</Button>
-          </Link>
+          <div className={styles.button}>
+            <Link to={'/'}>
+              <Button>Back Home</Button>
+            </Link>
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+      <img
+        className={styles.image}
+        src="/img/errorPage/1.png"
+        alt="rolling field"
+      />
+    </section>
   );
 };

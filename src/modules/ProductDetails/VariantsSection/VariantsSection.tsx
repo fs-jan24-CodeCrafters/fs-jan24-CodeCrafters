@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import classNames from 'classnames';
 
 import { useCart } from '../../../context/CartContext';
 import { useFavorites } from '../../../context/FavoritesContext';
@@ -13,6 +11,8 @@ import { CapacityRadioButton } from './CapacityRadioButton';
 import { ProductDetails } from '../../../types/ProductDetails';
 import { Product } from '../../../types/Product';
 
+import toast from 'react-hot-toast';
+import classNames from 'classnames';
 import styles from './VariantsSection.module.scss';
 
 interface Props {

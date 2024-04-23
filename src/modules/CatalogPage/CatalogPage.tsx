@@ -23,7 +23,7 @@ export const CatalogPage: React.FC = () => {
 
   const productsList = getProductsByCategory(products, path);
 
-  const currentSortBy = searchParams.get('sort') || 'All';
+  const currentSortBy = searchParams.get('sort') || 'Featured';
   const currentPerPageOptions = searchParams.get('perPage') || 16;
   const currentPage = Number(searchParams.get('page')) || 1;
 

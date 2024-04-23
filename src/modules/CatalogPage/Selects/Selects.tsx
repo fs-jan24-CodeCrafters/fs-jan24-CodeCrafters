@@ -18,7 +18,7 @@ interface Props {
 }
 
 const sortByOptions = [
-  { value: 'all', label: 'All' },
+  { value: 'featured', label: 'Featured' },
   { value: 'year', label: 'Newest' },
   { value: 'name', label: 'Alphabetically' },
   { value: 'price', label: 'Cheapest' },
