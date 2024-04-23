@@ -15,7 +15,7 @@ export const Breadcrumbs: React.FC<Props> = ({ children }) => {
         <ul className={styles.list}>
           <li className={styles.item}>
             <NavLink to={'/'} className={styles.link}>
-              <SpriteIcon iconName={'icon-Home'} />
+              <SpriteIcon className={styles.icon} iconName={'icon-Home'} />
             </NavLink>
           </li>
           {children}

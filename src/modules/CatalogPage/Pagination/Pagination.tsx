@@ -4,6 +4,7 @@ import { SearchLink } from '../../Shared/SearchLink';
 import { SpriteIcon } from '../../Shared/SpriteIcon';
 
 import styles from './Pagination.module.scss';
+import { scrollToTop } from '../../../helpers/scrollToTop';
 
 const range = (start: number, end: number) => {
   return [...Array(end - start + 1).keys()].map((el) => el + start);
@@ -60,7 +61,7 @@ export const Pagination: React.FC<Props> = ({
   return (
     <>
       {pages.length > 1 && (
-        <div className={styles.linkList}>
+        <div onClick={scrollToTop} className={styles.linkList}>
           <SearchLink
             className={classNames(styles.link, styles.linkPrev, {
               [styles.linkDisabled]: currentPage === 1,

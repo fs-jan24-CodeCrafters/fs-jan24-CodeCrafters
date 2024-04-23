@@ -27,6 +27,15 @@
 	}
 }
 
+.icon {
+
+	@include transition(transform);
+
+	&:hover {
+		transform: scale(1.15);
+	}
+}
+
 .span {
 	color: var(--secondary);
 }
