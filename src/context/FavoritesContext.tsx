@@ -1,20 +1,35 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { Product } from '../types/Product';
 
 interface FavoritesContextType {
   favorites: Product[];
-  setFavorites: (v: Product[]) => void;
   toggleFavorite: (product: Product) => void;
   isFavorite: (product: Product) => boolean;
   countFavorites: number;
 }
 
 const FAVORITES_KEY = 'favorites';
+const initialState: Product[] = [];
+
+type Action =
+  | { type: 'ADD_FAVORITE'; payload: Product }
+  | { type: 'REMOVE_FAVORITE'; payload: Product };
+
+const reducer = (state: Product[], action: Action): Product[] => {
+  switch (action.type) {
+    case 'ADD_FAVORITE':
+      return [...state, action.payload];
+
+    case 'REMOVE_FAVORITE':
+      return state.filter((favorite) => favorite.id !== action.payload.id);
+    default:
+      return state;
+  }
+};
 
 export const FavoritesContext = React.createContext<FavoritesContextType>({
   favorites: [],
-  setFavorites: () => {},
   toggleFavorite: () => {},
   isFavorite: () => false,
   countFavorites: 0,
@@ -25,10 +40,13 @@ interface Props {
 }
 
 const FavoritesProvider: React.FC<Props> = ({ children }) => {
-  const [favorites, setFavorites] = useLocalStorage<Product[]>(
+  const [storedFavorites, setStoredFavorites] = useLocalStorage<Product[]>(
     FAVORITES_KEY,
     [],
   );
+  const [favorites, dispatch] = useReducer(reducer, initialState, () => {
+    return Array.isArray(storedFavorites) ? storedFavorites : initialState;
+  });
 
   const countFavorites = favorites.length;
   const isFavorite = (product: Product) =>
@@ -36,19 +54,18 @@ const FavoritesProvider: React.FC<Props> = ({ children }) => {
 
   const toggleFavorite = (product: Product) => {
     if (isFavorite(product)) {
-      setFavorites(favorites.filter((favorite) => favorite.id !== product.id));
+      dispatch({ type: 'REMOVE_FAVORITE', payload: product });
     } else {
-      setFavorites([...favorites, product]);
+      dispatch({ type: 'ADD_FAVORITE', payload: product });
     }
   };
 
   useEffect(() => {
-    setFavorites(favorites);
+    setStoredFavorites(favorites);
   }, [favorites]);
 
   const value = {
     favorites,
-    setFavorites,
     toggleFavorite,
     isFavorite,
     countFavorites,
@@ -65,7 +82,7 @@ const useFavorites = () => {
   const context = useContext(FavoritesContext);
 
   if (!context) {
-    throw new Error('CartContext was used outside of the PostProvider');
+    throw new Error('FavoritesContext was used outside of the PostProvider');
   }
 
   return context;
