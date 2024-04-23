@@ -57,7 +57,7 @@ $ballSize: 10vw;
 	}
 
 	to {
-		transform: translateX(calc(#{$tableWidth} - #{$ballSize})) rotate(#{($tableWidth - $ballSize) / (3.14 * $ballSize)}turn);
+		transform: translateX(calc(#{$tableWidth} - #{$ballSize})) rotate(#{calc(($tableWidth - $ballSize) / (3.14 * $ballSize))}turn);
 	}
 
 }
