@@ -9,6 +9,7 @@ import { CatalogPage } from './modules/CatalogPage/CatalogPage';
 import { HomePage } from './modules/HomePage';
 import { Layout } from './Layout';
 
+import 'animate.css';
 import './App.scss';
 
 export const App = () => {

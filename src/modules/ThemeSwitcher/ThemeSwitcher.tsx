@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-
-import useLocalStorage from '../../../hooks/useLocalStorage';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 import styles from './ThemeSwitcher.module.scss';
 
