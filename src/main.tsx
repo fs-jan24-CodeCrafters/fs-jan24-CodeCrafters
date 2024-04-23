@@ -4,7 +4,7 @@ import { HashRouter as Router } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { App } from './App';
 import './index.scss';
-import { FavoritesProvider } from './context/FavouritesContext';
+import { FavoritesProvider } from './context/FavoritesContext';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

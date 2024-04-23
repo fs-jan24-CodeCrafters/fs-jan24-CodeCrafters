@@ -5,8 +5,7 @@ import { Title } from '../Title';
 import { Product } from '../../../types/Product';
 import styles from './Card.module.scss';
 import { Link } from 'react-router-dom';
-import { FavoritesContext } from '../../../context/FavouritesContext';
-import { useContext } from 'react';
+import { useFavorites } from '../../../context/FavoritesContext';
 import { useCart } from '../../../context/CartContext';
 
 interface Props {
@@ -27,7 +26,7 @@ export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
     category,
     itemId,
   } = product;
-  const { isFavorite, toggleFavorite } = useContext(FavoritesContext);
+  const { isFavorite, toggleFavorite } = useFavorites();
   const { cart, dispatch } = useCart();
 
   const isProductInCart = cart.some((item) => item.id === id);

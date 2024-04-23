@@ -4,8 +4,7 @@ import { ShoppingCounter } from '../ShoppingCounter';
 
 import styles from './ShoppingTools.module.scss';
 import classNames from 'classnames';
-import { useContext } from 'react';
-import { FavoritesContext } from '../../../context/FavouritesContext';
+import { useFavorites } from '../../../context/FavoritesContext';
 import { useCart } from '../../../context/CartContext';
 
 interface Props {
@@ -13,7 +12,7 @@ interface Props {
 }
 
 export const ShoppingTools: React.FC<Props> = ({ setIsMenuOpen }) => {
-  const { countFavorites } = useContext(FavoritesContext);
+  const { countFavorites } = useFavorites();
   const { totalCartQuantity } = useCart();
 
   const getLinkClassNames = ({
