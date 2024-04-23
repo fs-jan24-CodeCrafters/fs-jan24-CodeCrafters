@@ -10,24 +10,33 @@ import { Search } from './Search';
 import styles from './Header.module.scss';
 import { useDisableScroll } from '../../hooks/useDisableScroll';
 import { Logo } from '../Shared/Logo/Logo';
-import { ThemeSwitcher } from '../Cart/ThemeSwitcher';
+import { ThemeSwitcher } from '../ThemeSwitcher';
 import { Toaster } from 'react-hot-toast';
+import { useLocation } from 'react-router-dom';
+import { scrollToTop } from '../../helpers/scrollToTop';
 
 const tabletBreakPoint = '992px';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const { pathname } = useLocation();
   const matches = useMediaQuery(`(max-width: ${tabletBreakPoint})`);
 
   useDisableScroll(isMenuOpen);
+
+  const handleLogoClick = () => {
+    setIsMenuOpen(false);
+    if (pathname === '/') {
+      scrollToTop();
+    }
+  };
 
   return (
     <header className={styles.header}>
       <Toaster position="top-center" reverseOrder={false} />
 
       <div className={styles.wrapper}>
-        <Logo className={styles.logo} onClick={() => setIsMenuOpen(false)} />
+        <Logo className={styles.logo} onClick={handleLogoClick} />
 
         {matches && (
           <>

@@ -5,6 +5,8 @@ import { CategoryItem } from './CategoryItem';
 import products from '../../../../public/api/products.json';
 
 import styles from './ShopByCategotySection.module.scss';
+import { useIntersectionObserver } from 'usehooks-ts';
+import classNames from 'classnames';
 
 const phonesAmount = getProductsByCategory(products, 'phones').length;
 const tabletsAmount = getProductsByCategory(products, 'tablets').length;
@@ -43,13 +45,23 @@ const categoryData = [
 ];
 
 export const ShopByCategorySection: React.FC = () => {
+  const { isIntersecting, ref } = useIntersectionObserver({
+    threshold: 0,
+    freezeOnceVisible: true,
+  });
+
   return (
     <section className="section">
       <Container>
         <Title titleTag="h2" sectionTitle={true}>
           Shop by category
         </Title>
-        <div className={styles.categoryItems}>
+        <div
+          ref={ref}
+          className={classNames(styles.categoryItems, {
+            'animate__animated animate__fadeIn animate__slow': isIntersecting,
+          })}
+        >
           {categoryData.map((category) => (
             <CategoryItem key={category.imgUrl} categoryData={category} />
           ))}

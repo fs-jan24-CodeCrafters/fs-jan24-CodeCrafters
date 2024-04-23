@@ -11,6 +11,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import styles from './ProductsSlider.module.scss';
 import classNames from 'classnames';
+import { useIntersectionObserver } from 'usehooks-ts';
 
 interface Props {
   sliderTitle: string;
@@ -32,6 +33,11 @@ export const ProductsSlider: React.FC<Props> = ({
     setInnerProgress(progress);
   };
 
+  const { isIntersecting, ref } = useIntersectionObserver({
+    threshold: 0,
+    freezeOnceVisible: true,
+  });
+
   return (
     <>
       <div className={classNames(styles.productSliderHeader, className)}>
@@ -51,26 +57,33 @@ export const ProductsSlider: React.FC<Props> = ({
           </button>
         </div>
       </div>
-      <Swiper
-        modules={[Navigation]}
-        navigation={{
-          prevEl: `.${styles.productSliderButtonPrev}`,
-          nextEl: `.${styles.productSliderButtonNext}`,
-        }}
-        spaceBetween={16}
-        wrapperClass={styles.swiperWrapper}
-        breakpoints={{
-          320: { slidesPerView: 'auto' },
-          992: { slidesPerView: 4 },
-        }}
-        onSlideChange={handleSlideChange}
+      <div
+        ref={ref}
+        className={classNames({
+          'animate__animated animate__fadeIn animate__slow': isIntersecting,
+        })}
       >
-        {products.map((product) => (
-          <SwiperSlide key={product.id} className={styles.productSliderSlide}>
-            <Card product={product} hasDiscountPrice={hasDiscountPrice} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <Swiper
+          modules={[Navigation]}
+          navigation={{
+            prevEl: `.${styles.productSliderButtonPrev}`,
+            nextEl: `.${styles.productSliderButtonNext}`,
+          }}
+          spaceBetween={16}
+          wrapperClass={styles.swiperWrapper}
+          breakpoints={{
+            320: { slidesPerView: 'auto' },
+            992: { slidesPerView: 4 },
+          }}
+          onSlideChange={handleSlideChange}
+        >
+          {products.map((product) => (
+            <SwiperSlide key={product.id} className={styles.productSliderSlide}>
+              <Card product={product} hasDiscountPrice={hasDiscountPrice} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </>
   );
 };

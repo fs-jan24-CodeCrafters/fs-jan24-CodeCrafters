@@ -8,6 +8,7 @@ import { Cart } from './modules/Cart';
 import { ErrorPage } from './modules/ErrorPage';
 import { CatalogPage } from './modules/CatalogPage/CatalogPage';
 
+import 'animate.css';
 import './App.scss';
 
 export const App = () => {

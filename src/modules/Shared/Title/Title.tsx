@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import styles from './Title.module.scss';
 import classNames from 'classnames';
+import { useIntersectionObserver } from 'usehooks-ts';
 
 type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
@@ -17,11 +18,19 @@ export const Title: React.FC<Props> = ({
   className,
   sectionTitle,
 }) => {
+  const { isIntersecting, ref } = useIntersectionObserver({
+    threshold: 0,
+    freezeOnceVisible: true,
+  });
+
   const Tag = titleTag;
   return (
     <Tag
+      ref={ref}
       className={classNames(styles[titleTag], className, {
         [styles.sectionTitle]: sectionTitle,
+        'animate__animated animate__fadeInDown':
+          isIntersecting && (titleTag === 'h1' || titleTag === 'h2'),
       })}
     >
       {children}

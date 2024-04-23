@@ -43,11 +43,12 @@ export const HeroSection: React.FC = () => {
           Welcome to Nice Gadgets store!
         </Title>
 
-        <div className={styles.sliderWrapper}>
+        <div
+          className={`${styles.sliderWrapper} animate__animated animate__fadeIn animate__slow`}
+        >
           <button className={styles.buttonPrev}>
             <SpriteIcon iconName="icon-Chevron-Arrow-Left" />
           </button>
-
           <Swiper
             className={styles.swiper}
             modules={[Navigation, Pagination, Autoplay, EffectFade]}
@@ -78,7 +79,6 @@ export const HeroSection: React.FC = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-
           <button className={styles.buttonNext}>
             <SpriteIcon iconName="icon-Chevron-Arrow-Right" />
           </button>
