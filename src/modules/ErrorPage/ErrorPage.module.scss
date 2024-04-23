@@ -1,15 +1,15 @@
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 65vh;
 }
 
 .errorName {
-  position: relative;
-  margin-bottom: 15px;
+	position: relative;
+	margin-bottom: 15px;
 
-  &::after {
+	&::after {
 		content: '';
 		position: absolute;
 		bottom: 0;
@@ -19,16 +19,20 @@
 		height: 1px;
 		background-color: var(--elements);
 	}
+
 }
 
 .errorWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.text {
+	margin-bottom: 15px;
 }
 
 .button {
-  margin-top: 15px;
-  width: 50%;
+	width: 50%;
 }
