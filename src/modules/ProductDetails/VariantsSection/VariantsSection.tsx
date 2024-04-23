@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 
 import { useCart } from '../../../context/CartContext';
 import { useFavorites } from '../../../context/FavoritesContext';
@@ -11,6 +12,7 @@ import { CapacityRadioButton } from './CapacityRadioButton';
 import { ProductDetails } from '../../../types/ProductDetails';
 import { Product } from '../../../types/Product';
 
+import 'swiper/css';
 import toast from 'react-hot-toast';
 import classNames from 'classnames';
 import styles from './VariantsSection.module.scss';
@@ -64,8 +66,9 @@ export const VariantsSection: React.FC<Props> = ({
     priceDiscount,
     category,
   } = productDetails;
-
   const [selectedImage, setSelectedImage] = useState(images[0]);
+
+  const [swiperRef, setSwiperRef] = useState<null | SwiperClass>(null);
 
   const product = getProductByItemId(itemId) as Product;
 
@@ -94,14 +97,63 @@ export const VariantsSection: React.FC<Props> = ({
     }
   };
 
+  const slideTo = (index: number) => {
+    swiperRef?.slideTo(index, 300);
+  };
+
   const buttonText = isProductInCart ? 'Added to cart' : 'Add to cart';
 
   useEffect(() => {
-    setSelectedImage(images[0]);
+    slideTo(0);
   }, [product]);
 
   return (
     <section className={`${styles.variantsSection} section`}>
+      <div className={styles.imagesBlock}>
+        <div className={styles.squareImagesContainer}>
+          {images.map((image, index) => (
+            <button
+              key={image}
+              className={styles.squareImageWrapper}
+              onClick={() => {
+                slideTo(index);
+              }}
+            >
+              <img
+                className={classNames(styles.squareImage, {
+                  [styles['selectedSquareImage']]: selectedImage === image,
+                })}
+                src={image}
+                alt="Product image"
+              />
+            </button>
+          ))}
+        </div>
+
+        <div className={styles.selectedImageWrapper}>
+          <Swiper
+            spaceBetween={10}
+            slidesPerView={1}
+            onSwiper={setSwiperRef}
+            onSlideChange={(swiper) => {
+              setSelectedImage(images[swiper.realIndex]);
+            }}
+          >
+            {images.map((image) => (
+              <SwiperSlide key={image}>
+                <img
+                  key={`${image}_image`}
+                  src={image}
+                  alt="Product image"
+                  className={styles.selectedImage}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
+
+      {/* <section className={`${styles.variantsSection} section`}>
       <div className={styles.imagesBlock}>
         <div className={styles.squareImagesContainer}>
           {images.map((image) => (
@@ -125,7 +177,7 @@ export const VariantsSection: React.FC<Props> = ({
             className={styles.selectedImage}
           />
         </div>
-      </div>
+      </div> */}
 
       <div className={styles.mobileContainer}></div>
       <div className={styles.availableVariantsWrapper}>
@@ -138,21 +190,21 @@ export const VariantsSection: React.FC<Props> = ({
 
         <div className={styles.colorRadioWrapper}>
           {colorsAvailable.map((color) => {
-            const TYPE = 'color';
+            const type = 'color';
             const normalizedColor = color.split(' ').join('-');
             const normalizedCurrentColor = currentColor.split(' ').join('-');
-            const COLOR_INDEX = itemId.split('-').length - 1;
+            const colorIndex = itemId.split('-').length - 1;
 
-            const LINK =
+            const link =
               `/${category}/` +
-              getNewLinkByVariant(itemId, COLOR_INDEX, normalizedColor, TYPE);
+              getNewLinkByVariant(itemId, colorIndex, normalizedColor, type);
 
             return (
               <ColorRadioButton
                 key={normalizedColor}
                 currentColor={normalizedCurrentColor}
                 color={normalizedColor}
-                LINK={LINK}
+                link={link}
               />
             );
           })}
@@ -165,22 +217,22 @@ export const VariantsSection: React.FC<Props> = ({
 
           <div className={styles.capacityRadioWrapper}>
             {capacityAvailable.map((capacity) => {
-              const TYPE = 'capacity';
-              const CAPACITY_INDEX = itemId.split('-').length - 2;
-              const LINK =
+              const type = 'capacity';
+              const capacityIndex = itemId.split('-').length - 2;
+              const link =
                 `/${category}/` +
                 getNewLinkByVariant(
                   itemId,
-                  CAPACITY_INDEX,
+                  capacityIndex,
                   capacity.toLowerCase(),
-                  TYPE,
+                  type,
                 );
 
               return (
                 <CapacityRadioButton
                   key={capacity}
                   currentCapacity={currentCapacity}
-                  LINK={LINK}
+                  link={link}
                   capacity={capacity}
                 />
               );

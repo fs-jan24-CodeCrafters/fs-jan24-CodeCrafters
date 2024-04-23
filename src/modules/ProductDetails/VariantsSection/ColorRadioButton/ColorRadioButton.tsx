@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import styles from './ColorRadioButton.module.scss';
 
 interface Props {
-  LINK: string;
+  link: string;
   color: string;
   currentColor: string;
 }
 
-export const ColorRadioButton: FC<Props> = ({ LINK, color, currentColor }) => (
-  <Link to={LINK}>
+export const ColorRadioButton: FC<Props> = ({ link, color, currentColor }) => (
+  <Link to={link}>
     <label className={styles.container}>
       <input
         type="radio"
