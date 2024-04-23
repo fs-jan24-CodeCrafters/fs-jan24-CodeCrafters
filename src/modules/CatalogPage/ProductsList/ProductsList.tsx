@@ -15,9 +15,9 @@ export const ProductsList: React.FC<Props> = ({ products, loading }) => {
   return (
     <ul className={styles.list}>
       {!loading
-        ? products.map((product) => (
+        ? products.map((product, index) => (
             <li key={product.id} className={styles.item}>
-              <Card product={product} />
+              <Card product={product} isLazy={index > 3} />
             </li>
           ))
         : fakeProductsList.map((i) => (

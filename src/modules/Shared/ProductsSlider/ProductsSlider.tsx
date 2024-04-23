@@ -79,9 +79,13 @@ export const ProductsSlider: React.FC<Props> = ({
           }}
           onSlideChange={handleSlideChange}
         >
-          {products.map((product) => (
+          {products.map((product, index) => (
             <SwiperSlide key={product.id} className={styles.productSliderSlide}>
-              <Card product={product} hasDiscountPrice={hasDiscountPrice} />
+              <Card
+                product={product}
+                hasDiscountPrice={hasDiscountPrice}
+                isLazy={index > 3}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
