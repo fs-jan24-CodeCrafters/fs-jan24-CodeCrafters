@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+
 import styles from './BurgerButton.module.scss';
 
 interface Props {

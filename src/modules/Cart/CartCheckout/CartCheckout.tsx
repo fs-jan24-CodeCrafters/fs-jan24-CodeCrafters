@@ -1,5 +1,6 @@
 import { Button } from '../../Shared/Button';
 import { Title } from '../../Shared/Title';
+
 import styles from './CartCheckout.module.scss';
 
 interface Props {

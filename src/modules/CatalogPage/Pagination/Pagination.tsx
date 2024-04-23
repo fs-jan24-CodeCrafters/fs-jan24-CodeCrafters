@@ -1,10 +1,11 @@
 import classNames from 'classnames';
-import { Product } from '../../../types/Product';
+
+import { scrollToTop } from '../../../helpers/scrollToTop';
 import { SearchLink } from '../../Shared/SearchLink';
 import { SpriteIcon } from '../../Shared/SpriteIcon';
+import { Product } from '../../../types/Product';
 
 import styles from './Pagination.module.scss';
-import { scrollToTop } from '../../../helpers/scrollToTop';
 
 const range = (start: number, end: number) => {
   return [...Array(end - start + 1).keys()].map((el) => el + start);

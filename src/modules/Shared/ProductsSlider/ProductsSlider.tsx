@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Navigation } from 'swiper';
 import { Swiper as SwiperType } from 'swiper/types';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useIntersectionObserver } from 'usehooks-ts';
+
 import { Card } from '../Card';
 import { Title } from '../Title';
 import { SpriteIcon } from '../SpriteIcon';
@@ -9,9 +11,9 @@ import { Product } from '../../../types/Product';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
-import styles from './ProductsSlider.module.scss';
+
 import classNames from 'classnames';
-import { useIntersectionObserver } from 'usehooks-ts';
+import styles from './ProductsSlider.module.scss';
 
 interface Props {
   sliderTitle: string;

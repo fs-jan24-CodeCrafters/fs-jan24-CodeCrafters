@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import classNames from 'classnames';
+import { useLocation } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
+import { useMediaQuery } from '../../hooks/useMediaQuery';
+import { useDisableScroll } from '../../hooks/useDisableScroll';
+import { Logo } from '../Shared/Logo/Logo';
 import { HeaderNav } from './HeaderNav';
 import { ShoppingTools } from './ShoppingTools';
 import { BurgerButton } from './BurgerButton';
-import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { Search } from './Search';
-
-import styles from './Header.module.scss';
-import { useDisableScroll } from '../../hooks/useDisableScroll';
-import { Logo } from '../Shared/Logo/Logo';
-import { ThemeSwitcher } from '../ThemeSwitcher';
-import { Toaster } from 'react-hot-toast';
-import { useLocation } from 'react-router-dom';
 import { scrollToTop } from '../../helpers/scrollToTop';
+import { ThemeSwitcher } from '../ThemeSwitcher';
+
+import classNames from 'classnames';
+import styles from './Header.module.scss';
 
 const tabletBreakPoint = '992px';
 

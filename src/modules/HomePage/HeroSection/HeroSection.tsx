@@ -1,5 +1,6 @@
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import { Container } from '../../Shared/Container';
 import { Title } from '../../Shared/Title';
 import { SpriteIcon } from '../../Shared/SpriteIcon';

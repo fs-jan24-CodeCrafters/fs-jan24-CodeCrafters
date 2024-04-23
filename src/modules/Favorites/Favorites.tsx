@@ -1,10 +1,11 @@
+import { useFavorites } from '../../context/FavoritesContext';
 import { Breadcrumbs } from '../Shared/Breadcrumbs';
 import { BreadcrumbsItem } from '../Shared/Breadcrumbs/BreadcrumbsItem';
 import { Container } from '../Shared/Container';
-import styles from './Favorites.module.scss';
 import { Card } from '../Shared/Card';
 import { Title } from '../Shared/Title';
-import { useFavorites } from '../../context/FavoritesContext';
+
+import styles from './Favorites.module.scss';
 
 export const Favorites: React.FC = () => {
   const { favorites, countFavorites } = useFavorites();

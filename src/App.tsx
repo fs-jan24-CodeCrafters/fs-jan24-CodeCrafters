@@ -1,12 +1,13 @@
 import { useLayoutEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { Layout } from './Layout';
-import { HomePage } from './modules/HomePage';
+
 import { ProductDetails } from './modules/ProductDetails';
 import { Favorites } from './modules/Favorites';
 import { Cart } from './modules/Cart';
 import { ErrorPage } from './modules/ErrorPage';
 import { CatalogPage } from './modules/CatalogPage/CatalogPage';
+import { HomePage } from './modules/HomePage';
+import { Layout } from './Layout';
 
 import 'animate.css';
 import './App.scss';

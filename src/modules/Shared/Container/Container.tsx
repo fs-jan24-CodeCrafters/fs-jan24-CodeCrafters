@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
+import classNames from 'classnames';
 
 import styles from './Container.module.scss';
-import classNames from 'classnames';
 
 interface Props {
   children: ReactNode;

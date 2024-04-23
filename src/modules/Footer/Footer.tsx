@@ -1,10 +1,10 @@
+import { scrollToTop } from '../../helpers/scrollToTop';
 import { Container } from '../Shared/Container';
 import { Logo } from '../Shared/Logo/Logo';
 import { FooterNav } from './FooterNav/FooterNav';
 import { SpriteIcon } from '../Shared/SpriteIcon';
 
 import styles from './Footer.module.scss';
-import { scrollToTop } from '../../helpers/scrollToTop';
 
 export const Footer: React.FC = () => {
   return (
