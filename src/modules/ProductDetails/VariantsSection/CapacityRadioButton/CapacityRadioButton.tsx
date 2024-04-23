@@ -4,20 +4,20 @@ import { Link } from 'react-router-dom';
 import styles from './CapacityRadioButton.module.scss';
 
 interface Props {
-  LINK: string;
+  link: string;
   capacity: string;
   currentCapacity: string;
 }
 
 export const CapacityRadioButton: FC<Props> = ({
-  currentCapacity,
-  LINK,
+  link,
   capacity,
+  currentCapacity,
 }) => {
-  const TITLE_SPACE = capacity.slice(0, -2) + ' ' + capacity.slice(-2);
+  const capacityTitle = capacity.slice(0, -2) + ' ' + capacity.slice(-2);
 
   return (
-    <Link to={LINK}>
+    <Link to={link}>
       <label className={styles.container}>
         <input
           type="radio"
@@ -26,7 +26,7 @@ export const CapacityRadioButton: FC<Props> = ({
           onChange={() => {}}
         />
 
-        <span className={`${styles.checkmark}`}>{TITLE_SPACE}</span>
+        <span className={`${styles.checkmark}`}>{capacityTitle}</span>
       </label>
     </Link>
   );

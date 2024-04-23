@@ -26,6 +26,7 @@
 		background-color: var(--BG-color);
 		border: var(--elements) solid 1px;
 		border-radius: 50%;
+		@include transition(all);
 
 		&--black {
 			&:before {
