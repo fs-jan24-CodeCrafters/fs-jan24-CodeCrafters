@@ -17,7 +17,7 @@ export const ErrorPage: React.FC = () => {
         </Title>
 
         <p className={styles.text}>
-          Opps, sorry you&apos;ve to go back. Your page is not found.
+          Oops, sorry you&apos;ve to go back. Your page is not found.
         </p>
 
         <div className={styles.button}>
