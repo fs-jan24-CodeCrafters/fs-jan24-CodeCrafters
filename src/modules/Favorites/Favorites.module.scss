@@ -1,40 +1,38 @@
 .list {
-  display: grid;
-  gap: $grid-gap;
-  grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
-  margin-bottom: clamp-calc($min-break-point, $pc, 24px, 40px);
+	display: grid;
+	gap: $grid-gap;
+	grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+	margin-bottom: clamp-calc($min-break-point, $pc, 24px, 40px);
 }
 
 .item {
-  margin: 0 auto;
-  width: 100%;
+	margin: 0 auto;
+	width: 100%;
 }
 
 .title {
-  margin-bottom: 8px;
+	margin-bottom: 8px;
 }
 
 
 .textItem {
-  display: block;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--secondary);
+	display: block;
+	font-weight: 600;
+	color: var(--secondary);
 }
 
 .productsAmountText {
-  margin-bottom: clamp-calc($min-break-point, $pc, 32px, 40px);
+	margin-bottom: clamp-calc($min-break-point, $pc, 32px, 40px);
 }
 
- .wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60vh;
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50vh;
 }
 
 .pageTitle {
-  color: var(--secondary);
-  text-align: center;
+	color: var(--secondary);
+	text-align: center;
 }

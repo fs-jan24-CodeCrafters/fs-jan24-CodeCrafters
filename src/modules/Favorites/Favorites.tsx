@@ -9,7 +9,7 @@ import { useFavorites } from '../../context/FavoritesContext';
 export const Favorites: React.FC = () => {
   const { favorites, countFavorites } = useFavorites();
   return (
-    <Container>
+    <Container className="section">
       <Breadcrumbs>
         <BreadcrumbsItem tagType="span">Favorites</BreadcrumbsItem>
       </Breadcrumbs>
