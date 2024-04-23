@@ -5,6 +5,7 @@
 
 .titleBox {
 	margin-bottom: clamp-calc($min-break-point, $pc, 24px, 44px);
+	color: var(--secondary);
 }
 
 .image {
