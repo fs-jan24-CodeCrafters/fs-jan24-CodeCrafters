@@ -1,10 +1,12 @@
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import toast from 'react-hot-toast';
+
 import { Action } from '../../../context/CartContext';
-import { Product } from '../../../types/Product';
 import { SpriteIcon } from '../../Shared/SpriteIcon';
 import { Title } from '../../Shared/Title';
+import { Product } from '../../../types/Product';
+
 import styles from './CartItems.module.scss';
-import toast from 'react-hot-toast';
 
 const MAX_QUANTITY_PER_ITEM = 99;
 

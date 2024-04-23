@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 import debouce from 'lodash.debounce';
 
+import { useProductsApi } from '../../../hooks/useProductsApi';
 import { SpriteIcon } from '../../Shared/SpriteIcon';
 import { Loader } from '../../Shared/Loader';
 import { SearchResults } from './SearchResults/SearchResults';
-import { useProductsApi } from '../../../hooks/useProductsApi';
 import { Product } from '../../../types/Product';
 
 import styles from './Search.module.scss';
-import { CSSTransition } from 'react-transition-group';
 
 export const Search = () => {
   const [isInputVisible, setInputVisible] = useState(false);
@@ -27,7 +27,7 @@ export const Search = () => {
     setTimeout(() => {
       setInputVisible(false);
       setSearchItem('');
-    }, 100);
+    }, 150);
   };
 
   const getSearchResults = () => {

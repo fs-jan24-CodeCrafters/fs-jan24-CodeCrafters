@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+
 import styles from './ShoppingCounter.module.scss';
 
 interface Props {

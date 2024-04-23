@@ -1,9 +1,11 @@
-import { Button } from '../../Shared/Button';
-import styles from './SuccessModal.module.scss';
-import { Title } from '../../Shared/Title';
 import { useRef } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
+
 import { Action } from '../../../context/CartContext';
+import { Button } from '../../Shared/Button';
+import { Title } from '../../Shared/Title';
+
+import styles from './SuccessModal.module.scss';
 
 type Props = {
   setModalVisibility: (visible: boolean) => void;

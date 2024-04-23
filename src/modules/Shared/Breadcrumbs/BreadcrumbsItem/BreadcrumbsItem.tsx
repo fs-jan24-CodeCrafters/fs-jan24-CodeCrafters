@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
+
 import styles from '../Breadcrumbs.module.scss';
 
 type TagType = 'Link' | 'span';

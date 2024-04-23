@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
+
 import { Button } from '../Shared/Button';
 import { Title } from '../Shared/Title';
-import styles from './ErrorPage.module.scss';
 import { Container } from '../Shared/Container';
+
+import styles from './ErrorPage.module.scss';
 
 export const ErrorPage: React.FC = () => {
   return (

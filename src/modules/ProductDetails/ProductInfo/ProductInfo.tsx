@@ -1,7 +1,8 @@
 import { Title } from '../../Shared/Title';
 import { ProductDescription } from '../../../types/ProductDescription';
-import styles from './ProductInfo.module.scss';
 import { ProductDetails } from '../../../types/ProductDetails';
+
+import styles from './ProductInfo.module.scss';
 
 interface Props {
   product: ProductDetails;

@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import classNames from 'classnames';
 
-import styles from './VariantsSection.module.scss';
-import { ProductDetails } from '../../../types/ProductDetails';
-import { ColorRadioButton } from './ColorRadioButton';
-import { CapacityRadioButton } from './CapacityRadioButton';
+import { useCart } from '../../../context/CartContext';
+import { useFavorites } from '../../../context/FavoritesContext';
+import { getProductByItemId } from '../../../helpers/getProductByItemId';
 import { Title } from '../../Shared/Title';
 import { Button } from '../../Shared/Button';
 import { SpriteIcon } from '../../Shared/SpriteIcon';
-import { useCart } from '../../../context/CartContext';
+import { ColorRadioButton } from './ColorRadioButton';
+import { CapacityRadioButton } from './CapacityRadioButton';
+import { ProductDetails } from '../../../types/ProductDetails';
 import { Product } from '../../../types/Product';
-import { getProductByItemId } from '../../../helpers/getProductByItemId';
-import { useFavorites } from '../../../context/FavoritesContext';
-import toast from 'react-hot-toast';
+
+import styles from './VariantsSection.module.scss';
 
 interface Props {
   productDetails: ProductDetails;

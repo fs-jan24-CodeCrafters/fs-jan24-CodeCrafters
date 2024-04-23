@@ -1,18 +1,19 @@
 import { useSearchParams } from 'react-router-dom';
-import { Container } from '../Shared/Container';
-import { Breadcrumbs } from '../Shared/Breadcrumbs';
-import { BreadcrumbsItem } from '../Shared/Breadcrumbs/BreadcrumbsItem';
-import { Title } from '../Shared/Title';
+
 import { getProductsByCategory } from '../../helpers/getProductsByCategory';
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 import { getSortedProducts } from '../../helpers/getSortedProducts';
 import { useProductsApi } from '../../hooks/useProductsApi';
+import { Container } from '../Shared/Container';
+import { Breadcrumbs } from '../Shared/Breadcrumbs';
+import { BreadcrumbsItem } from '../Shared/Breadcrumbs/BreadcrumbsItem';
+import { Title } from '../Shared/Title';
+import { Loader } from '../Shared/Loader';
 import { ProductsList } from './ProductsList';
 import { Selects } from './Selects';
 import { Pagination } from './Pagination';
 
 import styles from './CatalogPage.module.scss';
-import { Loader } from '../Shared/Loader';
 
 export const CatalogPage: React.FC = () => {
   const { path, categoryName } = getPathAndCategoryNameFromUrl();

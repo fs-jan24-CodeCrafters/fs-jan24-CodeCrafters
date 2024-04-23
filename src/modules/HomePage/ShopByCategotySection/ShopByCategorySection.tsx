@@ -1,8 +1,8 @@
 import { getProductsByCategory } from '../../../helpers/getProductsByCategory';
+import products from '../../../../public/api/products.json';
 import { Container } from '../../Shared/Container';
 import { Title } from '../../Shared/Title';
 import { CategoryItem } from './CategoryItem';
-import products from '../../../../public/api/products.json';
 
 import styles from './ShopByCategotySection.module.scss';
 

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
+import classNames from 'classnames';
 
 import styles from './HeaderNav.module.scss';
-import classNames from 'classnames';
 
 enum Pages {
   Home = '',

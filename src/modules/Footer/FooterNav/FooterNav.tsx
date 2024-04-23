@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+
 import styles from '../Footer.module.scss';
 
 export const FooterNav: React.FC = () => {

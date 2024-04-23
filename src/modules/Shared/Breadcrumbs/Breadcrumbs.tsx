@@ -1,8 +1,10 @@
-import { NavLink } from 'react-router-dom';
-import { Container } from '../Container';
-import styles from './Breadcrumbs.module.scss';
-import { SpriteIcon } from '../SpriteIcon';
 import { ReactNode } from 'react';
+import { NavLink } from 'react-router-dom';
+
+import { Container } from '../Container';
+import { SpriteIcon } from '../SpriteIcon';
+
+import styles from './Breadcrumbs.module.scss';
 
 interface Props {
   children?: ReactNode;
