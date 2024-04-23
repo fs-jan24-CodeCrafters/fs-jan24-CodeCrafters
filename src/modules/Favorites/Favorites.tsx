@@ -34,7 +34,7 @@ export const Favorites: React.FC = () => {
         <>
           <div className={styles.wrapper}>
             <Title titleTag="h2" className={styles.pageTitle}>
-              {`You don't have any favorite products yet.`}
+              {`You don't have any favorite products yet`}
             </Title>
           </div>
         </>
