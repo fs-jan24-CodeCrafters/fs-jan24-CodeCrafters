@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
+import classNames from 'classnames';
+
+import { useFavorites } from '../../../context/FavoritesContext';
+import { useCart } from '../../../context/CartContext';
 import { SpriteIcon } from '../../Shared/SpriteIcon';
 import { ShoppingCounter } from '../ShoppingCounter';
 
 import styles from './ShoppingTools.module.scss';
-import classNames from 'classnames';
-import { useFavorites } from '../../../context/FavoritesContext';
-import { useCart } from '../../../context/CartContext';
 
 interface Props {
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;

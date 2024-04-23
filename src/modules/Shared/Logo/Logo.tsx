@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
-import styles from './Logo.module.scss';
 import classNames from 'classnames';
+
 import { SpriteIcon } from '../SpriteIcon';
+
+import styles from './Logo.module.scss';
 
 interface Props {
   onClick?: () => void;

@@ -1,12 +1,14 @@
-import { Button } from '../Button';
+import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
+
+import { useFavorites } from '../../../context/FavoritesContext';
+import { useCart } from '../../../context/CartContext';
+import { Button } from '../Button';
 import { SpriteIcon } from '../SpriteIcon';
 import { Title } from '../Title';
 import { Product } from '../../../types/Product';
+
 import styles from './Card.module.scss';
-import { Link } from 'react-router-dom';
-import { useFavorites } from '../../../context/FavoritesContext';
-import { useCart } from '../../../context/CartContext';
 
 interface Props {
   product: Product;

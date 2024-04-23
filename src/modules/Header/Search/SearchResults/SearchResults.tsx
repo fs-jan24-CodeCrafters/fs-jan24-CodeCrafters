@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+
 import { Title } from '../../../Shared/Title';
 import { Product } from '../../../../types/Product';
+
 import styles from './SearchResults.module.scss';
 
 interface Props {

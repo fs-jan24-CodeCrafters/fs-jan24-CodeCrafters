@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
-import styles from './Title.module.scss';
 import classNames from 'classnames';
+
+import styles from './Title.module.scss';
 
 type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 

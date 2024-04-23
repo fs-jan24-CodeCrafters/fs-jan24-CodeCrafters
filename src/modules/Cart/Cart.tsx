@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
-import { SuccessModal } from './SuccessModal';
-import { CartItems } from './CartItems';
 import { CSSTransition } from 'react-transition-group';
-import { CartCheckout } from './CartCheckout';
+
+import { useCart } from '../../context/CartContext';
 import { Container } from '../Shared/Container';
 import { Title } from '../Shared/Title';
 import { BackLink } from '../Shared/BackLink';
+import { SuccessModal } from './SuccessModal';
+import { CartItems } from './CartItems';
+import { CartCheckout } from './CartCheckout';
+import { EmptyCart } from './EmptyCart';
 
 import styles from './Cart.module.scss';
-import { useCart } from '../../context/CartContext';
-import { EmptyCart } from './EmptyCart';
 
 export const Cart: React.FC = () => {
   const { cart, totalCartQuantity, dispatch } = useCart();

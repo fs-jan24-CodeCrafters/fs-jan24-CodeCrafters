@@ -1,5 +1,5 @@
-import { Product } from '../types/Product';
 import products from '../../public/api/products.json';
+import { Product } from '../types/Product';
 
 const apiData = products as Product[];
 

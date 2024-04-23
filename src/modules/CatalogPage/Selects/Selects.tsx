@@ -1,7 +1,9 @@
-import { useSearchParams } from 'react-router-dom';
 import Select, { SingleValue } from 'react-select';
-import styles from './Selects.module.scss';
+import { useSearchParams } from 'react-router-dom';
+
 import { Product } from '../../../types/Product';
+
+import styles from './Selects.module.scss';
 
 export interface OptionsEntries {
   value: string | number;

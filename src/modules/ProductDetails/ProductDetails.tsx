@@ -1,18 +1,20 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
+import { getProductsByCategory } from '../../helpers/getProductsByCategory';
+import { getProductIdFromUrl } from '../../helpers/getProductIdFromUrl';
+import { findProductById } from '../../helpers/findProductById';
+import { useProductsApi } from '../../hooks/useProductsApi';
 import { Breadcrumbs } from '../Shared/Breadcrumbs';
 import { BreadcrumbsItem } from '../Shared/Breadcrumbs/BreadcrumbsItem';
 import { Container } from '../Shared/Container';
 import { ProductsSlider } from '../Shared/ProductsSlider';
 import { Title } from '../Shared/Title';
 import { Loader } from '../Shared/Loader';
-import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
-import { getProductsByCategory } from '../../helpers/getProductsByCategory';
-import { getProductIdFromUrl } from '../../helpers/getProductIdFromUrl';
-import { findProductById } from '../../helpers/findProductById';
-import { useProductsApi } from '../../hooks/useProductsApi';
 import { ProductInfo } from './ProductInfo';
 import { VariantsSection } from './VariantsSection';
+
 import styles from './ProductDetails.module.scss';
 
 export const ProductDetails: React.FC = () => {
