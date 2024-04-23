@@ -1,8 +1,14 @@
+.section {
+	height: 60vh;
+	display: flex;
+	flex-direction: column;
+}
+
 .container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 65vh;
+	height: 100%;
 }
 
 .errorName {
@@ -35,4 +41,23 @@
 
 .button {
 	width: 50%;
+}
+
+$tableWidth: 98vw;
+$ballSize: 10vw;
+
+.image {
+	width: $ballSize;
+	animation: slideInOut 10s linear alternate infinite;
+}
+
+@keyframes slideInOut {
+	from {
+		transform: translateX(0) rotate(0deg);
+	}
+
+	to {
+		transform: translateX(calc(#{$tableWidth} - #{$ballSize})) rotate(#{($tableWidth - $ballSize) / (3.14 * $ballSize)}turn);
+	}
+
 }
