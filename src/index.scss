@@ -6,10 +6,32 @@ body {
 	background-color: var(--BG-color);
 
 	&.lock {
+		margin-right: 8px;
 		overflow: hidden;
 		touch-action: none;
 		overscroll-behavior: none;
 	}
+
+	@media (pointer: coarse) {
+		&.lock {
+			margin-right: 0;
+		}
+	}
+
+}
+
+
+header {
+	.lock & {
+		margin-right: 8px;
+	}
+
+	@media (pointer: coarse) {
+		.lock & {
+			margin-right: 0;
+		}
+	}
+
 }
 
 #root {
@@ -35,7 +57,7 @@ svg {
 }
 
 ::-webkit-scrollbar {
-	width: 12px;
+	width: 8px;
 }
 
 ::-webkit-scrollbar-track {

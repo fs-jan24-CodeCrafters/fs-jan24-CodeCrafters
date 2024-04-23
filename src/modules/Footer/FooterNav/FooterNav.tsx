@@ -16,7 +16,12 @@ export const FooterNav: React.FC = () => {
         <NavLink to="/contacts">contacts</NavLink>
       </li>
       <li className={styles.navItem}>
-        <NavLink to="/rights">rights</NavLink>
+        <NavLink
+          to="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          target="_blank"
+        >
+          rights
+        </NavLink>
       </li>
     </ul>
   );

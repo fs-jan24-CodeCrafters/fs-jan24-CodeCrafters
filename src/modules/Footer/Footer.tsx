@@ -4,15 +4,9 @@ import { FooterNav } from './FooterNav/FooterNav';
 import { SpriteIcon } from '../Shared/SpriteIcon';
 
 import styles from './Footer.module.scss';
+import { scrollToTop } from '../../helpers/scrollToTop';
 
 export const Footer: React.FC = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
   return (
     <footer className={styles.footer}>
       <Container className={styles.container}>
