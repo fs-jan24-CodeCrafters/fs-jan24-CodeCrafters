@@ -13,9 +13,14 @@ import styles from './Card.module.scss';
 interface Props {
   product: Product;
   hasDiscountPrice?: boolean;
+  isLazy?: boolean;
 }
 
-export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
+export const Card: React.FC<Props> = ({
+  product,
+  hasDiscountPrice = true,
+  isLazy = false,
+}) => {
   const {
     id,
     name,
@@ -55,7 +60,12 @@ export const Card: React.FC<Props> = ({ product, hasDiscountPrice = true }) => {
   return (
     <article className={styles.card}>
       <Link to={`/${category}/${itemId}`}>
-        <img src={image} alt={name} className={styles.image} />
+        <img
+          loading={isLazy ? 'lazy' : 'eager'}
+          src={image}
+          alt={name}
+          className={styles.image}
+        />
       </Link>
       <div className={styles.cardBody}>
         <Link to={`/${category}/${itemId}`} className={styles.titleLink}>
