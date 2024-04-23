@@ -26,7 +26,10 @@ export const Cart: React.FC = () => {
   useEffect(() => {
     const body = document.body;
     body.classList.add(styles.bodyOverlay);
-    if (isModalVisible) {
+    if (
+      isModalVisible &&
+      document.documentElement.scrollHeight > window.innerHeight
+    ) {
       body.classList.add('lock');
       body.classList.add(styles.bodyOverlayActive);
     } else {

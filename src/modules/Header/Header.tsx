@@ -22,7 +22,9 @@ export const Header: React.FC = () => {
   const { pathname } = useLocation();
   const matches = useMediaQuery(`(max-width: ${tabletBreakPoint})`);
 
-  useDisableScroll(isMenuOpen);
+  useDisableScroll(
+    isMenuOpen && document.documentElement.scrollHeight > window.innerHeight,
+  );
 
   const handleLogoClick = () => {
     setIsMenuOpen(false);
