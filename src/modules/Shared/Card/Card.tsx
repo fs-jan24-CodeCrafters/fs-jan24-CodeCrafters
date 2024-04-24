@@ -1,4 +1,4 @@
-import toast from 'react-hot-toast';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useFavorites } from '../../../context/FavoritesContext';
@@ -7,10 +7,10 @@ import { Button } from '../Button';
 import { SpriteIcon } from '../SpriteIcon';
 import { Title } from '../Title';
 import { Product } from '../../../types/Product';
-
-import styles from './Card.module.scss';
-import { useState } from 'react';
 import { Loader } from '../Loader';
+
+import toast from 'react-hot-toast';
+import styles from './Card.module.scss';
 
 interface Props {
   product: Product;
@@ -64,7 +64,7 @@ export const Card: React.FC<Props> = ({
   return (
     <article className={styles.card}>
       <Link className={styles.imgLink} to={`/${category}/${itemId}`}>
-        {!isLoading && <Loader />}
+        {!isLoading && <Loader className={styles.loader} />}
         <img
           className={styles.image}
           loading={isLazy ? 'lazy' : 'eager'}

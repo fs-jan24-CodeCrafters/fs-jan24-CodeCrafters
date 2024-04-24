@@ -1,7 +1,12 @@
+import classNames from 'classnames';
 import styles from './Loader.module.scss';
 
-export const Loader = () => (
-  <div className={styles.loader}>
+interface Props {
+  className?: string;
+}
+
+export const Loader: React.FC<Props> = ({ className }) => (
+  <div className={classNames(styles.loader, className)}>
     <div className={styles.content} />
   </div>
 );

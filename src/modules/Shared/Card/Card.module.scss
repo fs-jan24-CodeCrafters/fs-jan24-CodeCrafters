@@ -28,7 +28,6 @@
 
 .image {
 	max-width: 224px;
-	width: 100%;
 	margin-bottom: 24px;
 	max-height: 196px;
 	@include transition(transform);
@@ -95,27 +94,7 @@
 	position: relative;
 }
 
-.imageSkeleton {
-	max-width: 224px;
-	height: 196px;
-	width: 100%;
-	margin-bottom: 24px;
-	border-radius: 8px;
+.loader {
 	position: absolute;
-	top: 0;
-	left: 0;
-}
-
-.skeleton {
-	animation: skeleton-loading 1s linear infinite alternate;
-}
-
-@keyframes skeleton-loading {
-	0% {
-		background-color: hsl(200, 20%, 80%);
-	}
-
-	100% {
-		background-color: hsl(200, 20%, 95%);
-	}
+	min-width: 2em;
 }
