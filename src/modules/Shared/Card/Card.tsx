@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { useFavorites } from '../../../context/FavoritesContext';
 import { useCart } from '../../../context/CartContext';
@@ -9,6 +9,7 @@ import { SpriteIcon } from '../SpriteIcon';
 import { Title } from '../Title';
 import { Product } from '../../../types/Product';
 
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import styles from './Card.module.scss';
 
 interface Props {
@@ -58,19 +59,16 @@ export const Card: React.FC<Props> = ({
 
   const buttonText = isProductInCart ? 'Added to cart' : 'Add to cart';
 
-  const [isLoaded, setIsLoaded] = useState(false);
-
   return (
     <article className={styles.card}>
       <Link to={`/${category}/${itemId}`}>
-        <img
+        <LazyLoadImage
+          className={styles.image}
           loading={isLazy ? 'lazy' : 'eager'}
           src={image}
           alt={name}
-          className={
-            isLoaded ? styles.image : [styles.image, styles.skeleton].join(' ')
-          }
-          onLoad={() => setIsLoaded(true)}
+          effect="blur"
+          threshold={200}
         />
       </Link>
       <div className={styles.cardBody}>
