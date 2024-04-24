@@ -31,7 +31,6 @@
 	width: 100%;
 	margin-bottom: 24px;
 	max-height: 196px;
-	object-fit: cover;
 	@include transition(transform);
 
 	&:hover {

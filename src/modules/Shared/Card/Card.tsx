@@ -10,6 +10,7 @@ import { Product } from '../../../types/Product';
 
 import styles from './Card.module.scss';
 import { useState } from 'react';
+import { Loader } from '../Loader';
 
 interface Props {
   product: Product;
@@ -63,16 +64,11 @@ export const Card: React.FC<Props> = ({
   return (
     <article className={styles.card}>
       <Link className={styles.imgLink} to={`/${category}/${itemId}`}>
-        {!isLoading && (
-          <div
-            className={[styles.imageSkeleton, styles.skeleton].join(' ')}
-          ></div>
-        )}
+        {!isLoading && <Loader />}
         <img
           className={styles.image}
           loading={isLazy ? 'lazy' : 'eager'}
           height={220}
-          width={150}
           src={image}
           alt={name}
           onLoad={() => setIsLoading(true)}
