@@ -1,7 +1,7 @@
-import toast from 'react-hot-toast';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
 import { useFavorites } from '../../../context/FavoritesContext';
@@ -10,6 +10,7 @@ import { Button } from '../Button';
 import { SpriteIcon } from '../SpriteIcon';
 import { Title } from '../Title';
 import { Product } from '../../../types/Product';
+import { Loader } from '../Loader';
 
 import styles from './Card.module.scss';
 
@@ -63,16 +64,20 @@ export const Card: React.FC<Props> = ({
     ? t(`common:product.addedToCart`)
     : t(`common:product.addToCart`);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <article className={styles.card}>
-      <Link to={`/${category}/${itemId}`}>
-        <LazyLoadImage
+      <Link className={styles.imgLink} to={`/${category}/${itemId}`}>
+        {!isLoading && <Loader className={styles.loader} />}
+        <img
           className={styles.image}
           loading={isLazy ? 'lazy' : 'eager'}
+          height={220}
           src={image}
           alt={name}
-          effect="blur"
-          threshold={200}
+          onLoad={() => setIsLoading(true)}
+          style={{ opacity: isLoading ? 1 : 0 }}
         />
       </Link>
       <div className={styles.cardBody}>

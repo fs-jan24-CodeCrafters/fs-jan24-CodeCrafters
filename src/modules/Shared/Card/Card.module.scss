@@ -89,3 +89,12 @@
 	display: flex;
 	gap: 8px;
 }
+
+.imgLink {
+	position: relative;
+}
+
+.loader {
+	position: absolute;
+	min-width: 2em;
+}
