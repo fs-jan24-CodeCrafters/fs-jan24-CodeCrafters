@@ -65,10 +65,10 @@ export const Card: React.FC<Props> = ({
         <LazyLoadImage
           className={styles.image}
           loading={isLazy ? 'lazy' : 'eager'}
+          height={220}
           src={image}
           alt={name}
           effect="blur"
-          threshold={200}
         />
       </Link>
       <div className={styles.cardBody}>
