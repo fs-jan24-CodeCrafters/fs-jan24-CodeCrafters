@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useFavorites } from '../../../context/FavoritesContext';
 import { useCart } from '../../../context/CartContext';
@@ -57,14 +58,23 @@ export const Card: React.FC<Props> = ({
 
   const buttonText = isProductInCart ? 'Added to cart' : 'Add to cart';
 
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
     <article className={styles.card}>
       <Link to={`/${category}/${itemId}`}>
+        {!isLoaded && (
+          <div
+            className={[styles.imageSkeleton, styles.skeleton].join(' ')}
+          ></div>
+        )}
         <img
           loading={isLazy ? 'lazy' : 'eager'}
           src={image}
           alt={name}
           className={styles.image}
+          style={{ opacity: isLoaded ? 1 : 0 }}
+          onLoad={() => setIsLoaded(true)}
         />
       </Link>
       <div className={styles.cardBody}>

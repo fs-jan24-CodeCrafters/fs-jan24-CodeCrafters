@@ -32,6 +32,8 @@ export const Cart: React.FC = () => {
     ) {
       body.classList.add('lock');
       body.classList.add(styles.bodyOverlayActive);
+    } else if (isModalVisible) {
+      body.classList.add(styles.bodyOverlayActive);
     } else {
       body.classList.remove(styles.bodyOverlayActive);
       body.classList.remove('lock');

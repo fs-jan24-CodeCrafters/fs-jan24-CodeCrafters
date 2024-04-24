@@ -62,8 +62,9 @@ export const Pagination: React.FC<Props> = ({
   return (
     <>
       {pages.length > 1 && (
-        <div onClick={scrollToTop} className={styles.linkList}>
+        <div className={styles.linkList}>
           <SearchLink
+            onClick={scrollToTop}
             className={classNames(styles.link, styles.linkPrev, {
               [styles.linkDisabled]: currentPage === 1,
             })}
@@ -78,6 +79,7 @@ export const Pagination: React.FC<Props> = ({
           </SearchLink>
           {pages.map((page) => (
             <SearchLink
+              onClick={scrollToTop}
               key={page}
               params={{ page: page.toString() }}
               className={classNames(styles.link, {
@@ -88,6 +90,7 @@ export const Pagination: React.FC<Props> = ({
             </SearchLink>
           ))}
           <SearchLink
+            onClick={scrollToTop}
             className={classNames(styles.link, styles.linkNext, {
               [styles.linkDisabled]: currentPage === totalPageNum,
             })}
