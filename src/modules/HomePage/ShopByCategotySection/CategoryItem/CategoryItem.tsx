@@ -4,12 +4,14 @@ import { Title } from '../../../Shared/Title';
 import { CategoryData } from '../ShopByCategorySection';
 
 import styles from './CategoryItem.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   categoryData: CategoryData;
 }
 
 export const CategoryItem: React.FC<Props> = ({ categoryData }) => {
+  const { t } = useTranslation();
   const { productsAmount, imgUrl, name, imgBgColor, urlPath } = categoryData;
 
   return (
@@ -20,7 +22,9 @@ export const CategoryItem: React.FC<Props> = ({ categoryData }) => {
       <Title titleTag="h4" className={styles.title}>
         {name}
       </Title>
-      <span className={styles.text}>{`${productsAmount} models`}</span>
+      <span
+        className={styles.text}
+      >{`${productsAmount} ${t(`common:home.models`)}`}</span>
     </Link>
   );
 };

@@ -1,0 +1,91 @@
+{
+  "header": {
+    "home": "Home",
+    "phones": "Phones",
+    "tablets": "Tablets",
+    "accessories": "Accessories",
+    "burgerButton": "Burger button",
+    "noResults": "No results found"
+  },
+  "home": {
+    "slider": {
+        "brandNewModels": "Brand new models",
+        "hotPrices": "Hot prices"
+    },
+    "hero": "Welcome to Nice Gadgets store!",
+    "shopByCategory": "Shop by category",
+    "phones": "Mobile phones",
+    "tablets": "Tablets",
+    "accessories": "Accessories",
+    "models": "models"
+  },
+  "catalog": {
+    "select": {
+      "title": "Sort by",
+      "featured": "Featured",
+      "newest": "Newest",
+      "alphabetically": "Alphabetically",
+      "cheapest": "Cheapest"
+    },
+    "itemsOnPage": "Items on page",
+    "all": "All",
+    "mobilePhones": "Mobile phones",
+    "phones": "Phones",
+    "tablets": "Tablets",
+    "accessories": "Accessories",
+    "models": "models"
+  },
+  "product": {
+    "about": "About",
+    "tech": "Tech specs",
+    "addedToCart": "Added to cart",
+    "addToCart": "Add to cart",
+    "availableColors": "Available colors",
+    "select": "Select",
+    "size": "size",
+    "capacity": "capacity",
+    "screen": "Screen",
+    "resolution": "Resolution",
+    "processor": "Processor",
+    "ram": "RAM",
+    "camera": "Camera",
+    "zoom": "Zoom",
+    "cell": "Cell"
+  },
+  "card": {
+    "capacity": "Capacity",
+    "screen": "Screen",
+    "ram": "RAM"
+  },
+  "favorites": {
+    "title": "Favorites",
+    "desc": "You don't have any favorite products yet"
+  },
+  "cart": {
+    "cart": "Cart",
+    "checkout": "Checkout",
+    "empty": "Your basket is lonely",
+    "emptyDesc": "Add some items to cheer it up",
+    "modalTitle": "Are you ready to complete the payment?",
+    "modalYes": "Yes",
+    "modalNo": "No"
+  },
+  "footer": {
+    "github": "github",
+    "contacts": "contacts",
+    "rights": "rights",
+    "backToTop": "Back to top"
+  },
+  "error": {
+    "title": "Page not found",
+    "desc": "Oops, sorry you've to go back. Your page is not found.",
+    "backHome": "Back Home"
+  },
+  "back": "Back",
+  "toast": {
+    "cart": "Product successfully removed from cart!",
+    "addedToCart": "Product successfully added to cart!",
+    "favoritesRemoved": "Product successfully removed from favorite!",
+    "favoritesAdded": "Product successfully added to favorite!"
+  }
+}

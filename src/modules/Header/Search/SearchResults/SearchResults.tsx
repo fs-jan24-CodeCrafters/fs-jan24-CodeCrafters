@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Title } from '../../../Shared/Title';
 import { Product } from '../../../../types/Product';
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export const SearchResults: React.FC<Props> = ({ searchResults }) => {
+  const { t } = useTranslation();
   const categories = Object.keys(searchResults);
 
   return (
@@ -43,7 +45,7 @@ export const SearchResults: React.FC<Props> = ({ searchResults }) => {
             </div>
           ))
         ) : (
-          <Title titleTag="h5">No results found</Title>
+          <Title titleTag="h5">{t(`common:header.noResults`)}</Title>
         )}
       </div>
     </>

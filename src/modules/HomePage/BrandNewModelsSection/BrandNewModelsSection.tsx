@@ -1,8 +1,11 @@
+import { useTranslation } from 'react-i18next';
+
 import products from '../../../../public/api/products.json';
 import { Container } from '../../Shared/Container';
 import { ProductsSlider } from '../../Shared/ProductsSlider';
 
 export const BrandNewModelsSection: React.FC = () => {
+  const { t } = useTranslation();
   const productsList = products
     .filter(({ year }) => year === 2022)
     .sort((a, b) => b.price - a.price);
@@ -12,7 +15,7 @@ export const BrandNewModelsSection: React.FC = () => {
       <Container>
         <ProductsSlider
           hasDiscountPrice={false}
-          sliderTitle="Brand new models"
+          sliderTitle={t(`common:home.slider.brandNewModels`)}
           products={productsList}
         />
       </Container>

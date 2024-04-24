@@ -1,5 +1,6 @@
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 import { Action } from '../../../context/CartContext';
 import { SpriteIcon } from '../../Shared/SpriteIcon';
@@ -16,9 +17,11 @@ interface Props {
 }
 
 export const CartItems: React.FC<Props> = ({ dispatch, cart }) => {
+  const { t } = useTranslation();
+
   const handleRemoveItem = (id: number) => {
     dispatch({ type: 'cart/removeItem', payload: id });
-    toast.success('Product successfully removed from cart!');
+    toast.success(t(`common:toast.cart`));
   };
 
   return (

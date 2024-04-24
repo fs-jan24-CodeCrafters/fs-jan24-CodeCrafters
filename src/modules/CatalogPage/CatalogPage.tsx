@@ -1,4 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { getProductsByCategory } from '../../helpers/getProductsByCategory';
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
@@ -16,6 +17,7 @@ import { Pagination } from './Pagination';
 import styles from './CatalogPage.module.scss';
 
 export const CatalogPage: React.FC = () => {
+  const { t } = useTranslation();
   const { path, categoryName } = getPathAndCategoryNameFromUrl();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -23,7 +25,7 @@ export const CatalogPage: React.FC = () => {
 
   const productsList = getProductsByCategory(products, path);
 
-  const currentSortBy = searchParams.get('sort') || 'Featured';
+  const currentSortBy = searchParams.get('sort') || 'featured';
   const currentPerPageOptions = searchParams.get('perPage') || 16;
   const currentPage = Number(searchParams.get('page')) || 1;
 
@@ -31,8 +33,20 @@ export const CatalogPage: React.FC = () => {
 
   const itemsPerPage = Number(currentPerPageOptions) || sortedByFormUrl.length;
 
-  const catalogPageTitle =
-    categoryName === 'Phones' ? 'Mobile phones' : categoryName;
+  const categoryNames: Record<string, string> = {
+    Phones: t(`common:catalog.mobilePhones`),
+    Tablets: t(`common:catalog.tablets`),
+    Accessories: t(`common:catalog.accessories`),
+  };
+
+  const breadcrumbsNames: Record<string, string> = {
+    Phones: t(`common:catalog.phones`),
+    Tablets: t(`common:catalog.tablets`),
+    Accessories: t(`common:catalog.accessories`),
+  };
+
+  const catalogPageTitle = categoryNames[categoryName];
+  const catalogPageBreadcrumb = breadcrumbsNames[categoryName];
 
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
@@ -45,7 +59,9 @@ export const CatalogPage: React.FC = () => {
   return (
     <Container className="section">
       <Breadcrumbs>
-        <BreadcrumbsItem tagType="span">{categoryName}</BreadcrumbsItem>
+        <BreadcrumbsItem tagType="span">
+          {catalogPageBreadcrumb}
+        </BreadcrumbsItem>
       </Breadcrumbs>
       <Title titleTag="h1" className={styles.title}>
         {catalogPageTitle}
@@ -56,7 +72,7 @@ export const CatalogPage: React.FC = () => {
             <Loader />
           </span>
         ) : (
-          `${productsList.length} models`
+          `${productsList.length} ${t(`common:catalog.models`)}`
         )}
       </span>
 

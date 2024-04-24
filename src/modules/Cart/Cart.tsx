@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { useTranslation } from 'react-i18next';
 
 import { useCart } from '../../context/CartContext';
 import { Container } from '../Shared/Container';
@@ -13,6 +14,7 @@ import { EmptyCart } from './EmptyCart';
 import styles from './Cart.module.scss';
 
 export const Cart: React.FC = () => {
+  const { t } = useTranslation();
   const { cart, totalCartQuantity, dispatch } = useCart();
   const [isModalVisible, setModalVisibility] = useState(false);
 
@@ -49,7 +51,7 @@ export const Cart: React.FC = () => {
       <Container>
         <BackLink path="/" />
         <Title className={styles.title} titleTag="h1">
-          Cart
+          {t(`common:cart.cart`)}
         </Title>
         <div className={styles.cartWrapper}>
           {!cart.length ? (

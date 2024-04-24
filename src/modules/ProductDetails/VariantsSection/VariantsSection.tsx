@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
+import toast from 'react-hot-toast';
+import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 import { useCart } from '../../../context/CartContext';
 import { useFavorites } from '../../../context/FavoritesContext';
@@ -13,8 +16,6 @@ import { ProductDetails } from '../../../types/ProductDetails';
 import { Product } from '../../../types/Product';
 
 import 'swiper/css';
-import toast from 'react-hot-toast';
-import classNames from 'classnames';
 import styles from './VariantsSection.module.scss';
 
 interface Props {
@@ -66,22 +67,21 @@ export const VariantsSection: React.FC<Props> = ({
     priceDiscount,
     category,
   } = productDetails;
+  const { t } = useTranslation();
   const [selectedImage, setSelectedImage] = useState(images[0]);
-
   const [swiperRef, setSwiperRef] = useState<null | SwiperClass>(null);
 
   const product = getProductByItemId(itemId) as Product;
 
   const { cart, dispatch } = useCart();
-
   const { isFavorite, toggleFavorite } = useFavorites();
 
   const handleToggleFavorite = () => {
     toggleFavorite(product);
     if (isFavoriteProd) {
-      toast.success('Product successfully removed from favorite!');
+      toast.success(t(`common:toast.favoritesRemoved`));
     } else {
-      toast.success('Product successfully added to favorite!');
+      toast.success(t(`common:toast.favoritesRemoved`));
     }
   };
 
@@ -93,7 +93,7 @@ export const VariantsSection: React.FC<Props> = ({
   const addToCartHandler = (productItem: Product) => {
     if (!isProductInCart) {
       dispatch({ type: 'cart/addItem', payload: productItem });
-      toast.success('Product successfully added to cart!');
+      toast.success(t(`common:toast.addedToCart`));
     }
   };
 
@@ -101,7 +101,9 @@ export const VariantsSection: React.FC<Props> = ({
     swiperRef?.slideTo(index, 300);
   };
 
-  const buttonText = isProductInCart ? 'Added to cart' : 'Add to cart';
+  const buttonText = isProductInCart
+    ? t(`common:product.addedToCart`)
+    : t(`common:product.addToCart`);
 
   useEffect(() => {
     slideTo(0);
@@ -124,7 +126,7 @@ export const VariantsSection: React.FC<Props> = ({
                   [styles['selectedSquareImage']]: selectedImage === image,
                 })}
                 src={image}
-                alt="Product image"
+                alt={product.name}
               />
             </button>
           ))}
@@ -144,7 +146,7 @@ export const VariantsSection: React.FC<Props> = ({
                 <img
                   key={`${image}_image`}
                   src={image}
-                  alt="Product image"
+                  alt={product.name}
                   className={styles.selectedImage}
                 />
               </SwiperSlide>
@@ -182,7 +184,7 @@ export const VariantsSection: React.FC<Props> = ({
       <div className={styles.mobileContainer}></div>
       <div className={styles.availableVariantsWrapper}>
         <div className={styles.categoryText}>
-          <p>Available colors</p>
+          <p>{t(`common:product.availableColors`)}</p>
 
           <span>ID: 802390</span>
           {/* STATIC */}
@@ -213,7 +215,7 @@ export const VariantsSection: React.FC<Props> = ({
         <div className={styles.capacityContainer}>
           <p
             className={styles.categoryText}
-          >{`Select ${isAccessories ? 'size' : 'capacity'}`}</p>
+          >{`${t(`common:product.select`)} ${isAccessories ? t(`common:product.size`) : t(`common:product.capacity`)}`}</p>
 
           <div className={styles.capacityRadioWrapper}>
             {capacityAvailable.map((capacity) => {
@@ -276,22 +278,30 @@ export const VariantsSection: React.FC<Props> = ({
 
           <div className={styles.detailsContainer}>
             <p className={styles.details}>
-              <span className={styles.detailsText}>Screen</span>
+              <span className={styles.detailsText}>
+                {t(`common:product.screen`)}
+              </span>
               <span>{screen}</span>
             </p>
 
             <p className={styles.details}>
-              <span className={styles.detailsText}>Resolution</span>
+              <span className={styles.detailsText}>
+                {t(`common:product.resolution`)}
+              </span>
               <span>{resolution}</span>
             </p>
 
             <p className={styles.details}>
-              <span className={styles.detailsText}>Processor</span>
+              <span className={styles.detailsText}>
+                {t(`common:product.processor`)}
+              </span>
               <span>{processor}</span>
             </p>
 
             <p className={styles.details}>
-              <span className={styles.detailsText}>RAM</span>
+              <span className={styles.detailsText}>
+                {t(`common:product.ram`)}
+              </span>
               <span>{ram}</span>
             </p>
           </div>

@@ -1,5 +1,6 @@
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useTranslation } from 'react-i18next';
 
 import { Container } from '../../Shared/Container';
 import { Title } from '../../Shared/Title';
@@ -37,11 +38,13 @@ const sliderItems: SliderItem[] = [
 ];
 
 export const HeroSection: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="section">
       <Container className={styles.container}>
         <Title className={styles.title} titleTag="h1">
-          Welcome to Nice Gadgets store!
+          {t(`common:home.hero`)}
         </Title>
 
         <div

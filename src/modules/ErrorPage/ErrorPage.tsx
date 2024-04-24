@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Button } from '../Shared/Button';
 import { Title } from '../Shared/Title';
@@ -7,6 +8,8 @@ import { Container } from '../Shared/Container';
 import styles from './ErrorPage.module.scss';
 
 export const ErrorPage: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <section className={styles.section}>
       <Container className={styles.container}>
@@ -14,16 +17,14 @@ export const ErrorPage: React.FC = () => {
           <Title titleTag="h1">404</Title>
 
           <Title titleTag="h2" className={styles.errorName}>
-            Page not found
+            {t(`common:error.title`)}
           </Title>
 
-         <p className={styles.text}>
-          Oops, sorry you&apos;ve to go back. Your page is not found.
-        </p>
+          <p className={styles.text}>{t(`common:error.desc`)}</p>
 
           <div className={styles.button}>
             <Link to={'/'}>
-              <Button>Back Home</Button>
+              <Button>{t(`common:error.backHome`)}</Button>
             </Link>
           </div>
         </div>

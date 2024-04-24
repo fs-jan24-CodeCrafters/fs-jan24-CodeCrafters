@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
+import { useTranslation } from 'react-i18next';
 
 import { Action } from '../../../context/CartContext';
 import { Button } from '../../Shared/Button';
@@ -18,6 +19,7 @@ export const SuccessModal: React.FC<Props> = ({
   dispatch,
   nodeRef,
 }) => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   useOnClickOutside(ref, () => setModalVisibility(false));
 
@@ -30,17 +32,17 @@ export const SuccessModal: React.FC<Props> = ({
     <div ref={nodeRef} className={styles.modal}>
       <div ref={ref} className={styles.modalContent}>
         <Title titleTag="h2" className={styles.titleModal}>
-          Are you ready to complete the payment?
+          {t(`common:cart.modalTitle`)}
         </Title>
         <div className={styles.buttonGroup}>
           <Button className={styles.buttonYes} onClick={handleYesClick}>
-            Yes
+            {t(`common:cart.modalYes`)}
           </Button>
           <Button
             className={styles.buttonNo}
             onClick={() => setModalVisibility(false)}
           >
-            No
+            {t(`common:cart.modalNo`)}
           </Button>
         </div>
       </div>

@@ -1,3 +1,7 @@
+import { useIntersectionObserver } from 'usehooks-ts';
+import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
+
 import { getProductsByCategory } from '../../../helpers/getProductsByCategory';
 import products from '../../../../public/api/products.json';
 import { Container } from '../../Shared/Container';
@@ -5,8 +9,6 @@ import { Title } from '../../Shared/Title';
 import { CategoryItem } from './CategoryItem';
 
 import styles from './ShopByCategotySection.module.scss';
-import { useIntersectionObserver } from 'usehooks-ts';
-import classNames from 'classnames';
 
 const phonesAmount = getProductsByCategory(products, 'phones').length;
 const tabletsAmount = getProductsByCategory(products, 'tablets').length;
@@ -20,41 +22,42 @@ export interface CategoryData {
   urlPath: string;
 }
 
-const categoryData = [
-  {
-    productsAmount: phonesAmount,
-    imgUrl: '/img/ShopByCategory/1.png',
-    name: 'Mobile phones',
-    imgBgColor: 'violet',
-    urlPath: 'phones',
-  },
-  {
-    productsAmount: tabletsAmount,
-    imgUrl: '/img/ShopByCategory/2.png',
-    name: 'Tablets',
-    imgBgColor: 'gray',
-    urlPath: 'tablets',
-  },
-  {
-    productsAmount: accessoriesAmount,
-    imgUrl: '/img/ShopByCategory/3.png',
-    name: 'Accessories',
-    imgBgColor: 'pink',
-    urlPath: 'accessories',
-  },
-];
-
 export const ShopByCategorySection: React.FC = () => {
+  const { t } = useTranslation();
   const { isIntersecting, ref } = useIntersectionObserver({
     threshold: 0,
     freezeOnceVisible: true,
   });
 
+  const categoryData = [
+    {
+      productsAmount: phonesAmount,
+      imgUrl: '/img/ShopByCategory/1.png',
+      name: t(`common:home.phones`),
+      imgBgColor: 'violet',
+      urlPath: 'phones',
+    },
+    {
+      productsAmount: tabletsAmount,
+      imgUrl: '/img/ShopByCategory/2.png',
+      name: t(`common:home.tablets`),
+      imgBgColor: 'gray',
+      urlPath: 'tablets',
+    },
+    {
+      productsAmount: accessoriesAmount,
+      imgUrl: '/img/ShopByCategory/3.png',
+      name: t(`common:home.accessories`),
+      imgBgColor: 'pink',
+      urlPath: 'accessories',
+    },
+  ];
+
   return (
     <section className="section">
       <Container>
         <Title titleTag="h2" sectionTitle={true}>
-          Shop by category
+          {t(`common:home.shopByCategory`)}
         </Title>
         <div
           ref={ref}
