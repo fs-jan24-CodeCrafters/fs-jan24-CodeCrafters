@@ -31,6 +31,7 @@
 	width: 100%;
 	margin-bottom: 24px;
 	max-height: 196px;
+	object-fit: cover;
 	@include transition(transform);
 
 	&:hover {
@@ -89,4 +90,33 @@
 .buttonsContainer {
 	display: flex;
 	gap: 8px;
+}
+
+.imgLink {
+	position: relative;
+}
+
+.imageSkeleton {
+	max-width: 224px;
+	height: 196px;
+	width: 100%;
+	margin-bottom: 24px;
+	border-radius: 8px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.skeleton {
+	animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+	0% {
+		background-color: hsl(200, 20%, 80%);
+	}
+
+	100% {
+		background-color: hsl(200, 20%, 95%);
+	}
 }
