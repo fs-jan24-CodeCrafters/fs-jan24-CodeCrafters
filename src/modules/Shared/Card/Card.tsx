@@ -8,7 +8,6 @@ import { SpriteIcon } from '../SpriteIcon';
 import { Title } from '../Title';
 import { Product } from '../../../types/Product';
 
-import 'react-lazy-load-image-component/src/effects/blur.css';
 import styles from './Card.module.scss';
 import { useState } from 'react';
 
