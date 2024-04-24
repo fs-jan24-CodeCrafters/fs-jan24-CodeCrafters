@@ -63,17 +63,13 @@ export const Card: React.FC<Props> = ({
   return (
     <article className={styles.card}>
       <Link to={`/${category}/${itemId}`}>
-        {!isLoaded && (
-          <div
-            className={[styles.imageSkeleton, styles.skeleton].join(' ')}
-          ></div>
-        )}
         <img
           loading={isLazy ? 'lazy' : 'eager'}
           src={image}
           alt={name}
-          className={styles.image}
-          style={{ opacity: isLoaded ? 1 : 0 }}
+          className={
+            isLoaded ? styles.image : [styles.image, styles.skeleton].join(' ')
+          }
           onLoad={() => setIsLoaded(true)}
         />
       </Link>
