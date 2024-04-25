@@ -14,22 +14,22 @@
 		border: none;
 	}
 
+	@include mobile-small {
+		padding-right: 20px;
+	}
+
 }
 
 .searchInputContainer {
-	position: relative;
+	position: absolute;
 	max-width: 500px;
 	width: 100%;
 	flex-grow: 1;
 
-	@include tablet {
-		position: absolute;
-		right: 0;
-		height: 100%;
-		margin: 0;
-		z-index: 10;
-	}
-
+	right: 0;
+	height: 100%;
+	margin: 0;
+	z-index: 10;
 }
 
 .searchInput {

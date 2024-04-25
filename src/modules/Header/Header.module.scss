@@ -14,11 +14,19 @@
 	border-bottom: 1px solid var(--elements);
 	padding-left: $grid-gap;
 	z-index: 5;
+
+	@include mobile-small {
+		padding-left: 5px;
+	}
 }
 
 .logo {
 	margin-right: clamp-calc($tablet, $pc, 32px, 48px);
 	z-index: 5;
+
+	@include mobile-small {
+		margin-right: 0;
+	}
 }
 
 .menu {
