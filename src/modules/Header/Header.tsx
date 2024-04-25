@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import classNames from 'classnames';
 
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { useDisableScroll } from '../../hooks/useDisableScroll';
@@ -11,8 +12,8 @@ import { BurgerButton } from './BurgerButton';
 import { Search } from './Search';
 import { scrollToTop } from '../../helpers/scrollToTop';
 import { ThemeSwitcher } from '../ThemeSwitcher';
+import { LanguageSwitcher } from '../LanguageSwitcher';
 
-import classNames from 'classnames';
 import styles from './Header.module.scss';
 
 const tabletBreakPoint = '992px';
@@ -42,6 +43,7 @@ export const Header: React.FC = () => {
 
         {matches && (
           <>
+            <LanguageSwitcher />
             <ThemeSwitcher />
             <Search />
             <BurgerButton
@@ -57,6 +59,7 @@ export const Header: React.FC = () => {
           <HeaderNav setIsMenuOpen={setIsMenuOpen} />
           {!matches && (
             <>
+              <LanguageSwitcher />
               <ThemeSwitcher />
               <Search />
             </>

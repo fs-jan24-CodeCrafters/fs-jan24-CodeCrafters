@@ -1,5 +1,6 @@
 import Select, { SingleValue } from 'react-select';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Product } from '../../../types/Product';
 
@@ -17,24 +18,26 @@ interface Props {
   products: Product[];
 }
 
-const sortByOptions = [
-  { value: 'featured', label: 'Featured' },
-  { value: 'year', label: 'Newest' },
-  { value: 'name', label: 'Alphabetically' },
-  { value: 'price', label: 'Cheapest' },
-];
-
 export const Selects: React.FC<Props> = ({
   setSearchParams,
   currentSortBy,
   itemsPerPage,
   products,
 }) => {
+  const { t } = useTranslation();
+
+  const sortByOptions = [
+    { value: 'featured', label: t(`common:catalog.select.featured`) },
+    { value: 'year', label: t(`common:catalog.select.newest`) },
+    { value: 'name', label: t(`common:catalog.select.alphabetically`) },
+    { value: 'price', label: t(`common:catalog.select.cheapest`) },
+  ];
+
   const perPageOptions = [
     { value: 4, label: '4' },
     { value: 8, label: '8' },
     { value: 16, label: '16' },
-    { value: products.length, label: 'All' },
+    { value: products.length, label: t(`common:catalog.all`) },
   ];
 
   const handleOptionChange = (
@@ -44,7 +47,7 @@ export const Selects: React.FC<Props> = ({
     if (newValue != null) {
       setSearchParams((prevParams) => {
         const newParams = new URLSearchParams(prevParams);
-        newParams.set(paramKey, newValue.label);
+        newParams.set(paramKey, newValue.value.toString());
         if (paramKey === 'perPage') {
           newParams.delete('page');
         }
@@ -57,13 +60,13 @@ export const Selects: React.FC<Props> = ({
     <div className={styles.selectList}>
       <div className={styles.selectSort}>
         <span className={`${styles.textItem} ${styles.selectTitle}`}>
-          Sort by
+          {t(`common:catalog.select.title`)}
         </span>
         <Select
           className="selectContainer"
           classNamePrefix="reactSelect"
           isSearchable={false}
-          value={sortByOptions.find((el) => el.label === currentSortBy)}
+          value={sortByOptions.find((el) => el.value === currentSortBy)}
           onChange={(newValue) => handleOptionChange(newValue, 'sort')}
           options={sortByOptions}
         />
@@ -71,7 +74,7 @@ export const Selects: React.FC<Props> = ({
 
       <div className={styles.selectPerPage}>
         <span className={`${styles.textItem} ${styles.selectTitle}`}>
-          Items on page
+          {t(`common:catalog.itemsOnPage`)}
         </span>
         <Select
           className="selectContainer"

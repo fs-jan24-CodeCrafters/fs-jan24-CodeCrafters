@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 import { getProductsByCategory } from '../../helpers/getProductsByCategory';
@@ -18,6 +19,7 @@ import { VariantsSection } from './VariantsSection';
 import styles from './ProductDetails.module.scss';
 
 export const ProductDetails: React.FC = () => {
+  const { t } = useTranslation();
   const { path, categoryName } = getPathAndCategoryNameFromUrl();
   const productId = getProductIdFromUrl();
   const navigate = useNavigate();
@@ -40,13 +42,21 @@ export const ProductDetails: React.FC = () => {
     .filter((product) => product.itemId !== productId)
     .slice(0, 10);
 
+  const breadcrumbsNames: Record<string, string> = {
+    Phones: t(`common:catalog.phones`),
+    Tablets: t(`common:catalog.tablets`),
+    Accessories: t(`common:catalog.accessories`),
+  };
+
+  const catalogPageBreadcrumb = breadcrumbsNames[categoryName];
+
   return (
     <>
       {currentProduct && (
         <Container>
           <Breadcrumbs>
             <BreadcrumbsItem tagType="Link" path={`/${path}`}>
-              {categoryName}
+              {catalogPageBreadcrumb}
             </BreadcrumbsItem>
             <BreadcrumbsItem tagType="span">
               {currentProduct.name}

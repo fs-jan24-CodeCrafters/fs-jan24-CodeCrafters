@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Title } from '../../Shared/Title';
 import { ProductDescription } from '../../../types/ProductDescription';
 import { ProductDetails } from '../../../types/ProductDetails';
@@ -9,6 +11,7 @@ interface Props {
 }
 
 export const ProductInfo: React.FC<Props> = ({ product }) => {
+  const { t } = useTranslation();
   const currentProduct = product;
 
   const techSpecs = {
@@ -25,7 +28,7 @@ export const ProductInfo: React.FC<Props> = ({ product }) => {
     <div className={`${styles.productInfo} section`}>
       <div className={styles.about}>
         <Title titleTag="h3" className={styles.titleAbout}>
-          About
+          {t(`common:product.about`)}
         </Title>
         <div className={styles.description}>
           {currentProduct?.description.map((item: ProductDescription) => (
@@ -44,12 +47,14 @@ export const ProductInfo: React.FC<Props> = ({ product }) => {
       </div>
       <div className={styles.techSpecs}>
         <Title titleTag="h3" className={styles.titleTechSpecs}>
-          Tech specs
+          {t(`common:product.tech`)}
         </Title>
         <ul className={styles.specList}>
           {Object.entries(techSpecs).map(([key, value]) => (
             <li className={styles.specItem} key={key}>
-              <span className={styles.techKey}>{key}:</span>
+              <span className={styles.techKey}>
+                {t(`common:product.${key.toLowerCase()}`)}:
+              </span>
               <span className={styles.techValue}>{value}</span>
             </li>
           ))}

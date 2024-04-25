@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 import { useFavorites } from '../../../context/FavoritesContext';
 import { useCart } from '../../../context/CartContext';
@@ -9,7 +12,6 @@ import { Title } from '../Title';
 import { Product } from '../../../types/Product';
 import { Loader } from '../Loader';
 
-import toast from 'react-hot-toast';
 import styles from './Card.module.scss';
 
 interface Props {
@@ -35,6 +37,7 @@ export const Card: React.FC<Props> = ({
     category,
     itemId,
   } = product;
+  const { t } = useTranslation();
   const { isFavorite, toggleFavorite } = useFavorites();
   const { cart, dispatch } = useCart();
 
@@ -44,20 +47,22 @@ export const Card: React.FC<Props> = ({
   const addToCartHandler = (productItem: Product) => {
     if (!isProductInCart) {
       dispatch({ type: 'cart/addItem', payload: productItem });
-      toast.success('Product successfully added to cart!');
+      toast.success(t(`common:toast.addedToCart`));
     }
   };
 
   const handleToggleFavorite = () => {
     toggleFavorite(product);
     if (isFavoriteProd) {
-      toast.success('Product successfully removed from favorite!');
+      toast.success(t(`common:toast.favoritesRemoved`));
     } else {
-      toast.success('Product successfully added to favorite!');
+      toast.success(t(`common:toast.favoritesRemoved`));
     }
   };
 
-  const buttonText = isProductInCart ? 'Added to cart' : 'Add to cart';
+  const buttonText = isProductInCart
+    ? t(`common:product.addedToCart`)
+    : t(`common:product.addToCart`);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -89,15 +94,19 @@ export const Card: React.FC<Props> = ({
         </div>
         <div className={styles.detailsContainer}>
           <p className={styles.details}>
-            <span className={styles.detailsText}>Screen</span>
+            <span className={styles.detailsText}>
+              {t(`common:card.screen`)}
+            </span>
             <span>{screen}</span>
           </p>
           <p className={styles.details}>
-            <span className={styles.detailsText}>Capacity</span>
+            <span className={styles.detailsText}>
+              {t(`common:card.capacity`)}
+            </span>
             <span>{capacity}</span>
           </p>
           <p className={styles.details}>
-            <span className={styles.detailsText}>RAM</span>
+            <span className={styles.detailsText}>{t(`common:card.ram`)}</span>
             <span>{ram}</span>
           </p>
         </div>

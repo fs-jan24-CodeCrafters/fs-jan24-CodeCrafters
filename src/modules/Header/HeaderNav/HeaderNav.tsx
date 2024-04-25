@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 import styles from './HeaderNav.module.scss';
 
@@ -20,6 +21,12 @@ export const HeaderNav: React.FC<Props> = ({ setIsMenuOpen }) => {
       [styles.linkActive]: isActive,
     });
 
+  const { t } = useTranslation();
+
+  const getPageName = (page: string) => {
+    return t(`common:header.${page.toLowerCase()}`);
+  };
+
   return (
     <nav className={styles.nav}>
       <ul className={styles.list}>
@@ -30,7 +37,7 @@ export const HeaderNav: React.FC<Props> = ({ setIsMenuOpen }) => {
               className={setIsActive}
               onClick={() => setIsMenuOpen(false)}
             >
-              {key}
+              {getPageName(key)}
             </NavLink>
           </li>
         ))}

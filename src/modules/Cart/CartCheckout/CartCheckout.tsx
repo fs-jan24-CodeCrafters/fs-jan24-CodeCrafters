@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Button } from '../../Shared/Button';
 import { Title } from '../../Shared/Title';
 
@@ -16,6 +17,8 @@ export const CartCheckout: React.FC<Props> = ({
   isModalVisible,
   setModalVisibility,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.checkout}>
       <div className={styles.checkoutInfo}>
@@ -29,7 +32,7 @@ export const CartCheckout: React.FC<Props> = ({
         className={styles.button}
         onClick={() => setModalVisibility(!isModalVisible)}
       >
-        Checkout
+        {t(`common:cart.checkout`)}
       </Button>
     </div>
   );

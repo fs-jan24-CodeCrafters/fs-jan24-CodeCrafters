@@ -3,6 +3,7 @@ import { Navigation } from 'swiper';
 import { Swiper as SwiperType } from 'swiper/types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useIntersectionObserver } from 'usehooks-ts';
+import classNames from 'classnames';
 
 import { Card } from '../Card';
 import { Title } from '../Title';
@@ -12,7 +13,6 @@ import { Product } from '../../../types/Product';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import classNames from 'classnames';
 import styles from './ProductsSlider.module.scss';
 
 interface Props {
