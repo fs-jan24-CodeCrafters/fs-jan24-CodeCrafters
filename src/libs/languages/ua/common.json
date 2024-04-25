@@ -154,21 +154,21 @@
         ]
       },
       {
-        "imgUrl": "/img/contacts/elementor-placeholder-image.png",
-        "name": "Леся",
+        "imgUrl": "/img/contacts/lesia.jpg",
+        "name": "Олеся Глуханюк",
         "title": "Full-Stack Розробниця",
         "socialLinks": [
           {
             "iconName": "git-hub-icon",
-            "socialUrl": "https://github.com/vladarskyi"
+            "socialUrl": "https://github.com/vlesia"
           },
           {
             "iconName": "linkedin-icon",
-            "socialUrl": "www.linkedin.com/in/vladarskyi"
+            "socialUrl": "https://www.linkedin.com/feed/"
           },
           {
             "iconName": "telegram-icon",
-            "socialUrl": "https://t.me/vladarskyi"
+            "socialUrl": "https://t.me/Lesia_v_l"
           }
         ]
       },

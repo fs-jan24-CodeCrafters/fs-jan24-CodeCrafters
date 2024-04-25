@@ -98,7 +98,7 @@
     "people": [
       {
         "imgUrl": "/img/contacts/anastasiia.jpg",
-        "name": "Anastasia Vasileva",
+        "name": "Anastasiia Vasylieva",
         "title": "Full-Stack Developer",
         "socialLinks": [
           {
@@ -136,7 +136,7 @@
       },
       {
         "imgUrl": "/img/contacts/eugene.jpeg",
-        "name": "Evgeny Vladarskyi",
+        "name": "Yevhen Vladarskyi",
         "title": "Full-Stack Developer",
         "socialLinks": [
           {
@@ -154,21 +154,21 @@
         ]
       },
       {
-        "imgUrl": "/img/contacts/elementor-placeholder-image.png",
-        "name": "Lesya",
+        "imgUrl": "/img/contacts/lesia.jpg",
+        "name": "Olesia Hlukhaniuk",
         "title": "Full-Stack Developer",
         "socialLinks": [
           {
             "iconName": "git-hub-icon",
-            "socialUrl": "https://github.com/vladarskyi"
+            "socialUrl": "https://github.com/vlesia"
           },
           {
             "iconName": "linkedin-icon",
-            "socialUrl": "www.linkedin.com/in/vladarskyi"
+            "socialUrl": "https://www.linkedin.com/feed/"
           },
           {
             "iconName": "telegram-icon",
-            "socialUrl": "https://t.me/vladarskyi"
+            "socialUrl": "https://t.me/Lesia_v_l"
           }
         ]
       },
