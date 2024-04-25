@@ -79,7 +79,7 @@ export const ProductDetails: React.FC = () => {
 
               <section className="section">
                 <ProductsSlider
-                  sliderTitle="You may also like"
+                  sliderTitle={t(`common:product.slider`)}
                   products={recommendedProducts}
                 />
               </section>

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import debouce from 'lodash.debounce';
+import { useTranslation } from 'react-i18next';
 
 import { useProductsApi } from '../../../hooks/useProductsApi';
 import { SpriteIcon } from '../../Shared/SpriteIcon';
@@ -12,6 +13,7 @@ import { Product } from '../../../types/Product';
 import styles from './Search.module.scss';
 
 export const Search = () => {
+  const { t } = useTranslation();
   const [isInputVisible, setInputVisible] = useState(false);
   const [searchItem, setSearchItem] = useState('');
   const nodeRef = useRef(null);
@@ -106,7 +108,7 @@ export const Search = () => {
                 type="text"
                 className={styles.searchInput}
                 onChange={debouncedResults}
-                placeholder="Search..."
+                placeholder={t(`common:search.placeholder`)}
                 autoFocus
               />
               {loading && (

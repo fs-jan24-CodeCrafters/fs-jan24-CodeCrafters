@@ -56,7 +56,7 @@ export const Card: React.FC<Props> = ({
     if (isFavoriteProd) {
       toast.success(t(`common:toast.favoritesRemoved`));
     } else {
-      toast.success(t(`common:toast.favoritesRemoved`));
+      toast.success(t(`common:toast.favoritesAdded`));
     }
   };
 

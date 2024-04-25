@@ -50,7 +50,8 @@
     "ram": "RAM",
     "camera": "Camera",
     "zoom": "Zoom",
-    "cell": "Cell"
+    "cell": "Cell",
+    "slider": "You may also like"
   },
   "card": {
     "capacity": "Capacity",
@@ -59,11 +60,13 @@
   },
   "favorites": {
     "title": "Favorites",
-    "desc": "You don't have any favorite products yet"
+    "desc": "You don't have any favorite products yet",
+    "items": "item(s)"
   },
   "cart": {
     "cart": "Cart",
     "checkout": "Checkout",
+    "totalFor": "Total for",
     "empty": "Your basket is lonely",
     "emptyDesc": "Add some items to cheer it up",
     "modalTitle": "Are you ready to complete the payment?",
@@ -75,6 +78,9 @@
     "contacts": "contacts",
     "rights": "rights",
     "backToTop": "Back to top"
+  },
+  "search": {
+    "placeholder": "Search..."
   },
   "error": {
     "title": "Page not found",
