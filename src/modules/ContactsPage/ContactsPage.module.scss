@@ -1,0 +1,32 @@
+.title {
+	margin: clamp-calc($min-break-point, $pc, 32px, 56px) 0;
+}
+
+.list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	gap: 45px;
+
+	@include mobile {
+		gap: 20px;
+	}
+
+}
+
+.item {
+	flex-shrink: 0;
+
+	max-width: 300px;
+	width: 100%;
+
+	@include mobile {
+		flex: 0 47%;
+		max-width: 100%;
+	}
+
+	@include mobile-small {
+		flex: 0 100%;
+	}
+
+}

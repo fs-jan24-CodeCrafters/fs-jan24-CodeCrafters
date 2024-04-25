@@ -1,0 +1,79 @@
+.personCard {
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.personImg {
+	height: 240px;
+	overflow: hidden;
+
+	img {
+		object-fit: cover;
+		height: 100%;
+		width: 100%;
+	}
+
+}
+
+.infoBlock {
+	border: 1px solid var(--elements);
+	border-top: none;
+	text-align: center;
+	padding: 15px 10px 25px;
+	border-radius: 0 0 10px 10px;
+}
+
+.title {
+	font-weight: 700;
+	font-size: 16px;
+}
+
+.subTitle {
+	color: var(--secondary);
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+
+.subTitle,
+.iconsList {
+	position: relative;
+	padding-bottom: 10px;
+
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 0;
+		height: 1px;
+		width: 200px;
+		background-color: var(--elements);
+	}
+
+}
+
+.iconsList {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.icon {
+	flex-shrink: 0;
+	width: 24px;
+	height: 24px;
+
+	@include transition(transform);
+
+	&:hover {
+		transform: scale(1.1);
+	}
+
+}
+
+.iconGit {
+	width: 28px;
+	height: 28px;
+}
