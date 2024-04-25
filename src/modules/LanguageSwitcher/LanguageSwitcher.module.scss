@@ -1,45 +1,54 @@
 .languageSwitcher {
-    display: flex;
-    align-items: center;
-    width: max-content;
+	display: flex;
+	align-items: center;
+	width: max-content;
+
+	@include tablet {
+		flex-grow: 5;
+		justify-content: end;
+	}
 }
 
 .languageSwitcherItem {
-    padding-left: 0;
-    position: relative;
-    min-height: 0;
-    margin-inline: 12px;
-    margin-bottom: 0;
+	padding-left: 0;
+	position: relative;
+	min-height: 0;
+	margin-inline: 12px;
+	margin-bottom: 0;
 
-    &:hover {
-        color: var(--elements);
-    }
+	@include mobile-small {
+		margin-inline: 10px;
+	}
 
-    label {
-        cursor: pointer;
-    }
+	&:hover {
+		color: var(--elements);
+	}
 
-    &:not(:last-child):before {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: -12px;
-        width: 1.5px;
-        background: var(--secondary);
-    }
+	label {
+		cursor: pointer;
+	}
+
+	&:not(:last-child):before {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: -12px;
+		width: 1.5px;
+		background: var(--secondary);
+	}
 }
 
 .languageSwitcherLabel {
-    color: var(--secondary);
-    text-transform: uppercase;
+	color: var(--secondary);
+	text-transform: uppercase;
 }
 
 .languageSwitcherInput {
-    display: none;
-    color: var(--primary);
+	display: none;
+	color: var(--primary);
 }
 
 .languageSwitcherInputActive {
-    color: var(--primary-button-hover);
+	color: var(--primary-button-hover);
 }
