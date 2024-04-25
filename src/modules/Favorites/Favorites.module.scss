@@ -29,10 +29,29 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+  flex-direction: column;
 	height: 40vh;
 }
 
 .pageTitle {
 	color: var(--secondary);
 	text-align: center;
+  margin-bottom: 30px;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+	overflow: hidden;
+	width: 100%;
+}
+
+.icon {
+	max-width: clamp-calc($min-break-point, $pc, 140px, 250px);
+	height: clamp-calc($min-break-point, $pc, 120px, 150px);
+	width: 100%;
+
+	use {
+		fill: var(--primary);
+	}
 }

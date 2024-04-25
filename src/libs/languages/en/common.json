@@ -67,7 +67,9 @@
     "checkout": "Checkout",
     "totalFor": "Total for",
     "empty": "Your basket is lonely",
-    "emptyDesc": "Add some items to cheer it up",
+    "emptyDesc": "Add some items to cheer it up.",
+    "successPayment": "Your order is confirmed",
+    "successPaymentDesc": "And we're just as excited as you are.",
     "modalTitle": "Are you ready to complete the payment?",
     "modalYes": "Yes",
     "modalNo": "No"

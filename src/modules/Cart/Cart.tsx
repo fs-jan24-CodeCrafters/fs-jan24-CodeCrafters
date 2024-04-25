@@ -17,6 +17,7 @@ export const Cart: React.FC = () => {
   const { t } = useTranslation();
   const { cart, totalCartQuantity, dispatch } = useCart();
   const [isModalVisible, setModalVisibility] = useState(false);
+  const [isPaymentSuccess, setIsPaymentSuccess] = useState(false);
 
   const nodeRef = useRef(null);
 
@@ -24,6 +25,10 @@ export const Cart: React.FC = () => {
     const price = item.price || item.fullPrice;
     return acc + price * (item.quantity || 0);
   }, 0);
+
+  const handlePaymentConfirmation = () => {
+    setIsPaymentSuccess(true);
+  };
 
   useEffect(() => {
     const body = document.body;
@@ -46,6 +51,10 @@ export const Cart: React.FC = () => {
     };
   }, [isModalVisible]);
 
+  // useEffect(() => {
+  //   setIsPaymentSuccess(false);
+  // })
+
   return (
     <div className="section">
       <Container>
@@ -55,7 +64,7 @@ export const Cart: React.FC = () => {
         </Title>
         <div className={styles.cartWrapper}>
           {!cart.length ? (
-            <EmptyCart />
+            <EmptyCart isPaymentSuccess={isPaymentSuccess} />
           ) : (
             <>
               <CartItems cart={cart} dispatch={dispatch} />
@@ -84,6 +93,7 @@ export const Cart: React.FC = () => {
             <SuccessModal
               nodeRef={nodeRef}
               setModalVisibility={setModalVisibility}
+              onConfirm={handlePaymentConfirmation}
               dispatch={dispatch}
             />
           </CSSTransition>

@@ -11,11 +11,13 @@ import styles from './SuccessModal.module.scss';
 type Props = {
   setModalVisibility: (visible: boolean) => void;
   nodeRef: React.MutableRefObject<null>;
+  onConfirm: () => void;
   dispatch: React.Dispatch<Action>;
 };
 
 export const SuccessModal: React.FC<Props> = ({
   setModalVisibility,
+  onConfirm,
   dispatch,
   nodeRef,
 }) => {
@@ -25,6 +27,7 @@ export const SuccessModal: React.FC<Props> = ({
 
   const handleYesClick = () => {
     setModalVisibility(false);
+    onConfirm();
     dispatch({ type: 'cart/clearCart' });
   };
 
