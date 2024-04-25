@@ -2,8 +2,6 @@ import Select, { SingleValue } from 'react-select';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Product } from '../../../types/Product';
-
 import styles from './Selects.module.scss';
 
 export interface OptionsEntries {
@@ -15,14 +13,12 @@ interface Props {
   setSearchParams: ReturnType<typeof useSearchParams>[1];
   currentSortBy: string;
   itemsPerPage: number;
-  products: Product[];
 }
 
 export const Selects: React.FC<Props> = ({
   setSearchParams,
   currentSortBy,
   itemsPerPage,
-  products,
 }) => {
   const { t } = useTranslation();
 
@@ -37,7 +33,7 @@ export const Selects: React.FC<Props> = ({
     { value: 4, label: '4' },
     { value: 8, label: '8' },
     { value: 16, label: '16' },
-    { value: products.length, label: t(`common:catalog.all`) },
+    { value: 20, label: '20' },
   ];
 
   const handleOptionChange = (

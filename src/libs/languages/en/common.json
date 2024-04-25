@@ -9,8 +9,8 @@
   },
   "home": {
     "slider": {
-        "brandNewModels": "Brand new models",
-        "hotPrices": "Hot prices"
+      "brandNewModels": "Brand new models",
+      "hotPrices": "Hot prices"
     },
     "hero": "Welcome to Nice Gadgets store!",
     "shopByCategory": "Shop by category",
@@ -28,7 +28,6 @@
       "cheapest": "Cheapest"
     },
     "itemsOnPage": "Items on page",
-    "all": "All",
     "mobilePhones": "Mobile phones",
     "phones": "Phones",
     "tablets": "Tablets",
@@ -93,5 +92,105 @@
     "addedToCart": "Product successfully added to cart!",
     "favoritesRemoved": "Product successfully removed from favorite!",
     "favoritesAdded": "Product successfully added to favorite!"
+  },
+  "contacts": {
+    "title": "Our Team",
+    "people": [
+      {
+        "imgUrl": "/img/contacts/anastasiia.jpg",
+        "name": "Anastasia Vasileva",
+        "title": "Full-Stack Developer",
+        "socialLinks": [
+          {
+            "iconName": "git-hub-icon",
+            "socialUrl": "https://github.com/anastasia1383"
+          },
+          {
+            "iconName": "linkedin-icon",
+            "socialUrl": "https://www.linkedin.com/in/anastasiia-vasylieva-60bb12241/"
+          },
+          {
+            "iconName": "telegram-icon",
+            "socialUrl": "https://t.me/vasylieva_anastasiia"
+          }
+        ]
+      },
+      {
+        "imgUrl": "/img/contacts/oleg.jpeg",
+        "name": "Oleg Syoma",
+        "title": "Full-Stack Developer",
+        "socialLinks": [
+          {
+            "iconName": "git-hub-icon",
+            "socialUrl": "https://github.com/HolyRaveOS"
+          },
+          {
+            "iconName": "linkedin-icon",
+            "socialUrl": "https://www.linkedin.com/in/oleg-syoma-48324b2a4/"
+          },
+          {
+            "iconName": "telegram-icon",
+            "socialUrl": "https://t.me/somaoleg"
+          }
+        ]
+      },
+      {
+        "imgUrl": "/img/contacts/eugene.jpeg",
+        "name": "Evgeny Vladarskyi",
+        "title": "Full-Stack Developer",
+        "socialLinks": [
+          {
+            "iconName": "git-hub-icon",
+            "socialUrl": "https://github.com/vladarskyi"
+          },
+          {
+            "iconName": "linkedin-icon",
+            "socialUrl": "www.linkedin.com/in/vladarskyi"
+          },
+          {
+            "iconName": "telegram-icon",
+            "socialUrl": "https://t.me/vladarskyi"
+          }
+        ]
+      },
+      {
+        "imgUrl": "/img/contacts/elementor-placeholder-image.png",
+        "name": "Lesya",
+        "title": "Full-Stack Developer",
+        "socialLinks": [
+          {
+            "iconName": "git-hub-icon",
+            "socialUrl": "https://github.com/vladarskyi"
+          },
+          {
+            "iconName": "linkedin-icon",
+            "socialUrl": "www.linkedin.com/in/vladarskyi"
+          },
+          {
+            "iconName": "telegram-icon",
+            "socialUrl": "https://t.me/vladarskyi"
+          }
+        ]
+      },
+      {
+        "imgUrl": "/img/contacts/elementor-placeholder-image.png",
+        "name": "Dmitriy",
+        "title": "Full-Stack Developer",
+        "socialLinks": [
+          {
+            "iconName": "git-hub-icon",
+            "socialUrl": "https://github.com/vladarskyi"
+          },
+          {
+            "iconName": "linkedin-icon",
+            "socialUrl": "www.linkedin.com/in/vladarskyi"
+          },
+          {
+            "iconName": "telegram-icon",
+            "socialUrl": "https://t.me/vladarskyi"
+          }
+        ]
+      }
+    ]
   }
 }

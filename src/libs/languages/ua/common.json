@@ -28,7 +28,6 @@
       "cheapest": "Дешевизною"
     },
     "itemsOnPage": "На сторінці",
-    "all": "Всі",
     "mobilePhones": "Мобільні телефони",
     "phones": "Телефони",
     "tablets": "Планшети",
@@ -93,5 +92,105 @@
     "addedToCart": "Товар успішно додано до корзини!",
     "favoritesRemoved": "Товар успішно видалено з улюблених!",
     "favoritesAdded": "Товар успішно додано до улюблених!"
+  },
+  "contacts": {
+    "title": "Наша Команда",
+    "people": [
+      {
+        "imgUrl": "/img/contacts/anastasiia.jpg",
+        "name": "Анастасія Васильєва",
+        "title": "Full-Stack Розробниця",
+        "socialLinks": [
+          {
+            "iconName": "git-hub-icon",
+            "socialUrl": "https://github.com/anastasia1383"
+          },
+          {
+            "iconName": "linkedin-icon",
+            "socialUrl": "https://www.linkedin.com/in/anastasiia-vasylieva-60bb12241/"
+          },
+          {
+            "iconName": "telegram-icon",
+            "socialUrl": "https://t.me/vasylieva_anastasiia"
+          }
+        ]
+      },
+      {
+        "imgUrl": "/img/contacts/oleg.jpeg",
+        "name": "Олег Сьома",
+        "title": "Full-Stack Розробник",
+        "socialLinks": [
+          {
+            "iconName": "git-hub-icon",
+            "socialUrl": "https://github.com/HolyRaveOS"
+          },
+          {
+            "iconName": "linkedin-icon",
+            "socialUrl": "https://www.linkedin.com/in/oleg-syoma-48324b2a4/"
+          },
+          {
+            "iconName": "telegram-icon",
+            "socialUrl": "https://t.me/somaoleg"
+          }
+        ]
+      },
+      {
+        "imgUrl": "/img/contacts/eugene.jpeg",
+        "name": "Євген Владарський",
+        "title": "Full-Stack Розробник",
+        "socialLinks": [
+          {
+            "iconName": "git-hub-icon",
+            "socialUrl": "https://github.com/vladarskyi"
+          },
+          {
+            "iconName": "linkedin-icon",
+            "socialUrl": "www.linkedin.com/in/vladarskyi"
+          },
+          {
+            "iconName": "telegram-icon",
+            "socialUrl": "https://t.me/vladarskyi"
+          }
+        ]
+      },
+      {
+        "imgUrl": "/img/contacts/elementor-placeholder-image.png",
+        "name": "Леся",
+        "title": "Full-Stack Розробниця",
+        "socialLinks": [
+          {
+            "iconName": "git-hub-icon",
+            "socialUrl": "https://github.com/vladarskyi"
+          },
+          {
+            "iconName": "linkedin-icon",
+            "socialUrl": "www.linkedin.com/in/vladarskyi"
+          },
+          {
+            "iconName": "telegram-icon",
+            "socialUrl": "https://t.me/vladarskyi"
+          }
+        ]
+      },
+      {
+        "imgUrl": "/img/contacts/elementor-placeholder-image.png",
+        "name": "Діма",
+        "title": "Full-Stack Розробник",
+        "socialLinks": [
+          {
+            "iconName": "git-hub-icon",
+            "socialUrl": "https://github.com/vladarskyi"
+          },
+          {
+            "iconName": "linkedin-icon",
+            "socialUrl": "www.linkedin.com/in/vladarskyi"
+          },
+          {
+            "iconName": "telegram-icon",
+            "socialUrl": "https://t.me/vladarskyi"
+          }
+        ]
+      }
+    ]
   }
 }

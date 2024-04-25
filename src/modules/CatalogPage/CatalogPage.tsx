@@ -80,7 +80,6 @@ export const CatalogPage: React.FC = () => {
         setSearchParams={setSearchParams}
         currentSortBy={currentSortBy}
         itemsPerPage={itemsPerPage}
-        products={sortedByFormUrl}
       />
 
       <ProductsList products={visibleProducts} loading={loading} />

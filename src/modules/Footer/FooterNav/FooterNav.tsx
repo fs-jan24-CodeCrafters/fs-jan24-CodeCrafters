@@ -12,6 +12,7 @@ export const FooterNav: React.FC = () => {
         <NavLink
           className={styles.navLink}
           to="https://github.com/fs-jan24-CodeCrafters/fs-jan24-CodeCrafters"
+          target="_blank"
         >
           {t(`common:footer.github`)}
         </NavLink>

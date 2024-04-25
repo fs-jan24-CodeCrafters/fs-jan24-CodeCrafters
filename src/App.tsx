@@ -11,6 +11,7 @@ import { Layout } from './Layout';
 
 import 'animate.css';
 import './App.scss';
+import { ContactsPage } from './modules/ContactsPage';
 
 export const App = () => {
   const { pathname } = useLocation();
@@ -31,6 +32,7 @@ export const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/favorites/:productId" element={<ProductDetails />} />
+        <Route path="/contacts" element={<ContactsPage />} />
         <Route path="/not-found" element={<ErrorPage />} />
         <Route path="*" element={<Navigate replace to="/not-found" />} />
       </Route>
