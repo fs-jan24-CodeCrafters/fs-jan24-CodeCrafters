@@ -51,10 +51,6 @@ export const Cart: React.FC = () => {
     };
   }, [isModalVisible]);
 
-  // useEffect(() => {
-  //   setIsPaymentSuccess(false);
-  // })
-
   return (
     <div className="section">
       <Container>
