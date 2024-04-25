@@ -26,7 +26,7 @@ export const CartCheckout: React.FC<Props> = ({
         <Title
           className={styles.subTitle}
           titleTag="h5"
-        >{`Total for ${totalCartQuantity}`}</Title>
+        >{`${t(`common:cart.totalFor`)} ${totalCartQuantity}`}</Title>
       </div>
       <Button
         className={styles.button}
