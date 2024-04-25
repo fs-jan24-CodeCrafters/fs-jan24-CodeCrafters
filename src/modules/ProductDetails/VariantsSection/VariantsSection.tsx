@@ -155,32 +155,6 @@ export const VariantsSection: React.FC<Props> = ({
         </div>
       </div>
 
-      {/* <section className={`${styles.variantsSection} section`}>
-      <div className={styles.imagesBlock}>
-        <div className={styles.squareImagesContainer}>
-          {images.map((image) => (
-            <button key={image} className={styles.squareImageWrapper}>
-              <img
-                className={classNames(styles.squareImage, {
-                  [styles['selectedSquareImage']]: selectedImage === image,
-                })}
-                src={image}
-                alt="Product image"
-                onClick={() => setSelectedImage(image)}
-              />
-            </button>
-          ))}
-        </div>
-
-        <div className={styles.selectedImageWrapper}>
-          <img
-            src={selectedImage}
-            alt="Product image"
-            className={styles.selectedImage}
-          />
-        </div>
-      </div> */}
-
       <div className={styles.mobileContainer}></div>
       <div className={styles.availableVariantsWrapper}>
         <div className={styles.categoryText}>

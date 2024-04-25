@@ -29,10 +29,29 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+  flex-direction: column;
 	height: 40vh;
 }
 
 .pageTitle {
 	color: var(--secondary);
 	text-align: center;
+}
+
+.image {
+	overflow: hidden;
+	width: 100%;
+}
+
+.icon {
+	max-width: clamp-calc($min-break-point, $pc, 150px, 317px);
+	height: clamp-calc($min-break-point, $pc, 105px, 150px);
+	width: 100%;
+
+	img {
+		fill: var(--primary);
+    display: inline-block;
+    stroke-width: 0;
+    stroke: currentColor;
+	}
 }
