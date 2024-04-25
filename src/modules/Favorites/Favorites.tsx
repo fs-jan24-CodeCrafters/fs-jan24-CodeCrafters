@@ -41,6 +41,12 @@ export const Favorites: React.FC = () => {
             <Title titleTag="h2" className={styles.pageTitle}>
               {t(`common:favorites.desc`)}
             </Title>
+
+            <div className={styles.image}>
+              <svg className={styles.icon}>
+                <use href={`/icons/symbol-defs.svg#icon-broken-heart`} />
+              </svg>
+            </div>
           </div>
         </>
       )}

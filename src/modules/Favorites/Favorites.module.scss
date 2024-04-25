@@ -36,22 +36,22 @@
 .pageTitle {
 	color: var(--secondary);
 	text-align: center;
+  margin-bottom: 30px;
 }
 
 .image {
+  display: flex;
+  justify-content: center;
 	overflow: hidden;
 	width: 100%;
 }
 
 .icon {
-	max-width: clamp-calc($min-break-point, $pc, 150px, 317px);
-	height: clamp-calc($min-break-point, $pc, 105px, 150px);
+	max-width: clamp-calc($min-break-point, $pc, 140px, 250px);
+	height: clamp-calc($min-break-point, $pc, 120px, 150px);
 	width: 100%;
 
-	img {
+	use {
 		fill: var(--primary);
-    display: inline-block;
-    stroke-width: 0;
-    stroke: currentColor;
 	}
 }
