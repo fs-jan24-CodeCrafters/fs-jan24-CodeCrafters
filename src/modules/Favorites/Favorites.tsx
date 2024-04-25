@@ -25,7 +25,7 @@ export const Favorites: React.FC = () => {
       {countFavorites ? (
         <>
           <span className={`${styles.textItem} ${styles.productsAmountText}`}>
-            {`${countFavorites} items`}
+            {`${countFavorites} ${t(`common:favorites.items`)}`}
           </span>
           <ul className={styles.list}>
             {favorites.map((product) => (

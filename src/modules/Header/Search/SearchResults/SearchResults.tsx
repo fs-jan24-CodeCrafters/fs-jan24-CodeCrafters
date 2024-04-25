@@ -18,32 +18,39 @@ export const SearchResults: React.FC<Props> = ({ searchResults }) => {
     <>
       <div className={styles.searchResultsContainer}>
         {categories.length ? (
-          categories.map((category) => (
-            <div key={category} className={styles.searchResultsByCategory}>
-              <Title
-                titleTag="h5"
-                className={styles.searchResultsByCategoryTitle}
-              >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </Title>
-              <ul className={styles.searchResultsList}>
-                {searchResults[category].map((product) => (
-                  <li key={product.itemId} className={styles.searchResultItem}>
-                    <Link
-                      className={styles.searchResultItemLink}
-                      to={`/${category}/${product.itemId}`}
+          categories.map((category) => {
+            const categoryTitle = t(`common:header.${category}`);
+            return (
+              <div key={category} className={styles.searchResultsByCategory}>
+                <Title
+                  titleTag="h5"
+                  className={styles.searchResultsByCategoryTitle}
+                >
+                  {categoryTitle.charAt(0).toUpperCase() +
+                    categoryTitle.slice(1)}
+                </Title>
+                <ul className={styles.searchResultsList}>
+                  {searchResults[category].map((product) => (
+                    <li
+                      key={product.itemId}
+                      className={styles.searchResultItem}
                     >
-                      <img
-                        src={product.image}
-                        className={styles.searchResultItemImage}
-                      />
-                      <h3>{product.name}</h3>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))
+                      <Link
+                        className={styles.searchResultItemLink}
+                        to={`/${category}/${product.itemId}`}
+                      >
+                        <img
+                          src={product.image}
+                          className={styles.searchResultItemImage}
+                        />
+                        <h3>{product.name}</h3>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })
         ) : (
           <Title titleTag="h5">{t(`common:header.noResults`)}</Title>
         )}
