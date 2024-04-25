@@ -29,21 +29,22 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  flex-direction: column;
+	flex-direction: column;
 	height: 40vh;
 }
 
 .pageTitle {
 	color: var(--secondary);
 	text-align: center;
-  margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
 .image {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 	overflow: hidden;
 	width: 100%;
+	animation: pulse 1s infinite;
 }
 
 .icon {
@@ -54,4 +55,13 @@
 	use {
 		fill: var(--primary);
 	}
+}
+
+@keyframes pulse {
+    0%, 25%, 100% {
+		transform: scale(1);
+	  }
+	  15%, 35% {
+		transform: scale(1.2);
+	  }
 }
