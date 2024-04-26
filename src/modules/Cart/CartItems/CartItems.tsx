@@ -52,8 +52,8 @@ export const CartItems: React.FC<Props> = ({ dispatch, cart }) => {
                     />
                   </button>
                   <Link
-                    to={`/${category}/${itemId}`}
                     className={styles.productImage}
+                    to={`/${category}/${itemId}`}
                   >
                     <img src={image} alt={name} />
                   </Link>
