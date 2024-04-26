@@ -13,6 +13,7 @@ import { Loader } from '../Shared/Loader';
 import { ProductsList } from './ProductsList';
 import { Selects } from './Selects';
 import { Pagination } from './Pagination';
+import { RangePriceFilter } from './RangePriceFilter/RangePriceFilter';
 
 import styles from './CatalogPage.module.scss';
 
@@ -25,11 +26,22 @@ export const CatalogPage: React.FC = () => {
 
   const productsList = getProductsByCategory(products, path);
 
+  const minPrice = Math.min(...productsList.map((product) => product.price));
+  const maxPrice = Math.max(...productsList.map((product) => product.price));
+  const priceRange = searchParams
+    .get('range')
+    ?.split(',')
+    .map((i) => +i) || [minPrice, maxPrice];
+
   const currentSortBy = searchParams.get('sort') || 'featured';
   const currentPerPageOptions = searchParams.get('perPage') || 16;
   const currentPage = Number(searchParams.get('page')) || 1;
 
-  const sortedByFormUrl = getSortedProducts(productsList, currentSortBy);
+  const filteredProducts = productsList.filter(
+    (product) =>
+      product.price >= priceRange[0] && product.price <= priceRange[1],
+  );
+  const sortedByFormUrl = getSortedProducts(filteredProducts, currentSortBy);
 
   const itemsPerPage = Number(currentPerPageOptions) || sortedByFormUrl.length;
 
@@ -72,15 +84,25 @@ export const CatalogPage: React.FC = () => {
             <Loader />
           </span>
         ) : (
-          `${productsList.length} ${t(`common:catalog.models`)}`
+          `${filteredProducts.length} ${t(`common:catalog.models`)}`
         )}
       </span>
 
-      <Selects
-        setSearchParams={setSearchParams}
-        currentSortBy={currentSortBy}
-        itemsPerPage={itemsPerPage}
-      />
+      <div className={styles.listFilterWrapper}>
+        <Selects
+          setSearchParams={setSearchParams}
+          currentSortBy={currentSortBy}
+          itemsPerPage={itemsPerPage}
+        />
+
+        <RangePriceFilter
+          value={priceRange as [number, number]}
+          minPrice={minPrice}
+          maxPrice={maxPrice}
+          disabled={loading}
+          setSearchParams={setSearchParams}
+        />
+      </div>
 
       <ProductsList products={visibleProducts} loading={loading} />
 
