@@ -1,18 +1,19 @@
 import RangeSlider from 'react-range-slider-input';
-import { ChangeEvent, useMemo, useState } from 'react';
+import debounce from 'lodash.debounce';
+import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { Loader } from '../../Shared/Loader';
 
 import 'react-range-slider-input/dist/style.css';
 import styles from './RangePriceFilter.module.scss';
-import debounce from 'lodash.debounce';
 
 interface RangePriceFilterProps {
   value: [number, number];
   disabled: boolean;
   minPrice: number;
   maxPrice: number;
+  searchParams: URLSearchParams;
   setSearchParams: ReturnType<typeof useSearchParams>[1];
 }
 
@@ -21,6 +22,7 @@ export const RangePriceFilter: React.FC<RangePriceFilterProps> = ({
   disabled,
   minPrice,
   maxPrice,
+  searchParams,
   setSearchParams,
 }) => {
   const [inputValue, setInputValue] = useState<[number, number]>([
@@ -57,6 +59,16 @@ export const RangePriceFilter: React.FC<RangePriceFilterProps> = ({
     setInputValue([inputValue[0], newToVal]);
     debouncedUpdateSearchParams([value[0], newToVal]);
   };
+
+  useEffect(() => {
+    const range = searchParams.get('range');
+    if (range) {
+      const [min, max] = range.split(',').map(Number);
+      setInputValue([min, max]);
+    } else {
+      setInputValue([minPrice, maxPrice]);
+    }
+  }, [searchParams, minPrice, maxPrice]);
 
   return (
     <div className={styles.rangePriceFilter}>
