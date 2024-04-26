@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet';
 
 import { getProductsByCategory } from '../../helpers/getProductsByCategory';
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
@@ -70,49 +71,55 @@ export const CatalogPage: React.FC = () => {
   );
 
   return (
-    <Container className="section">
-      <Breadcrumbs>
-        <BreadcrumbsItem tagType="span">
-          {catalogPageBreadcrumb}
-        </BreadcrumbsItem>
-      </Breadcrumbs>
-      <Title titleTag="h1" className={styles.title}>
-        {catalogPageTitle}
-      </Title>
-      <span className={`${styles.textItem} ${styles.productsAmountText}`}>
-        {loading ? (
-          <span className={styles.textItemLoader}>
-            <Loader />
-          </span>
-        ) : (
-          `${filteredProducts.length} ${t(`common:catalog.models`)}`
-        )}
-      </span>
+    <>
+      <Helmet>
+        <title>{catalogPageTitle}</title>
+        <meta name="description" content={catalogPageTitle} />
+      </Helmet>
+      <Container className="section">
+        <Breadcrumbs>
+          <BreadcrumbsItem tagType="span">
+            {catalogPageBreadcrumb}
+          </BreadcrumbsItem>
+        </Breadcrumbs>
+        <Title titleTag="h1" className={styles.title}>
+          {catalogPageTitle}
+        </Title>
+        <span className={`${styles.textItem} ${styles.productsAmountText}`}>
+          {loading ? (
+            <span className={styles.textItemLoader}>
+              <Loader />
+            </span>
+          ) : (
+            `${filteredProducts.length} ${t(`common:catalog.models`)}`
+          )}
+        </span>
 
-      <div className={styles.listFilterWrapper}>
-        <Selects
-          setSearchParams={setSearchParams}
-          currentSortBy={currentSortBy}
+        <div className={styles.listFilterWrapper}>
+          <Selects
+            setSearchParams={setSearchParams}
+            currentSortBy={currentSortBy}
+            itemsPerPage={itemsPerPage}
+          />
+
+          <RangePriceFilter
+            value={priceRange as [number, number]}
+            minPrice={minPrice}
+            maxPrice={maxPrice}
+            disabled={loading}
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+          />
+        </div>
+
+        <ProductsList products={visibleProducts} loading={loading} />
+
+        <Pagination
+          products={sortedByFormUrl}
           itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
         />
-
-        <RangePriceFilter
-          value={priceRange as [number, number]}
-          minPrice={minPrice}
-          maxPrice={maxPrice}
-          disabled={loading}
-          searchParams={searchParams}
-          setSearchParams={setSearchParams}
-        />
-      </div>
-
-      <ProductsList products={visibleProducts} loading={loading} />
-
-      <Pagination
-        products={sortedByFormUrl}
-        itemsPerPage={itemsPerPage}
-        currentPage={currentPage}
-      />
-    </Container>
+      </Container>
+    </>
   );
 };
