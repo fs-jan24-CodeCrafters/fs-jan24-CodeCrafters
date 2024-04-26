@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet';
 
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 import { getProductsByCategory } from '../../helpers/getProductsByCategory';
@@ -52,6 +53,10 @@ export const ProductDetails: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{currentProduct?.name}</title>
+        <meta name="description" content={currentProduct?.name} />
+      </Helmet>
       {currentProduct && (
         <Container>
           <Breadcrumbs>

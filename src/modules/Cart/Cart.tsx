@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet';
 
 import { useCart } from '../../context/CartContext';
 import { Container } from '../Shared/Container';
@@ -53,6 +54,10 @@ export const Cart: React.FC = () => {
 
   return (
     <div className="section">
+      <Helmet>
+        <title>{t(`common:cart.cart`)}</title>
+        <meta name="description" content={t(`common:cart.cart`)} />
+      </Helmet>
       <Container>
         <BackLink path="/" />
         <Title className={styles.title} titleTag="h1">
