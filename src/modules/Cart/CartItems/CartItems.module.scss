@@ -55,6 +55,10 @@
 
 .productDescription {
 	width: 100%;
+
+	@include mobile-small {
+		gap: 8px;
+	}
 }
 
 .productImage {
@@ -64,8 +68,10 @@
 	height: 100%;
 
 	img {
-		max-width: 66px;
-		max-height: 66px;
+		width: 66px;
+		height: 66px;
+
+		object-fit: contain;
 	}
 }
 
