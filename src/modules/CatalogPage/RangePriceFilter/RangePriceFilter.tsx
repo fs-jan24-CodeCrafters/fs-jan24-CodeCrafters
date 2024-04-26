@@ -49,13 +49,17 @@ export const RangePriceFilter: React.FC<RangePriceFilterProps> = ({
   };
 
   const handleFromInput = (event: ChangeEvent<HTMLInputElement>) => {
-    const newFromVal = Math.min(Number(event.target.value), maxPrice);
+    const newValue = event.target.value;
+    if (!/^\d+$/.test(newValue) && newValue !== '') return;
+    const newFromVal = Math.min(Number(newValue), maxPrice);
     setInputValue([newFromVal, inputValue[1]]);
     debouncedUpdateSearchParams([newFromVal, value[1]]);
   };
 
   const handleToInput = (event: ChangeEvent<HTMLInputElement>) => {
-    const newToVal = Math.min(Number(event.target.value), maxPrice);
+    const newValue = event.target.value;
+    if (!/^\d+$/.test(newValue) && newValue !== '') return;
+    const newToVal = Math.min(Number(newValue), maxPrice);
     setInputValue([inputValue[0], newToVal]);
     debouncedUpdateSearchParams([value[0], newToVal]);
   };
