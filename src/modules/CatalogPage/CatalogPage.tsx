@@ -28,6 +28,7 @@ export const CatalogPage: React.FC = () => {
 
   const minPrice = Math.min(...productsList.map((product) => product.price));
   const maxPrice = Math.max(...productsList.map((product) => product.price));
+
   const priceRange = searchParams
     .get('range')
     ?.split(',')
