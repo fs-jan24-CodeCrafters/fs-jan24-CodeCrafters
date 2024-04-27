@@ -36,7 +36,7 @@ const sliderItems: SliderItem[] = [
   },
   {
     id: 3,
-    img: '/public/img/hero/3.jpg',
+    img: '/img/hero/3.jpg',
     description: 'Tablets',
     url: '/tablets',
   },
