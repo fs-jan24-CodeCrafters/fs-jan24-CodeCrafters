@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import 'react-lazy-load-image-component/src/effects/blur.css';
-import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
 import { useFavorites } from '../../../context/FavoritesContext';
@@ -11,6 +9,7 @@ import { SpriteIcon } from '../SpriteIcon';
 import { Title } from '../Title';
 import { Product } from '../../../types/Product';
 import { Loader } from '../Loader';
+import toast from 'react-hot-toast';
 
 import styles from './Card.module.scss';
 
