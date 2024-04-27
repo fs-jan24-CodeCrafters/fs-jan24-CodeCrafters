@@ -9,6 +9,7 @@ import { Card } from '../Shared/Card';
 import { Title } from '../Shared/Title';
 
 import styles from './Favorites.module.scss';
+import { ContinueShoppingLink } from '../Shared/ContinueShoppingLink';
 
 export const Favorites: React.FC = () => {
   const { t } = useTranslation();
@@ -53,6 +54,7 @@ export const Favorites: React.FC = () => {
                   <use href={`/icons/symbol-defs.svg#icon-broken-heart`} />
                 </svg>
               </div>
+              <ContinueShoppingLink />
             </div>
           </>
         )}
