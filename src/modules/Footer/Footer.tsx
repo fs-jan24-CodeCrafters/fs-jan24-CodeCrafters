@@ -7,14 +7,22 @@ import { FooterNav } from './FooterNav/FooterNav';
 import { SpriteIcon } from '../Shared/SpriteIcon';
 
 import styles from './Footer.module.scss';
+import { useLocation } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
+
+  const handleLogoClick = () => {
+    if (pathname === '/') {
+      scrollToTop();
+    }
+  };
 
   return (
     <footer className={styles.footer}>
       <Container className={styles.container}>
-        <Logo className={styles.logo} />
+        <Logo className={styles.logo} onClick={handleLogoClick} />
 
         <FooterNav />
 
