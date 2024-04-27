@@ -1,6 +1,7 @@
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import { Container } from '../../Shared/Container';
 import { Title } from '../../Shared/Title';
@@ -17,23 +18,27 @@ interface SliderItem {
   id: number;
   img: string;
   description: string;
+  url: string;
 }
 
 const sliderItems: SliderItem[] = [
   {
     id: 1,
     img: '/img/hero/1.jpg',
-    description: 'iPhone',
+    description: 'Watch',
+    url: '/accessories',
   },
   {
     id: 2,
     img: '/img/hero/2.jpg',
-    description: 'Watch',
+    description: 'Phones',
+    url: '/phones',
   },
   {
     id: 3,
-    img: '/img/hero/3.jpg',
-    description: 'Vision Pro',
+    img: '/public/img/hero/3.jpg',
+    description: 'Tablets',
+    url: '/tablets',
   },
 ];
 
@@ -77,9 +82,9 @@ export const HeroSection: React.FC = () => {
           >
             {sliderItems.map((item) => (
               <SwiperSlide key={item.id} className={styles.sliderItem}>
-                <div className={styles.imageItem}>
+                <Link to={item.url} className={styles.imageItem}>
                   <img src={item.img} alt={item.description} />
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>
