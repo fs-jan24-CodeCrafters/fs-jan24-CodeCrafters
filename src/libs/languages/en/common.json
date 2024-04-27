@@ -176,20 +176,20 @@
       },
       {
         "imgUrl": "/img/contacts/elementor-placeholder-image.png",
-        "name": "Dmitriy",
+        "name": "Dmytro Luhanskyi",
         "title": "Full-Stack Developer",
         "socialLinks": [
           {
             "iconName": "git-hub-icon",
-            "socialUrl": "https://github.com/vladarskyi"
+            "socialUrl": "https://github.com/Dmitrel"
           },
           {
             "iconName": "linkedin-icon",
-            "socialUrl": "www.linkedin.com/in/vladarskyi"
+            "socialUrl": "https://www.linkedin.com/feed/"
           },
           {
             "iconName": "telegram-icon",
-            "socialUrl": "https://t.me/vladarskyi"
+            "socialUrl": "https://t.me/Dmitr044"
           }
         ]
       }
