@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: 'fs-jan24-CodeCrafters',
+  base: './fs-jan24-CodeCrafters',
   css: {
     preprocessorOptions: {
       scss: {
