@@ -3,6 +3,8 @@ name: Github Page Deploy Workflow
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   deploy:
