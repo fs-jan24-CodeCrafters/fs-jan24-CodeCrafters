@@ -2,22 +2,32 @@ name: Github Page Deploy Workflow
 
 on:
   push:
-    branches: [main]
+    branches: ['main']
+  pull_request:
+    branches: ['main']
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-      - run: npm ci
-      - run: npm run build
-      - name: Deploy
-        uses: crazy-max/ghaction-github-pages@v1
-        with:
-          target_branch: gh-pages
-          build_dir: build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+        steps:
+          - uses: actions/checkout@v3
+          - name: Use Node.js ${{ matrix.node-version }}
+            uses: actions/setup-node@v3
+            with:
+              node-version: ${{ matrix.node-version }}
+              cache: 'npm'
+          - run: npm ci
+          - run: npm run build --if-present
+          - run: npm test
+
+          - name: Deploy with gh-pages
+            run: |
+              get remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+              npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
