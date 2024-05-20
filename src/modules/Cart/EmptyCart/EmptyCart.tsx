@@ -30,8 +30,8 @@ export const EmptyCart: React.FC<Props> = ({ isPaymentSuccess }) => {
           <use
             href={
               isPaymentSuccess
-                ? `/icons/symbol-defs.svg#icon-delivery-man`
-                : `/icons/symbol-defs.svg#icon-man-with-cart`
+                ? `icons/symbol-defs.svg#icon-delivery-man`
+                : `icons/symbol-defs.svg#icon-man-with-cart`
             }
           />
         </svg>

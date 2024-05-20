@@ -32,21 +32,21 @@ export const ShopByCategorySection: React.FC = () => {
   const categoryData = [
     {
       productsAmount: phonesAmount,
-      imgUrl: '/img/ShopByCategory/1.png',
+      imgUrl: 'img/ShopByCategory/1.png',
       name: t(`common:home.phones`),
       imgBgColor: 'violet',
       urlPath: 'phones',
     },
     {
       productsAmount: tabletsAmount,
-      imgUrl: '/img/ShopByCategory/2.png',
+      imgUrl: 'img/ShopByCategory/2.png',
       name: t(`common:home.tablets`),
       imgBgColor: 'gray',
       urlPath: 'tablets',
     },
     {
       productsAmount: accessoriesAmount,
-      imgUrl: '/img/ShopByCategory/3.png',
+      imgUrl: 'img/ShopByCategory/3.png',
       name: t(`common:home.accessories`),
       imgBgColor: 'pink',
       urlPath: 'accessories',

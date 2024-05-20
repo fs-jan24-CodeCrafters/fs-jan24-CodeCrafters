@@ -36,7 +36,7 @@ export const ErrorPage: React.FC = () => {
       </Container>
       <img
         className={styles.image}
-        src="/img/errorPage/1.png"
+        src="img/errorPage/1.png"
         alt="rolling field"
       />
     </section>

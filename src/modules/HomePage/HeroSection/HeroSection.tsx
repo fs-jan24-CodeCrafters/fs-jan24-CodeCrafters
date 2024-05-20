@@ -24,19 +24,19 @@ interface SliderItem {
 const sliderItems: SliderItem[] = [
   {
     id: 1,
-    img: '/img/hero/1.jpg',
+    img: 'img/hero/1.jpg',
     description: 'Watch',
     url: '/accessories',
   },
   {
     id: 2,
-    img: '/img/hero/2.jpg',
+    img: 'img/hero/2.jpg',
     description: 'Phones',
     url: '/phones',
   },
   {
     id: 3,
-    img: '/img/hero/3.jpg',
+    img: 'img/hero/3.jpg',
     description: 'Tablets',
     url: '/tablets',
   },
