@@ -51,7 +51,7 @@ export const Favorites: React.FC = () => {
 
               <div className={styles.image}>
                 <svg className={styles.icon}>
-                  <use href={`/icons/symbol-defs.svg#icon-broken-heart`} />
+                  <use href={`icons/symbol-defs.svg#icon-broken-heart`} />
                 </svg>
               </div>
               <ContinueShoppingLink />

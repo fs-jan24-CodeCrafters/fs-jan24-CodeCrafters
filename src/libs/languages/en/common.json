@@ -99,7 +99,7 @@
     "title": "Our Team",
     "people": [
       {
-        "imgUrl": "/img/contacts/anastasiia.jpg",
+        "imgUrl": "img/contacts/anastasiia.jpg",
         "name": "Anastasiia Vasylieva",
         "title": "Full-Stack Developer",
         "socialLinks": [
@@ -118,7 +118,7 @@
         ]
       },
       {
-        "imgUrl": "/img/contacts/oleg.jpeg",
+        "imgUrl": "img/contacts/oleg.jpeg",
         "name": "Oleg Syoma",
         "title": "Full-Stack Developer",
         "socialLinks": [
@@ -137,7 +137,7 @@
         ]
       },
       {
-        "imgUrl": "/img/contacts/eugene.jpeg",
+        "imgUrl": "img/contacts/eugene.jpeg",
         "name": "Yevhen Vladarskyi",
         "title": "Full-Stack Developer",
         "socialLinks": [
@@ -156,7 +156,7 @@
         ]
       },
       {
-        "imgUrl": "/img/contacts/lesia.jpg",
+        "imgUrl": "img/contacts/lesia.jpg",
         "name": "Olesia Hlukhaniuk",
         "title": "Full-Stack Developer",
         "socialLinks": [
@@ -175,7 +175,7 @@
         ]
       },
       {
-        "imgUrl": "/img/contacts/elementor-placeholder-image.png",
+        "imgUrl": "img/contacts/elementor-placeholder-image.png",
         "name": "Dmytro Luhanskyi",
         "title": "Full-Stack Developer",
         "socialLinks": [
