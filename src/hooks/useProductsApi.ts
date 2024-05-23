@@ -6,7 +6,7 @@ export const useProductsApi = (
   skipFetchOnMount?: boolean,
 ) => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (!skipFetchOnMount) {

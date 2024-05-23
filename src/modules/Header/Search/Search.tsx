@@ -61,7 +61,7 @@ export const Search = () => {
     return searchResults;
   };
 
-  const searchResults = useMemo(() => getSearchResults(), [searchItem]);
+  const searchResults = getSearchResults();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
