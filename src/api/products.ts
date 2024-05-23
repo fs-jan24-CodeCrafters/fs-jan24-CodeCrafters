@@ -5,8 +5,15 @@ export const getProducts = () => {
   return client.get<Product[]>('/products');
 };
 
-export const getProductsByCategory = (category: string) => {
-  return client.get<Product[]>(`/products/${category}`);
+export const getProductsByCategory = (
+  category: string,
+  sort?: string | undefined,
+  perPage?: string | undefined,
+  page?: string | undefined,
+) => {
+  return client.get<Product[]>(
+    `/products/${category}?sort=${sort}&perPage=${perPage}&page=${page}`,
+  );
 };
 
 export const getRecommendedProducts = (itemId: string) => {
