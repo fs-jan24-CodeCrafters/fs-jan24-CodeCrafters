@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import debouce from 'lodash.debounce';
@@ -11,6 +11,7 @@ import { SearchResults } from './SearchResults/SearchResults';
 import { Product } from '../../../types/Product';
 
 import styles from './Search.module.scss';
+import { searchProductsByTitle } from '../../../api/products';
 
 export const Search = () => {
   const { t } = useTranslation();
@@ -19,7 +20,11 @@ export const Search = () => {
   const nodeRef = useRef(null);
   const location = useLocation();
 
-  const { products, loading, fetchData } = useProductsApi();
+  const fetchFunction = useCallback(() => {
+    return searchProductsByTitle(searchItem);
+  }, [searchItem]);
+
+  const { products, loading, fetchData } = useProductsApi(fetchFunction, true);
 
   const handleOnClick = () => {
     setInputVisible(true);
@@ -61,10 +66,13 @@ export const Search = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
     setSearchItem(searchTerm);
-    if (searchTerm) {
+  };
+
+  useEffect(() => {
+    if (searchItem) {
       fetchData();
     }
-  };
+  }, [searchItem]);
 
   const debouncedResults = useMemo(() => {
     return debouce(handleInputChange, 300);

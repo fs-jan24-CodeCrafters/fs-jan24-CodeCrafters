@@ -15,6 +15,7 @@ import { ProductsList } from './ProductsList';
 import { Selects } from './Selects';
 import { Pagination } from './Pagination';
 import { RangePriceFilter } from './RangePriceFilter/RangePriceFilter';
+import { getProductsByCategory as getProductsByCategoryBack } from '../../api/products';
 
 import styles from './CatalogPage.module.scss';
 
@@ -23,7 +24,12 @@ export const CatalogPage: React.FC = () => {
   const { path, categoryName } = getPathAndCategoryNameFromUrl();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { products, loading } = useProductsApi();
+  const fetchFunction = () => {
+    return getProductsByCategoryBack(categoryName);
+  };
+
+  //its just to fix an error, check if this work when you will be implementing backend logic
+  const { products, loading } = useProductsApi(fetchFunction);
 
   const productsList = getProductsByCategory(products, path);
 
