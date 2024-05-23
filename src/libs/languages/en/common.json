@@ -197,5 +197,7 @@
   },
   "continueShopping": {
     "text": "Continue shopping"
-  }
+  },
+  "errorMessage": "Something went wrong. Please try again later.",
+  "goodsNotFound": "Goods not found"
 }
