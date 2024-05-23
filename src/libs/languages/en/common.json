@@ -99,7 +99,7 @@
     "title": "Our Team",
     "people": [
       {
-        "imgUrl": "/img/contacts/anastasiia.jpg",
+        "imgUrl": "img/contacts/anastasiia.jpg",
         "name": "Anastasiia Vasylieva",
         "title": "Full-Stack Developer",
         "socialLinks": [
@@ -118,7 +118,7 @@
         ]
       },
       {
-        "imgUrl": "/img/contacts/oleg.jpeg",
+        "imgUrl": "img/contacts/oleg.jpeg",
         "name": "Oleg Syoma",
         "title": "Full-Stack Developer",
         "socialLinks": [
@@ -137,7 +137,7 @@
         ]
       },
       {
-        "imgUrl": "/img/contacts/eugene.jpeg",
+        "imgUrl": "img/contacts/eugene.jpeg",
         "name": "Yevhen Vladarskyi",
         "title": "Full-Stack Developer",
         "socialLinks": [
@@ -147,7 +147,7 @@
           },
           {
             "iconName": "linkedin-icon",
-            "socialUrl": "www.linkedin.com/in/vladarskyi"
+            "socialUrl": "https://www.linkedin.com/in/vladarskyi"
           },
           {
             "iconName": "telegram-icon",
@@ -156,7 +156,7 @@
         ]
       },
       {
-        "imgUrl": "/img/contacts/lesia.jpg",
+        "imgUrl": "img/contacts/lesia.jpg",
         "name": "Olesia Hlukhaniuk",
         "title": "Full-Stack Developer",
         "socialLinks": [
@@ -175,24 +175,27 @@
         ]
       },
       {
-        "imgUrl": "/img/contacts/elementor-placeholder-image.png",
-        "name": "Dmitriy",
+        "imgUrl": "img/contacts/elementor-placeholder-image.png",
+        "name": "Dmytro Luhanskyi",
         "title": "Full-Stack Developer",
         "socialLinks": [
           {
             "iconName": "git-hub-icon",
-            "socialUrl": "https://github.com/vladarskyi"
+            "socialUrl": "https://github.com/Dmitrel"
           },
           {
             "iconName": "linkedin-icon",
-            "socialUrl": "www.linkedin.com/in/vladarskyi"
+            "socialUrl": "https://www.linkedin.com/feed/"
           },
           {
             "iconName": "telegram-icon",
-            "socialUrl": "https://t.me/vladarskyi"
+            "socialUrl": "https://t.me/Dmitr044"
           }
         ]
       }
     ]
+  },
+  "continueShopping": {
+    "text": "Continue shopping"
   }
 }

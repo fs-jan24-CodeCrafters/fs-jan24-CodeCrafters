@@ -68,3 +68,24 @@ svg {
 	border-radius: 10px;
 	cursor: pointer;
 }
+
+.range-slider {
+
+	.range-slider__range,
+	.range-slider__thumb {
+		background-color: var(--button-color);
+	}
+
+	.range-slider__thumb[data-disabled] {
+		display: none;
+	}
+
+	&[data-disabled] {
+		background-color: var(--secondary);
+		
+		* {
+			background-color: var(--secondary);
+			border-radius: 4px;
+		}
+	}
+}

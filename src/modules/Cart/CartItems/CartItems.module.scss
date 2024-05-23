@@ -55,11 +55,24 @@
 
 .productDescription {
 	width: 100%;
+
+	@include mobile-small {
+		gap: 8px;
+	}
 }
 
 .productImage {
-	width: 66px;
-	height: 66px;
+	max-width: 66px;
+	max-height: 66px;
+	width: 100%;
+	height: 100%;
+
+	img {
+		width: 66px;
+		height: 66px;
+
+		object-fit: contain;
+	}
 }
 
 .productPrice {

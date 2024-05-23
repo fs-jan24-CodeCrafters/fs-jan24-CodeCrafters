@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet';
 
 import { getProductsByCategory } from '../../helpers/getProductsByCategory';
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
@@ -13,6 +14,7 @@ import { Loader } from '../Shared/Loader';
 import { ProductsList } from './ProductsList';
 import { Selects } from './Selects';
 import { Pagination } from './Pagination';
+import { RangePriceFilter } from './RangePriceFilter/RangePriceFilter';
 
 import styles from './CatalogPage.module.scss';
 
@@ -25,11 +27,23 @@ export const CatalogPage: React.FC = () => {
 
   const productsList = getProductsByCategory(products, path);
 
+  const minPrice = Math.min(...productsList.map((product) => product.price));
+  const maxPrice = Math.max(...productsList.map((product) => product.price));
+
+  const priceRange = searchParams
+    .get('range')
+    ?.split(',')
+    .map((i) => +i) || [minPrice, maxPrice];
+
   const currentSortBy = searchParams.get('sort') || 'featured';
   const currentPerPageOptions = searchParams.get('perPage') || 16;
   const currentPage = Number(searchParams.get('page')) || 1;
 
-  const sortedByFormUrl = getSortedProducts(productsList, currentSortBy);
+  const filteredProducts = productsList.filter(
+    (product) =>
+      product.price >= priceRange[0] && product.price <= priceRange[1],
+  );
+  const sortedByFormUrl = getSortedProducts(filteredProducts, currentSortBy);
 
   const itemsPerPage = Number(currentPerPageOptions) || sortedByFormUrl.length;
 
@@ -57,38 +71,55 @@ export const CatalogPage: React.FC = () => {
   );
 
   return (
-    <Container className="section">
-      <Breadcrumbs>
-        <BreadcrumbsItem tagType="span">
-          {catalogPageBreadcrumb}
-        </BreadcrumbsItem>
-      </Breadcrumbs>
-      <Title titleTag="h1" className={styles.title}>
-        {catalogPageTitle}
-      </Title>
-      <span className={`${styles.textItem} ${styles.productsAmountText}`}>
-        {loading ? (
-          <span className={styles.textItemLoader}>
-            <Loader />
-          </span>
-        ) : (
-          `${productsList.length} ${t(`common:catalog.models`)}`
-        )}
-      </span>
+    <>
+      <Helmet>
+        <title>{catalogPageTitle}</title>
+        <meta name="description" content={catalogPageTitle} />
+      </Helmet>
+      <Container className="section">
+        <Breadcrumbs>
+          <BreadcrumbsItem tagType="span">
+            {catalogPageBreadcrumb}
+          </BreadcrumbsItem>
+        </Breadcrumbs>
+        <Title titleTag="h1" className={styles.title}>
+          {catalogPageTitle}
+        </Title>
+        <span className={`${styles.textItem} ${styles.productsAmountText}`}>
+          {loading ? (
+            <span className={styles.textItemLoader}>
+              <Loader />
+            </span>
+          ) : (
+            `${filteredProducts.length} ${t(`common:catalog.models`)}`
+          )}
+        </span>
 
-      <Selects
-        setSearchParams={setSearchParams}
-        currentSortBy={currentSortBy}
-        itemsPerPage={itemsPerPage}
-      />
+        <div className={styles.listFilterWrapper}>
+          <Selects
+            setSearchParams={setSearchParams}
+            currentSortBy={currentSortBy}
+            itemsPerPage={itemsPerPage}
+          />
 
-      <ProductsList products={visibleProducts} loading={loading} />
+          <RangePriceFilter
+            value={priceRange as [number, number]}
+            minPrice={minPrice}
+            maxPrice={maxPrice}
+            disabled={loading}
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+          />
+        </div>
 
-      <Pagination
-        products={sortedByFormUrl}
-        itemsPerPage={itemsPerPage}
-        currentPage={currentPage}
-      />
-    </Container>
+        <ProductsList products={visibleProducts} loading={loading} />
+
+        <Pagination
+          products={sortedByFormUrl}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+        />
+      </Container>
+    </>
   );
 };

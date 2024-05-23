@@ -37,3 +37,14 @@
 .buttonNo {
 	width: 30%;
 }
+
+.buttonNo {
+	background-color: var(--primary-button-selected);
+	color: var(--primary);
+	border: 1px solid var(--second-button-border-color);
+
+	&:hover {
+		box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.4);
+		background-color: initial;
+	}
+}

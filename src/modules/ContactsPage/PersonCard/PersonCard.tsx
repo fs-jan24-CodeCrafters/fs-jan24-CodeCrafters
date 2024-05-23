@@ -38,7 +38,7 @@ export const PersonCard: React.FC<Props> = ({ person }) => {
                     [styles.iconGit]: item.iconName === 'git-hub-icon',
                   })}
                 >
-                  <use href={`/icons/symbol-defs.svg#${item.iconName}`} />
+                  <use href={`icons/symbol-defs.svg#${item.iconName}`} />
                 </svg>
               </a>
             </li>

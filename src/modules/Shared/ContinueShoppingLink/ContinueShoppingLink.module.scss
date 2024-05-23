@@ -1,0 +1,25 @@
+.link {
+	width: 100%;
+	max-width: 300px;
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid transparent;
+	padding: 15px;
+	font-weight: 600;
+	line-height: 1;
+
+	color: var(--white);
+	background: var(--button-color);
+
+	@include transition(all);
+
+	&:hover {
+		box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.4);
+		background-color: var(--primary-button-hover);
+	}
+
+}

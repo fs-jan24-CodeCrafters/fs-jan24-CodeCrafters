@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { ContinueShoppingLink } from '../../Shared/ContinueShoppingLink';
 import { Title } from '../../Shared/Title';
 
 import styles from './EmptyCart.module.scss';
@@ -29,13 +30,14 @@ export const EmptyCart: React.FC<Props> = ({ isPaymentSuccess }) => {
           <use
             href={
               isPaymentSuccess
-                ? `/icons/symbol-defs.svg#icon-delivery-man`
-                : `/icons/symbol-defs.svg#icon-man-with-cart`
+                ? `icons/symbol-defs.svg#icon-delivery-man`
+                : `icons/symbol-defs.svg#icon-man-with-cart`
             }
           />
         </svg>
       </div>
       <span className={styles.line}></span>
+      <ContinueShoppingLink />
     </div>
   );
 };

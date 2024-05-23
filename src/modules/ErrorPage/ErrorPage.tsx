@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet';
 
 import { Button } from '../Shared/Button';
 import { Title } from '../Shared/Title';
@@ -12,6 +13,10 @@ export const ErrorPage: React.FC = () => {
 
   return (
     <section className={styles.section}>
+      <Helmet>
+        <title>{t(`common:error.title`)}</title>
+        <meta name="description" content={t(`common:error.title`)} />
+      </Helmet>
       <Container className={styles.container}>
         <div className={styles.errorWrapper}>
           <Title titleTag="h1">404</Title>
@@ -31,7 +36,7 @@ export const ErrorPage: React.FC = () => {
       </Container>
       <img
         className={styles.image}
-        src="/img/errorPage/1.png"
+        src="img/errorPage/1.png"
         alt="rolling field"
       />
     </section>

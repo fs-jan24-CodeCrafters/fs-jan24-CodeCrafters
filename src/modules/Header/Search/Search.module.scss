@@ -4,7 +4,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-bottom: 3px solid transparent;
 	border-left: 1px solid var(--elements);
 
 	@include tablet {
@@ -18,6 +17,11 @@
 		padding-right: 20px;
 	}
 
+	@extend %hover-underline;
+
+	&::before {
+		background-color: var(--primary);
+	}
 }
 
 .searchInputContainer {

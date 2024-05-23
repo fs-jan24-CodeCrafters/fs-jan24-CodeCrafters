@@ -8,6 +8,7 @@ import { Title } from '../../Shared/Title';
 import { Product } from '../../../types/Product';
 
 import styles from './CartItems.module.scss';
+import { Link } from 'react-router-dom';
 
 const MAX_QUANTITY_PER_ITEM = 99;
 
@@ -28,7 +29,7 @@ export const CartItems: React.FC<Props> = ({ dispatch, cart }) => {
     <ul>
       <TransitionGroup>
         {cart.map((item) => {
-          const { image, name, price, quantity, id } = item;
+          const { image, name, price, quantity, id, category, itemId } = item;
 
           return (
             <CSSTransition
@@ -50,8 +51,12 @@ export const CartItems: React.FC<Props> = ({ dispatch, cart }) => {
                       iconName="icon-Close"
                     />
                   </button>
-
-                  <img className={styles.productImage} src={image} alt={name} />
+                  <Link
+                    className={styles.productImage}
+                    to={`/${category}/${itemId}`}
+                  >
+                    <img src={image} alt={name} />
+                  </Link>
                   <Title titleTag="h5">{name}</Title>
                 </div>
 
