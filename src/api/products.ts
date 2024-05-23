@@ -20,3 +20,7 @@ export const getNewProducts = () => {
 export const getDiscountedProducts = () => {
   return client.get<Product[]>('/products/discount');
 };
+
+export const searchProductsByTitle = (name: string) => {
+  return client.get<Product[]>(`/products/search?name=${name}`);
+};
