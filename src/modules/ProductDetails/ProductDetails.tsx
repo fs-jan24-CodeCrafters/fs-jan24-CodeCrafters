@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
-import { getProductsByCategory } from '../../helpers/getProductsByCategory';
 import { getProductIdFromUrl } from '../../helpers/getProductIdFromUrl';
 import { findProductById } from '../../helpers/findProductById';
 import { useProductsApi } from '../../hooks/useProductsApi';
@@ -18,6 +17,7 @@ import { ProductInfo } from './ProductInfo';
 import { VariantsSection } from './VariantsSection';
 
 import styles from './ProductDetails.module.scss';
+import { getRecommendedProducts } from '../../api/products';
 
 export const ProductDetails: React.FC = () => {
   const { t } = useTranslation();
@@ -25,7 +25,11 @@ export const ProductDetails: React.FC = () => {
   const productId = getProductIdFromUrl();
   const navigate = useNavigate();
 
-  const { products, loading } = useProductsApi();
+  const fetchFunction = () => {
+    return getRecommendedProducts(productId!);
+  };
+
+  const { products, loading } = useProductsApi(fetchFunction);
 
   if (!productId) {
     return;
@@ -38,10 +42,6 @@ export const ProductDetails: React.FC = () => {
       navigate('/not-found', { replace: true });
     }
   });
-
-  const recommendedProducts = getProductsByCategory(products, path)
-    .filter((product) => product.itemId !== productId)
-    .slice(0, 10);
 
   const breadcrumbsNames: Record<string, string> = {
     Phones: t(`common:catalog.phones`),
@@ -85,7 +85,7 @@ export const ProductDetails: React.FC = () => {
               <section className="section">
                 <ProductsSlider
                   sliderTitle={t(`common:product.slider`)}
-                  products={recommendedProducts}
+                  products={products}
                 />
               </section>
             </>

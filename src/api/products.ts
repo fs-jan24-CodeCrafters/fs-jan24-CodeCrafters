@@ -9,8 +9,8 @@ export const getProductsByCategory = (category: string) => {
   return client.get<Product[]>(`/products/${category}`);
 };
 
-export const getRecommendedProducts = (id: number) => {
-  return client.get<Product[]>(`/products/${id}/recommended`);
+export const getRecommendedProducts = (itemId: string) => {
+  return client.get<Product[]>(`/products/${itemId}/recommended`);
 };
 
 export const getNewProducts = () => {

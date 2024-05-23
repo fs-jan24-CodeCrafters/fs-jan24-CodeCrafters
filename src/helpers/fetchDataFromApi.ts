@@ -1,12 +1,11 @@
-import products from '../../public/api/products.json';
+// import products from '../../public/api/products.json';
 import { Product } from '../types/Product';
 
-const apiData = products as Product[];
+// const apiData = products as Product[];
 
-export const fetchDataFromApi = (): Promise<Product[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(apiData);
-    }, 500);
-  });
+export const fetchDataFromApi = async (
+  fetchFunction: () => Promise<Product[]>,
+): Promise<Product[]> => {
+  const result = await fetchFunction();
+  return result;
 };
