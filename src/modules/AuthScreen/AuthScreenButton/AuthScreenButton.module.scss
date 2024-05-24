@@ -1,0 +1,34 @@
+.authButton {
+    position: fixed;
+    top: 150px;
+    right: -50px;
+    width: 150px;
+    height: 50px;
+    transform: rotate(90deg);
+    z-index: 20;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--button-color);
+    color: var(--white);
+
+    text-transform: uppercase;
+    font-size: large;
+
+    @include transition(scale);
+
+    &:hover {
+        scale: 1.1;
+    }
+
+    @include mobile-small {
+        position: fixed;
+        top: 50px;
+        right: 0;
+        width: 90px;
+        height: 30px;
+        transform: rotate(0deg);
+    }
+}

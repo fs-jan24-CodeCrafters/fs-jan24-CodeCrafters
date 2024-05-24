@@ -199,5 +199,14 @@
     "text": "Continue shopping"
   },
   "errorMessage": "Something went wrong. Please try again later.",
-  "goodsNotFound": "Goods not found"
+  "goodsNotFound": "Goods not found",
+  "auth": {
+    "login": "Login",
+    "createAccount": "Create account",
+    "signIn": "Sign in",
+    "welcome": "Welcome back!",
+    "welcomeDesc": "Use socials network to use all of site features",
+    "hello": "Hello, friend!",
+    "helloDesc": "Register with your social network to use all of site features"
+  }
 }
