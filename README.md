@@ -4,7 +4,7 @@ Welcome to our Mobile Store project! This project is developed using Vite, React
 
 ## Demo
 
-Check out the [DEMO](https://fs-jan24-code-crafters.vercel.app) to see the project in action!
+Check out the [DEMO](https://fs-jan24-codecrafters.github.io/fs-jan24-CodeCrafters/) to see the project in action!
 
 ## Table of Contents
 
