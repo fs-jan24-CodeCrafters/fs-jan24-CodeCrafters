@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
@@ -14,21 +14,16 @@ import { Title } from '../Shared/Title';
 import { Loader } from '../Shared/Loader';
 import { ProductInfo } from './ProductInfo';
 import { VariantsSection } from './VariantsSection';
-
 import styles from './ProductDetails.module.scss';
 import { getRecommendedProducts } from '../../api/products';
 import { getProductItemById } from '../../api/productItem';
-import { ProductDetails } from '../../types/ProductDetails';
+import { useProductItemApi } from '../../hooks/useProductItemApi';
 
-export const ProductDetail: React.FC = () => {
-  //// ProductDetails
+export const ProductDetails: React.FC = () => {
   const { t } = useTranslation();
   const { path, categoryName } = getPathAndCategoryNameFromUrl();
   const productId = getProductIdFromUrl();
   const navigate = useNavigate();
-  const [currentProduct, setCurrentProduct] = useState<ProductDetails | null>(
-    null,
-  );
 
   const fetchFunction = () => {
     return getRecommendedProducts(productId!);
@@ -36,15 +31,16 @@ export const ProductDetail: React.FC = () => {
 
   const { products, loading } = useProductsApi(fetchFunction);
 
+  const { currentProduct, isError } = useProductItemApi(
+    getProductItemById,
+    productId!,
+  );
+
   useEffect(() => {
-    if (productId) {
-      getProductItemById(productId!)
-        .then(setCurrentProduct)
-        .catch(() => {
-          navigate('/not-found', { replace: true });
-        });
+    if (isError) {
+      navigate('/not-found', { replace: true });
     }
-  }, []);
+  }, [isError]);
 
   const breadcrumbsNames: Record<string, string> = {
     Phones: t(`common:catalog.phones`),
