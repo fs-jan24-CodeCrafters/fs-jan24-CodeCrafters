@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { scrollToTop } from '../../../helpers/scrollToTop';
 import { SearchLink } from '../../Shared/SearchLink';
 import { SpriteIcon } from '../../Shared/SpriteIcon';
-import { Product } from '../../../types/Product';
 
 import styles from './Pagination.module.scss';
 
@@ -18,16 +17,11 @@ interface PagesCutParams {
 }
 
 interface Props {
-  products: Product[];
-  itemsPerPage: number;
   currentPage: number;
+  totalPageNum: number;
 }
 
-export const Pagination: React.FC<Props> = ({
-  products,
-  itemsPerPage,
-  currentPage,
-}) => {
+export const Pagination: React.FC<Props> = ({ currentPage, totalPageNum }) => {
   const getPagesCut = ({
     pagesCount,
     pagesCutCount,
@@ -50,7 +44,6 @@ export const Pagination: React.FC<Props> = ({
     }
   };
 
-  const totalPageNum = Math.ceil(products.length / itemsPerPage);
   const pagesCut = getPagesCut({
     pagesCount: totalPageNum,
     pagesCutCount: 5,

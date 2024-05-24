@@ -2,10 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 
-import { getProductsByCategory } from '../../helpers/getProductsByCategory';
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
-import { getSortedProducts } from '../../helpers/getSortedProducts';
-import { useProductsApi } from '../../hooks/useProductsApi';
 import { Container } from '../Shared/Container';
 import { Breadcrumbs } from '../Shared/Breadcrumbs';
 import { BreadcrumbsItem } from '../Shared/Breadcrumbs/BreadcrumbsItem';
@@ -18,20 +15,30 @@ import { RangePriceFilter } from './RangePriceFilter/RangePriceFilter';
 import { getProductsByCategory as getProductsByCategoryBack } from '../../api/products';
 
 import styles from './CatalogPage.module.scss';
+import { useFetch } from '../../hooks/useFetch';
+import { Product } from '../../types/Product';
+import { useEffect, useRef } from 'react';
 
 export const CatalogPage: React.FC = () => {
   const { t } = useTranslation();
   const { path, categoryName } = getPathAndCategoryNameFromUrl();
   const [searchParams, setSearchParams] = useSearchParams();
+  const isFirstMount = useRef(true);
 
-  const fetchFunction = () => {
-    return getProductsByCategoryBack(categoryName);
-  };
+  const currentSortBy = searchParams.get('sort') || 'featured';
+  const currentPerPageOptions = searchParams.get('perPage') || '16';
+  const currentPage = searchParams.get('page') || '1';
 
-  //its just to fix an error, check if this work when you will be implementing backend logic
-  const { products, loading } = useProductsApi(fetchFunction);
+  const { data, loading, isError } = useFetch(
+    getProductsByCategoryBack,
+    path,
+    currentSortBy,
+    currentPerPageOptions,
+    currentPage,
+  );
 
-  const productsList = getProductsByCategory(products, path);
+  const productsList = (data.products as Product[]) || [];
+  const totalPageNum = data.totalPages;
 
   const minPrice = Math.min(...productsList.map((product) => product.price));
   const maxPrice = Math.max(...productsList.map((product) => product.price));
@@ -41,17 +48,12 @@ export const CatalogPage: React.FC = () => {
     ?.split(',')
     .map((i) => +i) || [minPrice, maxPrice];
 
-  const currentSortBy = searchParams.get('sort') || 'featured';
-  const currentPerPageOptions = searchParams.get('perPage') || 16;
-  const currentPage = Number(searchParams.get('page')) || 1;
-
   const filteredProducts = productsList.filter(
     (product) =>
       product.price >= priceRange[0] && product.price <= priceRange[1],
   );
-  const sortedByFormUrl = getSortedProducts(filteredProducts, currentSortBy);
 
-  const itemsPerPage = Number(currentPerPageOptions) || sortedByFormUrl.length;
+  const itemsPerPage = filteredProducts.length;
 
   const categoryNames: Record<string, string> = {
     Phones: t(`common:catalog.mobilePhones`),
@@ -68,13 +70,19 @@ export const CatalogPage: React.FC = () => {
   const catalogPageTitle = categoryNames[categoryName];
   const catalogPageBreadcrumb = breadcrumbsNames[categoryName];
 
-  const indexOfLastProduct = currentPage * itemsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+  useEffect(() => {
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
 
-  const visibleProducts = sortedByFormUrl.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct,
-  );
+      return;
+    }
+
+    setSearchParams((prevParams) => {
+      const newParams = new URLSearchParams(prevParams);
+      newParams.delete('range');
+      return newParams;
+    });
+  }, [currentSortBy]);
 
   return (
     <>
@@ -118,12 +126,21 @@ export const CatalogPage: React.FC = () => {
           />
         </div>
 
-        <ProductsList products={visibleProducts} loading={loading} />
+        {!isError && (
+          <ProductsList products={filteredProducts} loading={loading} />
+        )}
+
+        {isError && (
+          <p className={styles.textAlert}>{t(`common:errorMessage`)}</p>
+        )}
+
+        {!isError && !loading && !filteredProducts.length && (
+          <p className={styles.textAlert}>{t(`common:goodsNotFound`)}</p>
+        )}
 
         <Pagination
-          products={sortedByFormUrl}
-          itemsPerPage={itemsPerPage}
-          currentPage={currentPage}
+          currentPage={Number(currentPage)}
+          totalPageNum={totalPageNum}
         />
       </Container>
     </>
