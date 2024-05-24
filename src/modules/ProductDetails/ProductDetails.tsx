@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet';
 
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 import { getProductIdFromUrl } from '../../helpers/getProductIdFromUrl';
-import { findProductById } from '../../helpers/findProductById';
 import { useProductsApi } from '../../hooks/useProductsApi';
 import { Breadcrumbs } from '../Shared/Breadcrumbs';
 import { BreadcrumbsItem } from '../Shared/Breadcrumbs/BreadcrumbsItem';
@@ -15,9 +14,10 @@ import { Title } from '../Shared/Title';
 import { Loader } from '../Shared/Loader';
 import { ProductInfo } from './ProductInfo';
 import { VariantsSection } from './VariantsSection';
-
 import styles from './ProductDetails.module.scss';
 import { getRecommendedProducts } from '../../api/products';
+import { getProductItemById } from '../../api/productItem';
+import { useProductItemApi } from '../../hooks/useProductItemApi';
 
 export const ProductDetails: React.FC = () => {
   const { t } = useTranslation();
@@ -31,17 +31,16 @@ export const ProductDetails: React.FC = () => {
 
   const { products, loading } = useProductsApi(fetchFunction);
 
-  if (!productId) {
-    return;
-  }
-
-  const currentProduct = findProductById(path, productId);
+  const { currentProduct, isError } = useProductItemApi(
+    getProductItemById,
+    productId!,
+  );
 
   useEffect(() => {
-    if (!currentProduct) {
+    if (isError) {
       navigate('/not-found', { replace: true });
     }
-  });
+  }, [isError]);
 
   const breadcrumbsNames: Record<string, string> = {
     Phones: t(`common:catalog.phones`),
