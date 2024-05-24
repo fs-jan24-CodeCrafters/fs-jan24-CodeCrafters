@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 import { getProductIdFromUrl } from '../../helpers/getProductIdFromUrl';
-import { findProductById } from '../../helpers/findProductById';
 import { useProductsApi } from '../../hooks/useProductsApi';
 import { Breadcrumbs } from '../Shared/Breadcrumbs';
 import { BreadcrumbsItem } from '../Shared/Breadcrumbs/BreadcrumbsItem';
@@ -18,12 +17,18 @@ import { VariantsSection } from './VariantsSection';
 
 import styles from './ProductDetails.module.scss';
 import { getRecommendedProducts } from '../../api/products';
+import { getProductItemById } from '../../api/productItem';
+import { ProductDetails } from '../../types/ProductDetails';
 
-export const ProductDetails: React.FC = () => {
+export const ProductDetail: React.FC = () => {
+  //// ProductDetails
   const { t } = useTranslation();
   const { path, categoryName } = getPathAndCategoryNameFromUrl();
   const productId = getProductIdFromUrl();
   const navigate = useNavigate();
+  const [currentProduct, setCurrentProduct] = useState<ProductDetails | null>(
+    null,
+  );
 
   const fetchFunction = () => {
     return getRecommendedProducts(productId!);
@@ -31,17 +36,15 @@ export const ProductDetails: React.FC = () => {
 
   const { products, loading } = useProductsApi(fetchFunction);
 
-  if (!productId) {
-    return;
-  }
-
-  const currentProduct = findProductById(path, productId);
-
   useEffect(() => {
-    if (!currentProduct) {
-      navigate('/not-found', { replace: true });
+    if (productId) {
+      getProductItemById(productId!)
+        .then(setCurrentProduct)
+        .catch(() => {
+          navigate('/not-found', { replace: true });
+        });
     }
-  });
+  }, []);
 
   const breadcrumbsNames: Record<string, string> = {
     Phones: t(`common:catalog.phones`),
