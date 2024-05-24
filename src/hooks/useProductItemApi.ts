@@ -12,7 +12,7 @@ export const useProductItemApi = (
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [productId]);
 
   const fetchData = useCallback(async () => {
     setIsError(false);
