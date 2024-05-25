@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import styles from './Selects.module.scss';
+import classNames from 'classnames';
 
 export interface OptionsEntries {
   value: string | number;
@@ -13,12 +14,14 @@ interface Props {
   setSearchParams: ReturnType<typeof useSearchParams>[1];
   currentSortBy: string;
   itemsPerPage: number;
+  loading: boolean;
 }
 
 export const Selects: React.FC<Props> = ({
   setSearchParams,
   currentSortBy,
   itemsPerPage,
+  loading,
 }) => {
   const { t } = useTranslation();
 
@@ -54,7 +57,11 @@ export const Selects: React.FC<Props> = ({
 
   return (
     <div className={styles.selectList}>
-      <div className={styles.selectSort}>
+      <div
+        className={classNames(styles.selectSort, {
+          [styles.selectDisabled]: loading,
+        })}
+      >
         <span className={`${styles.textItem} ${styles.selectTitle}`}>
           {t(`common:catalog.select.title`)}
         </span>
@@ -68,7 +75,11 @@ export const Selects: React.FC<Props> = ({
         />
       </div>
 
-      <div className={styles.selectPerPage}>
+      <div
+        className={classNames(styles.selectPerPage, {
+          [styles.selectDisabled]: loading,
+        })}
+      >
         <span className={`${styles.textItem} ${styles.selectTitle}`}>
           {t(`common:catalog.itemsOnPage`)}
         </span>

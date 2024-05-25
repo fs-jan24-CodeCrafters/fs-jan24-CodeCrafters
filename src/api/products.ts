@@ -10,9 +10,10 @@ export const getProductsByCategory = (
   sort?: string | undefined,
   perPage?: string | undefined,
   page?: string | undefined,
+  range?: string | undefined,
 ) => {
   return client.get<Product[]>(
-    `/products/${category}?sort=${sort}&perPage=${perPage}&page=${page}`,
+    `/products/${category}?sort=${sort}&perPage=${perPage}&page=${page}&range=${range}`,
   );
 };
 

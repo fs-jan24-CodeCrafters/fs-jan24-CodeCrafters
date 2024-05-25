@@ -11,8 +11,6 @@ import styles from './RangePriceFilter.module.scss';
 interface RangePriceFilterProps {
   value: [number, number];
   disabled: boolean;
-  minPrice: number;
-  maxPrice: number;
   searchParams: URLSearchParams;
   setSearchParams: ReturnType<typeof useSearchParams>[1];
 }
@@ -20,15 +18,12 @@ interface RangePriceFilterProps {
 export const RangePriceFilter: React.FC<RangePriceFilterProps> = ({
   value,
   disabled,
-  minPrice,
-  maxPrice,
   searchParams,
   setSearchParams,
 }) => {
-  const [inputValue, setInputValue] = useState<[number, number]>([
-    minPrice,
-    maxPrice,
-  ]);
+  const [minPrice, maxPrice] = value;
+
+  const [inputValue, setInputValue] = useState<[number, number]>(value);
 
   const debouncedUpdateSearchParams = useMemo(
     () =>
@@ -50,18 +45,16 @@ export const RangePriceFilter: React.FC<RangePriceFilterProps> = ({
 
   const handleFromInput = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    if (!/^\d+$/.test(newValue) && newValue !== '') return;
     const newFromVal = Math.min(Number(newValue), maxPrice);
     setInputValue([newFromVal, inputValue[1]]);
-    debouncedUpdateSearchParams([newFromVal, value[1]]);
+    debouncedUpdateSearchParams([newFromVal, maxPrice]);
   };
 
   const handleToInput = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    if (!/^\d+$/.test(newValue) && newValue !== '') return;
     const newToVal = Math.min(Number(newValue), maxPrice);
     setInputValue([inputValue[0], newToVal]);
-    debouncedUpdateSearchParams([value[0], newToVal]);
+    debouncedUpdateSearchParams([minPrice, newToVal]);
   };
 
   useEffect(() => {
@@ -85,20 +78,20 @@ export const RangePriceFilter: React.FC<RangePriceFilterProps> = ({
           <label className={styles.label}>
             $
             <input
+              value={inputValue[0]}
               onChange={handleFromInput}
               className={styles.input}
-              value={inputValue[0]}
-              type="text"
+              type="number"
             />
           </label>
           <span>-</span>
           <label className={styles.label}>
             $
             <input
+              value={inputValue[1]}
               onChange={handleToInput}
               className={styles.input}
-              value={inputValue[1]}
-              type="text"
+              type="number"
             />
           </label>
         </div>
@@ -106,7 +99,7 @@ export const RangePriceFilter: React.FC<RangePriceFilterProps> = ({
       <RangeSlider
         min={minPrice}
         max={maxPrice}
-        defaultValue={[minPrice, maxPrice]}
+        defaultValue={value}
         value={inputValue}
         onInput={handleSetInputValue}
         disabled={disabled}

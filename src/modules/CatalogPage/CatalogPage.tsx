@@ -26,8 +26,9 @@ export const CatalogPage: React.FC = () => {
   const isFirstMount = useRef(true);
 
   const currentSortBy = searchParams.get('sort') || 'featured';
-  const currentPerPageOptions = searchParams.get('perPage') || '16';
+  const currentPerPageOptions = searchParams.get('perPage');
   const currentPage = searchParams.get('page') || '1';
+  const priceRange = searchParams.get('range');
 
   const { data, loading, isError } = useFetch(
     getProductsByCategoryBack,
@@ -35,25 +36,16 @@ export const CatalogPage: React.FC = () => {
     currentSortBy,
     currentPerPageOptions,
     currentPage,
+    priceRange,
   );
+
+  const minPrice = data.min as number;
+  const maxPrice = data.max as number;
 
   const productsList = (data.products as Product[]) || [];
   const totalPageNum = data.totalPages;
 
-  const minPrice = Math.min(...productsList.map((product) => product.price));
-  const maxPrice = Math.max(...productsList.map((product) => product.price));
-
-  const priceRange = searchParams
-    .get('range')
-    ?.split(',')
-    .map((i) => +i) || [minPrice, maxPrice];
-
-  const filteredProducts = productsList.filter(
-    (product) =>
-      product.price >= priceRange[0] && product.price <= priceRange[1],
-  );
-
-  const itemsPerPage = filteredProducts.length;
+  const itemsPerPage = productsList.length;
 
   const categoryNames: Record<string, string> = {
     Phones: t(`common:catalog.mobilePhones`),
@@ -80,6 +72,7 @@ export const CatalogPage: React.FC = () => {
     setSearchParams((prevParams) => {
       const newParams = new URLSearchParams(prevParams);
       newParams.delete('range');
+      newParams.delete('page');
       return newParams;
     });
   }, [currentSortBy]);
@@ -105,7 +98,7 @@ export const CatalogPage: React.FC = () => {
               <Loader />
             </span>
           ) : (
-            `${filteredProducts.length} ${t(`common:catalog.models`)}`
+            `${productsList.length} ${t(`common:catalog.models`)}`
           )}
         </span>
 
@@ -114,27 +107,24 @@ export const CatalogPage: React.FC = () => {
             setSearchParams={setSearchParams}
             currentSortBy={currentSortBy}
             itemsPerPage={itemsPerPage}
+            loading={loading}
           />
 
           <RangePriceFilter
-            value={priceRange as [number, number]}
-            minPrice={minPrice}
-            maxPrice={maxPrice}
+            value={[minPrice, maxPrice]}
             disabled={loading}
             searchParams={searchParams}
             setSearchParams={setSearchParams}
           />
         </div>
 
-        {!isError && (
-          <ProductsList products={filteredProducts} loading={loading} />
-        )}
+        {!isError && <ProductsList products={productsList} loading={loading} />}
 
         {isError && (
           <p className={styles.textAlert}>{t(`common:errorMessage`)}</p>
         )}
 
-        {!isError && !loading && !filteredProducts.length && (
+        {!isError && !loading && !productsList.length && (
           <p className={styles.textAlert}>{t(`common:goodsNotFound`)}</p>
         )}
 

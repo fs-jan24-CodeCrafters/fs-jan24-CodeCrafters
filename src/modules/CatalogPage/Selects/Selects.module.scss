@@ -8,6 +8,11 @@
 	width: 100%;
 }
 
+.selectDisabled {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
 .selectList {
 	display: flex;
 	align-items: center;
