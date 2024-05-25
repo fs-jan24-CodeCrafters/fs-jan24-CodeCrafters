@@ -9,6 +9,7 @@ export const useProductItemApi = (
     null,
   );
   const [isError, setIsError] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchData();
@@ -16,14 +17,17 @@ export const useProductItemApi = (
 
   const fetchData = useCallback(async () => {
     setIsError(false);
+    setIsLoading(true);
     try {
       const resData = await fetchFunction(productId);
       setCurrentProduct(resData);
     } catch (error) {
       setIsError(true);
       throw new Error('Error fetching data');
+    } finally {
+      setIsLoading(false);
     }
   }, [fetchFunction, productId]);
 
-  return { currentProduct, isError, fetchData };
+  return { currentProduct, isError, isLoading, fetchData };
 };

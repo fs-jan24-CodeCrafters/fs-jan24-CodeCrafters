@@ -17,10 +17,12 @@ import { Product } from '../../../types/Product';
 
 import 'swiper/css';
 import styles from './VariantsSection.module.scss';
+import { Loader } from '../../Shared/Loader';
 
 interface Props {
   productDetails: ProductDetails;
   categoryName: string;
+  isLoading: boolean;
 }
 
 const getNewLinkByVariant = (
@@ -51,6 +53,7 @@ const getNewLinkByVariant = (
 export const VariantsSection: React.FC<Props> = ({
   productDetails,
   categoryName,
+  isLoading,
 }) => {
   const {
     id: itemId,
@@ -121,13 +124,17 @@ export const VariantsSection: React.FC<Props> = ({
                 slideTo(index);
               }}
             >
-              <img
-                className={classNames(styles.squareImage, {
-                  [styles['selectedSquareImage']]: selectedImage === image,
-                })}
-                src={image}
-                alt={product.name}
-              />
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <img
+                  className={classNames(styles.squareImage, {
+                    [styles['selectedSquareImage']]: selectedImage === image,
+                  })}
+                  src={image}
+                  alt={product.name}
+                />
+              )}
             </button>
           ))}
         </div>
@@ -143,12 +150,16 @@ export const VariantsSection: React.FC<Props> = ({
           >
             {images.map((image) => (
               <SwiperSlide key={image}>
-                <img
-                  key={`${image}_image`}
-                  src={image}
-                  alt={product.name}
-                  className={styles.selectedImage}
-                />
+                {isLoading ? (
+                  <Loader />
+                ) : (
+                  <img
+                    key={`${image}_image`}
+                    src={image}
+                    alt={product.name}
+                    className={styles.selectedImage}
+                  />
+                )}
               </SwiperSlide>
             ))}
           </Swiper>

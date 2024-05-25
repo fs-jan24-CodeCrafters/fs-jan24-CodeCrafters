@@ -31,7 +31,7 @@ export const ProductDetails: React.FC = () => {
 
   const { products, loading } = useProductsApi(fetchFunction);
 
-  const { currentProduct, isError } = useProductItemApi(
+  const { currentProduct, isError, isLoading } = useProductItemApi(
     getProductItemById,
     productId!,
   );
@@ -77,6 +77,7 @@ export const ProductDetails: React.FC = () => {
               <VariantsSection
                 productDetails={currentProduct}
                 categoryName={categoryName}
+                isLoading={isLoading}
               />
 
               <ProductInfo product={currentProduct} />
