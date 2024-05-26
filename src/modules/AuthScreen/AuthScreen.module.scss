@@ -198,7 +198,19 @@
 .morph_input {
     background-color: #ffffff66;
     backdrop-filter: blur(10px);
+
+    border: 1px solid var(--secondary);
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
 }
+
+.morph_button{
+    background-color: #ff000060 ;
+    backdrop-filter: blur(10px);
+    border: 2px solid #ff000020 !important;
+    letter-spacing: 3px;
+  }
 
 @include tablet {
     .authScreen {
