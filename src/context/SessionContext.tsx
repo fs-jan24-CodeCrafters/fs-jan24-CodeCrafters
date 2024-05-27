@@ -1,8 +1,10 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
-import { User, UserSession } from '../types/User';
+import * as z from 'zod';
+
 import useLocalStorage from '../hooks/useLocalStorage';
-import { useFetch } from '../hooks/useFetch';
+import { UserSession } from '../types/User';
 import { loginUser } from '../api/user';
+import { LoginSchema } from '../schemas';
 
 type State = {
   session: UserSession | null;
@@ -26,7 +28,7 @@ const SessionContext = createContext<SessionContextType>({
 });
 
 export type Action =
-  | { type: 'auth/setUser'; payload: User }
+  | { type: 'auth/setUser'; payload: UserSession }
   | { type: 'auth/clearUser' };
 
 type Props = {
@@ -59,11 +61,12 @@ const SessionProvider: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     setUserSession(session);
-  }, [session, setUserSession]);
+  }, [session]);
 
-  const login = async () => {
-    const response = await useFetch(loginUser);
-    setUserSession(response.data.userId);
+  const login = async (userData: z.infer<typeof LoginSchema>) => {
+    const sessionData = await loginUser(userData);
+    dispatch({ type: 'auth/setUser', payload: sessionData });
+    setUserSession(sessionData);
   };
 
   const logout = async () => {

@@ -1,0 +1,50 @@
+.modal {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	z-index: 150;
+	padding: 0 $grid-gap;
+}
+
+.modalContent {
+	border-radius: 15px;
+	max-width: 700px;
+	max-height: 400px;
+	background-color: var(--BG-color);
+	box-shadow: rgba($color: #000000, $alpha: 1.0) 0 5px 15px;
+	display: flex;
+	flex-direction: column;
+	padding: 25px 50px;
+}
+
+.titleModal {
+	display: inline-block;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.buttonGroup {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 60px;
+}
+
+.buttonYes,
+.buttonNo {
+	width: 30%;
+}
+
+.buttonNo {
+	background-color: var(--primary-button-selected);
+	color: var(--primary);
+	border: 1px solid var(--second-button-border-color);
+
+	&:hover {
+		box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.4);
+		background-color: initial;
+	}
+}

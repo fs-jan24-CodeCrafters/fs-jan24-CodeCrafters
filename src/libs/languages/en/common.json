@@ -202,6 +202,7 @@
   "goodsNotFound": "Goods not found",
   "auth": {
     "login": "Login",
+    "logout": "Logout",
     "createAccount": "Create account",
     "signIn": "Sign in",
     "welcome": "Welcome back!",
@@ -212,6 +213,10 @@
     "passwordRequired": "Password is required",
     "passwordValid": "Password must contain at least 6 characters",
     "successRegister": "You have successfully registered!",
-    "successLogin": "You have successfully logged in!"
+    "successLogin": "You have successfully logged in!",
+    "loginDesc": "or use your email to log in",
+    "signUp": "Sign up",
+    "signupDesc": "or use your email for registeration",
+    "successModal": "Do you want to log out?"
   }
 }

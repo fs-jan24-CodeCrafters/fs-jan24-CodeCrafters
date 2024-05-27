@@ -1,23 +1,26 @@
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import { Title } from '../../Shared/Title';
-import { useTranslation } from 'react-i18next';
 import * as z from 'zod';
-
-import { LoginSchema } from '../../../schemas';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useState } from 'react';
-import { loginUser } from '../../../api/user';
-import toast from 'react-hot-toast';
+import { Title } from '../../Shared/Title';
+import { useSession } from '../../../context/SessionContext';
+
+import { LoginSchema } from '../../../schemas';
 
 import styles from '../AuthScreen.module.scss';
 
 export const LoginForm: React.FC = () => {
+  const { t } = useTranslation();
   const [apiErrors, setApiErrors] = useState<Record<string, string>>({});
 
-  const { t } = useTranslation();
+  const { login } = useSession();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -35,7 +38,7 @@ export const LoginForm: React.FC = () => {
   const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
     setApiErrors({});
     try {
-      await loginUser(data);
+      await login(data);
       reset();
       toast.success(t('common:auth.successLogin'));
     } catch (error) {
@@ -49,6 +52,8 @@ export const LoginForm: React.FC = () => {
         setApiErrors(validationErrors);
       }
     }
+
+    navigate('/');
   };
 
   return (
@@ -62,7 +67,7 @@ export const LoginForm: React.FC = () => {
           <FontAwesomeIcon icon={faLinkedinIn} />
         </a>
       </div>
-      <span>or use your email to log in</span>
+      <span className={styles.authDesc}>{t('common:auth.loginDesc')}</span>
       <input
         {...register('email')}
         className={styles.morph_input}
@@ -85,7 +90,7 @@ export const LoginForm: React.FC = () => {
         </span>
       )}
       <button disabled={isSubmitting} className={styles.morph_button}>
-        Log In
+        {t('common:auth.login')}
       </button>
     </form>
   );

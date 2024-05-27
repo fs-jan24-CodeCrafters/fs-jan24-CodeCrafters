@@ -1,14 +1,15 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import { Title } from '../../Shared/Title';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
+
+import { Title } from '../../Shared/Title';
 import { RegistrationSchema } from '../../../schemas';
 import { createUser } from '../../../api/user';
-import { useState } from 'react';
-import toast from 'react-hot-toast';
 
 import styles from '../AuthScreen.module.scss';
 export const RegisterForm: React.FC = () => {
@@ -59,7 +60,7 @@ export const RegisterForm: React.FC = () => {
           <FontAwesomeIcon icon={faLinkedinIn} />
         </a>
       </div>
-      <span>or use your email for registeration</span>
+      <span className={styles.authDesc}>{t('common:auth.signupDesc')}</span>
       <input
         {...register('email')}
         className={styles.morph_input}
@@ -80,7 +81,7 @@ export const RegisterForm: React.FC = () => {
         <span className={styles.error}>{t('common:auth.passwordValid')}</span>
       )}
       <button disabled={isSubmitting} className={styles.morph_button}>
-        Sign Up
+        {t('common:auth.signUp')}
       </button>
     </form>
   );
