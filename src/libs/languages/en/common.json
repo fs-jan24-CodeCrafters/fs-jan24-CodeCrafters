@@ -211,6 +211,7 @@
     "helloDesc": "Register with your social network to use all of site features",
     "emailRequired": "Invalid email",
     "passwordRequired": "Password is required",
+    "invalidCredentials": "Enter the correct data",
     "passwordValid": "Password must contain at least 6 characters",
     "successRegister": "You have successfully registered!",
     "successLogin": "You have successfully logged in!",

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { FieldError, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +14,14 @@ import { useSession } from '../../../context/SessionContext';
 import { LoginSchema } from '../../../schemas';
 
 import styles from '../AuthScreen.module.scss';
+
+const getPasswordError = (error: string | FieldError) => {
+  if (error === 'Invalid credentials') {
+    return 'common:auth.invalidCredentials';
+  } else {
+    return 'common:auth.passwordRequired';
+  }
+};
 
 export const LoginForm: React.FC = () => {
   const { t } = useTranslation();
@@ -41,19 +49,21 @@ export const LoginForm: React.FC = () => {
       await login(data);
       reset();
       toast.success(t('common:auth.successLogin'));
+      navigate('/');
     } catch (error) {
+      const validationErrors: Record<string, string> = {};
       if (Array.isArray(error)) {
-        const validationErrors: Record<string, string> = {};
         error.forEach((err: { path: string[]; message: string }) => {
           if (err.path.length) {
             validationErrors[err.path[0]] = err.message;
           }
         });
         setApiErrors(validationErrors);
+      } else {
+        const singleError = error as string;
+        setApiErrors({ password: singleError });
       }
     }
-
-    navigate('/');
   };
 
   return (
@@ -86,7 +96,7 @@ export const LoginForm: React.FC = () => {
       />
       {(errors.password || apiErrors.password) && (
         <span className={styles.error}>
-          {t('common:auth.passwordRequired')}
+          {t(getPasswordError(errors.password || apiErrors.password))}
         </span>
       )}
       <button disabled={isSubmitting} className={styles.morph_button}>

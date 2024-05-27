@@ -14,6 +14,7 @@ const fetchData = async <T extends z.ZodTypeAny>(
   if (!parseResult.success) {
     throw parseResult.error.format();
   }
+
   const response = await fetch(`${BASE_URL}${url}`, {
     method: 'POST',
     headers: {
@@ -23,7 +24,7 @@ const fetchData = async <T extends z.ZodTypeAny>(
   });
 
   if (!response.ok) {
-    const errorData = await response.json();
+    const errorData = await response.text();
     throw errorData;
   }
   const result = await response.json();
