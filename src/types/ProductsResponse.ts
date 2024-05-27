@@ -5,4 +5,5 @@ export interface ProductsResponse {
   totalPages: number;
   min: number;
   max: number;
+  totalProducts: number;
 }

@@ -107,7 +107,7 @@ export const CatalogPage: React.FC = () => {
               <Loader />
             </span>
           ) : (
-            `${productsList.length} ${t(`common:catalog.models`)}`
+            `${data?.totalProducts} ${t(`common:catalog.models`)}`
           )}
         </span>
 
