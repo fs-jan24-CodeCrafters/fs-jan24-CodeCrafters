@@ -1,10 +1,33 @@
-import { CreateUserRequest, User } from '../types/User';
-import { client } from '../helpers/fetchClient';
+import { BASE_URL } from '../helpers/fetchClient';
+import { LoginSchema, RegistrationSchema } from '../schemas';
+import * as z from 'zod';
 
-export const createUser = (user: CreateUserRequest) => {
-  return client.post<User>('/api/auth/register', user);
+const fetchData = async <T extends z.ZodTypeAny>(
+  url: string,
+  data: unknown,
+  schema: T,
+) => {
+  const response = await fetch(`${BASE_URL}${url}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw errorData;
+  }
+
+  const result = await response.json();
+  return schema.parse(result);
 };
 
-export const loginUser = (user: CreateUserRequest) => {
-  return client.post<User>('/api/auth/login', user);
+export const createUser = async (data: z.infer<typeof RegistrationSchema>) => {
+  return fetchData('/api/auth/register', data, RegistrationSchema);
+};
+
+export const loginUser = async (data: z.infer<typeof LoginSchema>) => {
+  return fetchData('/api/auth/login', data, LoginSchema);
 };

@@ -207,6 +207,11 @@
     "welcome": "Welcome back!",
     "welcomeDesc": "Use socials network to use all of site features",
     "hello": "Hello, friend!",
-    "helloDesc": "Register with your social network to use all of site features"
+    "helloDesc": "Register with your social network to use all of site features",
+    "emailRequired": "Invalid email",
+    "passwordRequired": "Password is required",
+    "passwordValid": "Password must contain at least 6 characters",
+    "successRegister": "You have successfully registered!",
+    "successLogin": "You have successfully logged in!"
   }
 }
