@@ -3,17 +3,20 @@ import { HashRouter as Router } from 'react-router-dom';
 
 import { FavoritesProvider } from './context/FavoritesContext';
 import { CartProvider } from './context/CartContext';
-import './libs/languages/config';
+import { SessionProvider } from './context/SessionContext';
 import { App } from './App';
+import './libs/languages/config';
 
 import './index.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <CartProvider>
-    <FavoritesProvider>
-      <Router>
-        <App />
-      </Router>
-    </FavoritesProvider>
-  </CartProvider>,
+  <SessionProvider>
+    <CartProvider>
+      <FavoritesProvider>
+        <Router>
+          <App />
+        </Router>
+      </FavoritesProvider>
+    </CartProvider>
+  </SessionProvider>,
 );
