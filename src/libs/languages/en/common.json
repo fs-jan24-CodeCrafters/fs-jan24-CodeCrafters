@@ -218,6 +218,8 @@
     "loginDesc": "or use your email to log in",
     "signUp": "Sign up",
     "signupDesc": "or use your email for registeration",
-    "successModal": "Do you want to log out?"
+    "successModal": "Do you want to log out?",
+    "errorRegister": "Error logging in with Google",
+    "emailAlreadyExists": "Email already exist"
   }
 }

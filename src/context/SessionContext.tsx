@@ -1,9 +1,12 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import * as z from 'zod';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { t } from 'i18next';
 
 import useLocalStorage from '../hooks/useLocalStorage';
 import { UserSession } from '../types/User';
-import { loginUser } from '../api/user';
+import { getUserById, loginUser } from '../api/user';
 import { LoginSchema } from '../schemas';
 
 type State = {
@@ -17,6 +20,7 @@ const initialState: State = {
 type SessionContextType = State & {
   dispatch: React.Dispatch<Action>;
   login: (credentials: { email: string; password: string }) => Promise<void>;
+  googleLogin: () => void;
   logout: () => Promise<void>;
 };
 
@@ -24,6 +28,7 @@ const SessionContext = createContext<SessionContextType>({
   ...initialState,
   dispatch: () => {},
   login: async () => {},
+  googleLogin: () => {},
   logout: async () => {},
 });
 
@@ -52,6 +57,32 @@ const SessionProvider: React.FC<Props> = ({ children }) => {
     null,
   );
 
+  const navigate = useNavigate();
+
+  const [userId] = useSearchParams();
+  const userIdParam = userId.get('userId');
+
+  const loginByGoogle = async (id: string) => {
+    try {
+      const sessionData = await getUserById(id);
+      dispatch({ type: 'auth/setUser', payload: sessionData });
+      setUserSession(sessionData);
+
+      if (userId) {
+        navigate('/', { replace: true });
+      }
+    } catch (e) {
+      toast.error(t('common:auth.errorRegister'));
+      navigate('/', { replace: true });
+    }
+  };
+
+  useEffect(() => {
+    if (userIdParam) {
+      loginByGoogle(userIdParam);
+    }
+  }, [userIdParam]);
+
   const [{ session }, dispatch] = useReducer(reducer, initialState, () => {
     return {
       ...initialState,
@@ -73,8 +104,15 @@ const SessionProvider: React.FC<Props> = ({ children }) => {
     setUserSession(null);
   };
 
+  const googleLogin = () => {
+    window.location.href =
+      'https://fs-jan24-code-crafters-server.vercel.app/api/auth/google';
+  };
+
   return (
-    <SessionContext.Provider value={{ session, dispatch, login, logout }}>
+    <SessionContext.Provider
+      value={{ session, dispatch, login, logout, googleLogin }}
+    >
       {children}
     </SessionContext.Provider>
   );

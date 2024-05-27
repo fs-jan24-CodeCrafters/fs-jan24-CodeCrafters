@@ -41,3 +41,15 @@ export const loginUser = async (
 ): Promise<UserSession> => {
   return fetchData('/api/auth/login', data, LoginSchema);
 };
+
+export const getUserById = async (id: string): Promise<UserSession> => {
+  const response = await fetch(`${BASE_URL}/api/auth/users/${id}`);
+
+  if (!response.ok) {
+    const errorData = await response.text();
+    throw errorData;
+  }
+  const result = await response.json();
+
+  return result;
+};

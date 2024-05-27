@@ -4,13 +4,12 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Title } from '../../Shared/Title';
 import { useSession } from '../../../context/SessionContext';
-
 import { LoginSchema } from '../../../schemas';
 
 import styles from '../AuthScreen.module.scss';
@@ -66,6 +65,8 @@ export const LoginForm: React.FC = () => {
     }
   };
 
+  const { googleLogin } = useSession();
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Title titleTag="h2">{t('common:auth.signIn')}</Title>
@@ -73,8 +74,8 @@ export const LoginForm: React.FC = () => {
         <a href="#" className="icon">
           <FontAwesomeIcon icon={faGithub} />
         </a>
-        <a href="#" className="icon">
-          <FontAwesomeIcon icon={faLinkedinIn} />
+        <a href="#" className="icon" onClick={googleLogin}>
+          <FontAwesomeIcon icon={faGoogle} />
         </a>
       </div>
       <span className={styles.authDesc}>{t('common:auth.loginDesc')}</span>

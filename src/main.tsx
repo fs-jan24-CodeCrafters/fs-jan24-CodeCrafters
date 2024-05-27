@@ -10,13 +10,14 @@ import './libs/languages/config';
 import './index.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <SessionProvider>
-    <CartProvider>
-      <FavoritesProvider>
-        <Router>
+  <Router>
+    <SessionProvider>
+      <CartProvider>
+        <FavoritesProvider>
           <App />
-        </Router>
-      </FavoritesProvider>
-    </CartProvider>
-  </SessionProvider>,
+        </FavoritesProvider>
+      </CartProvider>
+    </SessionProvider>
+    ,
+  </Router>,
 );
