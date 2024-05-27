@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const BASE_URL = 'https://fs-jan24-code-crafters-server.vercel.app';
+export const BASE_URL = 'https://fs-jan24-code-crafters-server.vercel.app';
 
 type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 
