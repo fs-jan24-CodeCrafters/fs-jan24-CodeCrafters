@@ -17,7 +17,7 @@ import { VariantsSection } from './VariantsSection';
 import styles from './ProductDetails.module.scss';
 import { getRecommendedProducts } from '../../api/products';
 import { getProductItemById } from '../../api/productItem';
-import { useProductItemApi } from '../../hooks/useProductItemApi';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 export const ProductDetails: React.FC = () => {
   const { t } = useTranslation();
@@ -31,10 +31,15 @@ export const ProductDetails: React.FC = () => {
 
   const { products, loading } = useProductsApi(fetchFunction);
 
-  const { currentProduct, isError, isLoading } = useProductItemApi(
-    getProductItemById,
-    productId!,
-  );
+  const {
+    data: currentProduct,
+    isError,
+    isPlaceholderData: isLoading,
+  } = useQuery({
+    queryKey: ['product', productId],
+    queryFn: () => getProductItemById(productId!),
+    placeholderData: keepPreviousData,
+  });
 
   useEffect(() => {
     if (isError) {

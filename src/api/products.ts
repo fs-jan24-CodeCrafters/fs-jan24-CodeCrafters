@@ -1,5 +1,6 @@
 import { client } from '../helpers/fetchClient';
 import { Product } from '../types/Product';
+import { ProductsResponse } from '../types/ProductsResponse';
 
 export const getProducts = () => {
   return client.get<Product[]>('/products');
@@ -7,12 +8,12 @@ export const getProducts = () => {
 
 export const getProductsByCategory = (
   category: string,
-  sort?: string | undefined,
-  perPage?: string | undefined,
-  page?: string | undefined,
-  range?: string | undefined,
+  sort?: string | null,
+  perPage?: string | null,
+  page?: string | null,
+  range?: string | null,
 ) => {
-  return client.get<Product[]>(
+  return client.get<ProductsResponse>(
     `/products/${category}?sort=${sort}&perPage=${perPage}&page=${page}&range=${range}`,
   );
 };
