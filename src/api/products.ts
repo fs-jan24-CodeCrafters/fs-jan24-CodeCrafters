@@ -35,5 +35,5 @@ export const searchProductsByTitle = (name: string) => {
 };
 
 export const getProductByItemId = (itemId: string) => {
-  return client.get<Product>(`/products/${itemId}`);
+  return client.get<Product>(`/products/${itemId}/itemId`);
 };

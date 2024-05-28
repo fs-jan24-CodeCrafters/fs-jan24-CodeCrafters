@@ -15,9 +15,9 @@ import { Loader } from '../Shared/Loader';
 import { ProductInfo } from './ProductInfo';
 import { VariantsSection } from './VariantsSection';
 import styles from './ProductDetails.module.scss';
-import { getRecommendedProducts } from '../../api/products';
 import { getProductItemById } from '../../api/productItem';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { getRecommendedProducts } from '../../api/products';
 
 export const ProductDetails: React.FC = () => {
   const { t } = useTranslation();
@@ -36,7 +36,7 @@ export const ProductDetails: React.FC = () => {
     isError,
     isPlaceholderData: isLoading,
   } = useQuery({
-    queryKey: ['product', productId],
+    queryKey: ['productItem', productId],
     queryFn: () => getProductItemById(productId!),
     placeholderData: keepPreviousData,
   });
