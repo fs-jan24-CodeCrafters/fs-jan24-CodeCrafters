@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 import { getProductIdFromUrl } from '../../helpers/getProductIdFromUrl';
@@ -14,10 +15,10 @@ import { Title } from '../Shared/Title';
 import { Loader } from '../Shared/Loader';
 import { ProductInfo } from './ProductInfo';
 import { VariantsSection } from './VariantsSection';
-import styles from './ProductDetails.module.scss';
 import { getRecommendedProducts } from '../../api/products';
 import { getProductItemById } from '../../api/productItem';
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+
+import styles from './ProductDetails.module.scss';
 
 export const ProductDetails: React.FC = () => {
   const { t } = useTranslation();

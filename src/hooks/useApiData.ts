@@ -1,33 +1,30 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ProductDetails } from '../types/ProductDetails';
 
-export const useProductItemApi = (
-  fetchFunction: (id: string) => Promise<ProductDetails>,
-  productId: string,
+export const useApiData = <Data, Params extends unknown[]>(
+  fetchFunction: (...params: Params) => Promise<Data>,
+  ...fetchParams: Params
 ) => {
-  const [currentProduct, setCurrentProduct] = useState<ProductDetails | null>(
-    null,
-  );
+  const [data, setData] = useState<Data | null>(null);
   const [isError, setIsError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchData();
-  }, [productId]);
+  }, [...fetchParams]);
 
   const fetchData = useCallback(async () => {
     setIsError(false);
     setIsLoading(true);
     try {
-      const resData = await fetchFunction(productId);
-      setCurrentProduct(resData);
+      const resData = await fetchFunction(...fetchParams);
+      setData(resData);
     } catch (error) {
       setIsError(true);
       throw new Error('Error fetching data');
     } finally {
       setIsLoading(false);
     }
-  }, [fetchFunction, productId]);
+  }, [fetchFunction, ...fetchParams]);
 
-  return { currentProduct, isError, isLoading, fetchData };
+  return { data, isError, isLoading, fetchData };
 };
