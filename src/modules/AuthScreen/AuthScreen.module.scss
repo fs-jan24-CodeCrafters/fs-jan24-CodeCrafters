@@ -198,6 +198,7 @@
 .morph_input {
 	background-color: #ffffff66;
 	backdrop-filter: blur(10px);
+	width: 100%;
 
 	border: 1px solid var(--secondary);
 	padding: 5px 10px;
@@ -208,6 +209,10 @@
 		opacity: 0.5;
 		pointer-events: none;
 	}
+}
+
+.authDesc {
+	margin-bottom: 10px;
 }
 
 .morph_button {
@@ -225,6 +230,7 @@
 @include tablet {
 	.authScreen {
 		height: auto;
+		padding: 20px;
 	}
 
 	.container {
@@ -300,6 +306,14 @@
 		.toggleRight {
 			display: block;
 		}
+	}
+
+	.morph_button {
+		margin-bottom: 20px;
+	}
+
+	.morph_input {
+		min-width: 200px;
 	}
 }
 

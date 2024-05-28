@@ -1,23 +1,33 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import { Title } from '../../Shared/Title';
+import { useState } from 'react';
+import { FieldError, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import * as z from 'zod';
-
-import { LoginSchema } from '../../../schemas';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useState } from 'react';
-import { loginUser } from '../../../api/user';
-import toast from 'react-hot-toast';
+import { Title } from '../../Shared/Title';
+import { useSession } from '../../../context/SessionContext';
+import { LoginSchema } from '../../../schemas';
 
 import styles from '../AuthScreen.module.scss';
 
+const getPasswordError = (error: string | FieldError) => {
+  if (error === 'Invalid credentials') {
+    return 'common:auth.invalidCredentials';
+  } else {
+    return 'common:auth.passwordRequired';
+  }
+};
+
 export const LoginForm: React.FC = () => {
+  const { t } = useTranslation();
   const [apiErrors, setApiErrors] = useState<Record<string, string>>({});
 
-  const { t } = useTranslation();
+  const { login } = useSession();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -35,21 +45,27 @@ export const LoginForm: React.FC = () => {
   const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
     setApiErrors({});
     try {
-      await loginUser(data);
+      await login(data);
       reset();
       toast.success(t('common:auth.successLogin'));
+      navigate('/');
     } catch (error) {
+      const validationErrors: Record<string, string> = {};
       if (Array.isArray(error)) {
-        const validationErrors: Record<string, string> = {};
         error.forEach((err: { path: string[]; message: string }) => {
           if (err.path.length) {
             validationErrors[err.path[0]] = err.message;
           }
         });
         setApiErrors(validationErrors);
+      } else {
+        const singleError = error as string;
+        setApiErrors({ password: singleError });
       }
     }
   };
+
+  const { googleLogin } = useSession();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -58,11 +74,11 @@ export const LoginForm: React.FC = () => {
         <a href="#" className="icon">
           <FontAwesomeIcon icon={faGithub} />
         </a>
-        <a href="#" className="icon">
-          <FontAwesomeIcon icon={faLinkedinIn} />
+        <a href="#" className="icon" onClick={googleLogin}>
+          <FontAwesomeIcon icon={faGoogle} />
         </a>
       </div>
-      <span>or use your email to log in</span>
+      <span className={styles.authDesc}>{t('common:auth.loginDesc')}</span>
       <input
         {...register('email')}
         className={styles.morph_input}
@@ -81,11 +97,11 @@ export const LoginForm: React.FC = () => {
       />
       {(errors.password || apiErrors.password) && (
         <span className={styles.error}>
-          {t('common:auth.passwordRequired')}
+          {t(getPasswordError(errors.password || apiErrors.password))}
         </span>
       )}
       <button disabled={isSubmitting} className={styles.morph_button}>
-        Log In
+        {t('common:auth.login')}
       </button>
     </form>
   );

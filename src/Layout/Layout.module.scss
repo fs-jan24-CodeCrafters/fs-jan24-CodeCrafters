@@ -1,0 +1,21 @@
+.modalEnter {
+	opacity: 0;
+	transform: scale(0.5);
+}
+
+.modalEnterActive {
+	opacity: 1;
+	transform: scale(1);
+	@include transition(all);
+}
+
+.modalExit {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.modalExitActive {
+	opacity: 0;
+	transform: scale(0.5);
+	@include transition(all);
+}
