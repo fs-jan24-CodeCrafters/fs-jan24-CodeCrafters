@@ -42,9 +42,11 @@
 		@include transition(transform)
 	}
 
-	&:hover {
-		&::before {
-			transform: scale(1);
+	@media (min-width:$tablet) {
+		&:hover {
+			&::before {
+				transform: scale(1);
+			}
 		}
 	}
 
