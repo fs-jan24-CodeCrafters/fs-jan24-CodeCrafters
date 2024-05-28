@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
+import { useEffect, useRef } from 'react';
 
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 import { Container } from '../Shared/Container';
@@ -13,11 +14,10 @@ import { Selects } from './Selects';
 import { Pagination } from './Pagination';
 import { RangePriceFilter } from './RangePriceFilter/RangePriceFilter';
 import { getProductsByCategory as getProductsByCategoryBack } from '../../api/products';
-
-import styles from './CatalogPage.module.scss';
 import { useFetch } from '../../hooks/useFetch';
 import { Product } from '../../types/Product';
-import { useEffect, useRef } from 'react';
+
+import styles from './CatalogPage.module.scss';
 
 export const CatalogPage: React.FC = () => {
   const { t } = useTranslation();

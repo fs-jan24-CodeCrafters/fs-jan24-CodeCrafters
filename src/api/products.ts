@@ -1,8 +1,12 @@
 import { client } from '../helpers/fetchClient';
 import { Product } from '../types/Product';
+import { ProductCounts } from '../types/ProductCounts';
 
 export const getProducts = () => {
   return client.get<Product[]>('/products');
+};
+export const getProductCounts = () => {
+  return client.get<ProductCounts>('/products/counts');
 };
 
 export const getProductsByCategory = (

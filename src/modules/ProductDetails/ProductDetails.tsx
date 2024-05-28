@@ -14,10 +14,11 @@ import { Title } from '../Shared/Title';
 import { Loader } from '../Shared/Loader';
 import { ProductInfo } from './ProductInfo';
 import { VariantsSection } from './VariantsSection';
-import styles from './ProductDetails.module.scss';
 import { getRecommendedProducts } from '../../api/products';
 import { getProductItemById } from '../../api/productItem';
-import { useProductItemApi } from '../../hooks/useProductItemApi';
+import { useApiData } from '../../hooks/useApiData';
+
+import styles from './ProductDetails.module.scss';
 
 export const ProductDetails: React.FC = () => {
   const { t } = useTranslation();
@@ -31,10 +32,11 @@ export const ProductDetails: React.FC = () => {
 
   const { products, loading } = useProductsApi(fetchFunction);
 
-  const { currentProduct, isError, isLoading } = useProductItemApi(
+  const { data, isError, isLoading } = useApiData(
     getProductItemById,
     productId!,
   );
+  const currentProduct = data;
 
   useEffect(() => {
     if (isError) {
