@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -71,9 +71,6 @@ export const LoginForm: React.FC = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Title titleTag="h2">{t('common:auth.signIn')}</Title>
       <div className={styles.socialIcons}>
-        <a href="#" className="icon">
-          <FontAwesomeIcon icon={faGithub} />
-        </a>
         <a href="#" className="icon" onClick={googleLogin}>
           <FontAwesomeIcon icon={faGoogle} />
         </a>
