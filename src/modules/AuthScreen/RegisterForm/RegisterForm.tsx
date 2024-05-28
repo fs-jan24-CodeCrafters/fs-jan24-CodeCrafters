@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import * as z from 'zod';
 import { FieldError, useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useSession } from '../../../context/SessionContext';
@@ -71,9 +71,6 @@ export const RegisterForm: React.FC = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Title titleTag="h2">{t('common:auth.createAccount')}</Title>
       <div className={styles.socialIcons}>
-        <a href="#" className="icon">
-          <FontAwesomeIcon icon={faGithub} />
-        </a>
         <a href="#" className="icon" onClick={googleLogin}>
           <FontAwesomeIcon icon={faGoogle} />
         </a>
