@@ -171,7 +171,7 @@ export const VariantsSection: React.FC<Props> = ({
         <div className={styles.categoryText}>
           <p>{t(`common:product.availableColors`)}</p>
 
-          <span>ID: 802390</span>
+          <span>ID: {product.id}</span>
           {/* STATIC */}
         </div>
 
