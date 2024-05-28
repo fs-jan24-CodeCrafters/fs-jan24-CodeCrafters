@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 import { useEffect, useRef } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 import { Container } from '../Shared/Container';
@@ -14,10 +15,9 @@ import { Selects } from './Selects';
 import { Pagination } from './Pagination';
 import { RangePriceFilter } from './RangePriceFilter/RangePriceFilter';
 import { getProductsByCategory as getProductsByCategoryBack } from '../../api/products';
-import { useFetch } from '../../hooks/useFetch';
-import { Product } from '../../types/Product';
 
 import styles from './CatalogPage.module.scss';
+
 
 export const CatalogPage: React.FC = () => {
   const { t } = useTranslation();
@@ -30,20 +30,30 @@ export const CatalogPage: React.FC = () => {
   const currentPage = searchParams.get('page') || '1';
   const priceRange = searchParams.get('range');
 
-  const { data, loading, isError } = useFetch(
-    getProductsByCategoryBack,
-    path,
-    currentSortBy,
-    currentPerPageOptions,
-    currentPage,
-    priceRange,
-  );
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [
+      'products',
+      path,
+      currentSortBy,
+      currentPerPageOptions,
+      currentPage,
+      priceRange,
+    ],
+    queryFn: () =>
+      getProductsByCategoryBack(
+        path,
+        currentSortBy,
+        currentPerPageOptions,
+        currentPage,
+        priceRange,
+      ),
+  });
 
-  const minPrice = data.min as number;
-  const maxPrice = data.max as number;
+  const minPrice = data?.min as number;
+  const maxPrice = data?.max as number;
 
-  const productsList = (data.products as Product[]) || [];
-  const totalPageNum = data.totalPages;
+  const productsList = data?.products || [];
+  const totalPageNum = data?.totalPages as number;
 
   const itemsPerPage = productsList.length;
 
@@ -93,12 +103,12 @@ export const CatalogPage: React.FC = () => {
           {catalogPageTitle}
         </Title>
         <span className={`${styles.textItem} ${styles.productsAmountText}`}>
-          {loading ? (
+          {isLoading ? (
             <span className={styles.textItemLoader}>
               <Loader />
             </span>
           ) : (
-            `${productsList.length} ${t(`common:catalog.models`)}`
+            `${data?.totalProducts} ${t(`common:catalog.models`)}`
           )}
         </span>
 
@@ -107,24 +117,26 @@ export const CatalogPage: React.FC = () => {
             setSearchParams={setSearchParams}
             currentSortBy={currentSortBy}
             itemsPerPage={itemsPerPage}
-            loading={loading}
+            loading={isLoading}
           />
 
           <RangePriceFilter
             value={[minPrice, maxPrice]}
-            disabled={loading}
+            disabled={isLoading}
             searchParams={searchParams}
             setSearchParams={setSearchParams}
           />
         </div>
 
-        {!isError && <ProductsList products={productsList} loading={loading} />}
+        {!isError && (
+          <ProductsList products={productsList} loading={isLoading} />
+        )}
 
         {isError && (
           <p className={styles.textAlert}>{t(`common:errorMessage`)}</p>
         )}
 
-        {!isError && !loading && !productsList.length && (
+        {!isError && !isLoading && !productsList.length && (
           <p className={styles.textAlert}>{t(`common:goodsNotFound`)}</p>
         )}
 

@@ -202,11 +202,24 @@
   "goodsNotFound": "Goods not found",
   "auth": {
     "login": "Login",
+    "logout": "Logout",
     "createAccount": "Create account",
     "signIn": "Sign in",
     "welcome": "Welcome back!",
     "welcomeDesc": "Use socials network to use all of site features",
     "hello": "Hello, friend!",
-    "helloDesc": "Register with your social network to use all of site features"
+    "helloDesc": "Register with your social network to use all of site features",
+    "emailRequired": "Invalid email",
+    "passwordRequired": "Password is required",
+    "invalidCredentials": "Enter the correct data",
+    "passwordValid": "Password must contain at least 6 characters",
+    "successRegister": "You have successfully registered!",
+    "successLogin": "You have successfully logged in!",
+    "loginDesc": "or use your email to log in",
+    "signUp": "Sign up",
+    "signupDesc": "or use your email for registeration",
+    "successModal": "Do you want to log out?",
+    "errorRegister": "Error logging in with Google",
+    "emailAlreadyExists": "Email already exist"
   }
 }

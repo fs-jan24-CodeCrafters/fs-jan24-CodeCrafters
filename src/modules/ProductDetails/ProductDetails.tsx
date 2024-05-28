@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
 import { getProductIdFromUrl } from '../../helpers/getProductIdFromUrl';
@@ -16,7 +17,6 @@ import { ProductInfo } from './ProductInfo';
 import { VariantsSection } from './VariantsSection';
 import { getRecommendedProducts } from '../../api/products';
 import { getProductItemById } from '../../api/productItem';
-import { useApiData } from '../../hooks/useApiData';
 
 import styles from './ProductDetails.module.scss';
 
@@ -32,11 +32,15 @@ export const ProductDetails: React.FC = () => {
 
   const { products, loading } = useProductsApi(fetchFunction);
 
-  const { data, isError, isLoading } = useApiData(
-    getProductItemById,
-    productId!,
-  );
-  const currentProduct = data;
+  const {
+    data: currentProduct,
+    isError,
+    isPlaceholderData: isLoading,
+  } = useQuery({
+    queryKey: ['product', productId],
+    queryFn: () => getProductItemById(productId!),
+    placeholderData: keepPreviousData,
+  });
 
   useEffect(() => {
     if (isError) {

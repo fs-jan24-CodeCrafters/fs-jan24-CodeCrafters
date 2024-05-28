@@ -1,26 +1,16 @@
-/* eslint-disable no-console */
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
+import { useTranslation } from 'react-i18next';
+import { RegisterForm } from './RegisterForm';
 import { Title } from '../Shared/Title';
+import { LoginForm } from './LoginForm';
 
 import styles from './AuthScreen.module.scss';
-import { CreateUserRequest } from '../../types/User';
-import { createUser, loginUser as login } from '../../api/user';
 
 export const AuthScreen: React.FC = () => {
   const { t } = useTranslation();
+
   const [isActive, setIsActive] = useState(false);
-  const [registerUser, setRegisterUser] = useState<CreateUserRequest>({
-    email: '',
-    password: '',
-  });
-  const [loginUser, setLoginUser] = useState<CreateUserRequest>({
-    email: '',
-    password: '',
-  });
 
   const handleRegisterClick = () => {
     setIsActive(true);
@@ -28,65 +18,6 @@ export const AuthScreen: React.FC = () => {
 
   const handleLoginClick = () => {
     setIsActive(false);
-  };
-
-  const handleRegisterChangeEmail = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const { value } = e.target;
-    setRegisterUser((prev) => ({
-      ...prev,
-      email: value,
-    }));
-  };
-
-  const handleRegisterChangePassword = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const { value } = e.target;
-    setRegisterUser((prev) => ({
-      ...prev,
-      password: value,
-    }));
-  };
-
-  const handleLoginChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setLoginUser((prev) => ({
-      ...prev,
-      email: value,
-    }));
-  };
-  const handleLoginChangePassword = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const { value } = e.target;
-    setLoginUser((prev) => ({
-      ...prev,
-      password: value,
-    }));
-  };
-
-  const handleRegisterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    createUser(registerUser)
-      .then((response) => {
-        console.log('User registered successfully:', response);
-      })
-      .catch((error) => {
-        console.error('Error registering user:', error);
-      });
-  };
-
-  const handleLoginSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    login(loginUser)
-      .then((response) => {
-        console.log('User logged in successfully:', response);
-      })
-      .catch((error) => {
-        console.error('Error logging in user:', error);
-      });
   };
 
   return (
@@ -97,62 +28,10 @@ export const AuthScreen: React.FC = () => {
           id="container"
         >
           <div className={`${styles.formContainer} ${styles.signUp}`}>
-            <form onSubmit={handleRegisterSubmit}>
-              <Title titleTag="h2">{t('common:auth.createAccount')}</Title>
-              <div className={styles.socialIcons}>
-                <a href="#" className="icon">
-                  <FontAwesomeIcon icon={faGithub} />
-                </a>
-                <a href="#" className="icon">
-                  <FontAwesomeIcon icon={faLinkedinIn} />
-                </a>
-              </div>
-              <span>or use your email for registeration</span>
-              <input
-                type="email"
-                className={styles.morph_input}
-                placeholder="Email"
-                value={registerUser.email}
-                onChange={handleRegisterChangeEmail}
-              />
-              <input
-                type="password"
-                className={styles.morph_input}
-                placeholder="Password"
-                value={registerUser.password}
-                onChange={handleRegisterChangePassword}
-              />
-              <button className={styles.morph_button}>Sign Up</button>
-            </form>
+            <RegisterForm />
           </div>
           <div className={`${styles.formContainer} ${styles.signIn}`}>
-            <form onSubmit={handleLoginSubmit}>
-              <Title titleTag="h2">{t('common:auth.signIn')}</Title>
-              <div className={styles.socialIcons}>
-                <a href="#" className="icon">
-                  <FontAwesomeIcon icon={faGithub} />
-                </a>
-                <a href="#" className="icon">
-                  <FontAwesomeIcon icon={faLinkedinIn} />
-                </a>
-              </div>
-              <span>or use your email to log in</span>
-              <input
-                type="email"
-                className={styles.morph_input}
-                placeholder="Email"
-                value={loginUser.email}
-                onChange={handleLoginChangeEmail}
-              />
-              <input
-                type="password"
-                className={styles.morph_input}
-                placeholder="Password"
-                value={loginUser.password}
-                onChange={handleLoginChangePassword}
-              />
-              <button className={styles.morph_button}>Log In</button>
-            </form>
+            <LoginForm />
           </div>
           <div className={`${styles.main_toggle} ${styles.morph}`}>
             <div className={styles.toggleContainer}>
