@@ -13,12 +13,12 @@ import { ColorRadioButton } from './ColorRadioButton';
 import { CapacityRadioButton } from './CapacityRadioButton';
 import { ProductDetails } from '../../../types/ProductDetails';
 import { Product } from '../../../types/Product';
-
-import 'swiper/css';
-import styles from './VariantsSection.module.scss';
 import { Loader } from '../../Shared/Loader';
 import { getProductByItemId } from '../../../api/products';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
+
+import 'swiper/css';
+import styles from './VariantsSection.module.scss';
 
 interface Props {
   productDetails: ProductDetails;

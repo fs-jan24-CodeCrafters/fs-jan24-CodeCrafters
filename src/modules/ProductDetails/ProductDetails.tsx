@@ -17,6 +17,7 @@ import { ProductInfo } from './ProductInfo';
 import { VariantsSection } from './VariantsSection';
 import { getRecommendedProducts } from '../../api/products';
 import { getProductItemById } from '../../api/productItem';
+
 import styles from './ProductDetails.module.scss';
 
 export const ProductDetails: React.FC = () => {
