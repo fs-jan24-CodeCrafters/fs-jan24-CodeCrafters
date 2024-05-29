@@ -37,7 +37,7 @@ export const ProductDetails: React.FC = () => {
     isError,
     isPlaceholderData: isLoading,
   } = useQuery({
-    queryKey: ['product', productId],
+    queryKey: ['productItem', productId],
     queryFn: () => getProductItemById(productId!),
     placeholderData: keepPreviousData,
   });

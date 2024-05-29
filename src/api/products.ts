@@ -37,3 +37,7 @@ export const getDiscountedProducts = () => {
 export const searchProductsByTitle = (name: string) => {
   return client.get<Product[]>(`/products/search?name=${name}`);
 };
+
+export const getProductByItemId = (itemId: string) => {
+  return client.get<Product>(`/products/${itemId}/itemId`);
+};

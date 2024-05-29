@@ -18,7 +18,6 @@ import { getProductsByCategory as getProductsByCategoryBack } from '../../api/pr
 
 import styles from './CatalogPage.module.scss';
 
-
 export const CatalogPage: React.FC = () => {
   const { t } = useTranslation();
   const { path, categoryName } = getPathAndCategoryNameFromUrl();

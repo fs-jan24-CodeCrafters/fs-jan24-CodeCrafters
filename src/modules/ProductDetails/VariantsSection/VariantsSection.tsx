@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 
 import { useCart } from '../../../context/CartContext';
 import { useFavorites } from '../../../context/FavoritesContext';
-import { getProductByItemId } from '../../../helpers/getProductByItemId';
 import { Title } from '../../Shared/Title';
 import { Button } from '../../Shared/Button';
 import { SpriteIcon } from '../../Shared/SpriteIcon';
@@ -14,10 +13,12 @@ import { ColorRadioButton } from './ColorRadioButton';
 import { CapacityRadioButton } from './CapacityRadioButton';
 import { ProductDetails } from '../../../types/ProductDetails';
 import { Product } from '../../../types/Product';
+import { Loader } from '../../Shared/Loader';
+import { getProductByItemId } from '../../../api/products';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import 'swiper/css';
 import styles from './VariantsSection.module.scss';
-import { Loader } from '../../Shared/Loader';
 
 interface Props {
   productDetails: ProductDetails;
@@ -74,13 +75,17 @@ export const VariantsSection: React.FC<Props> = ({
   const [selectedImage, setSelectedImage] = useState(images[0]);
   const [swiperRef, setSwiperRef] = useState<null | SwiperClass>(null);
 
-  const product = getProductByItemId(itemId) as Product;
+  const { data: product } = useQuery({
+    queryKey: ['product', itemId],
+    queryFn: () => getProductByItemId(itemId),
+    placeholderData: keepPreviousData,
+  });
 
   const { cart, dispatch } = useCart();
   const { isFavorite, toggleFavorite } = useFavorites();
 
   const handleToggleFavorite = () => {
-    toggleFavorite(product);
+    toggleFavorite(product!);
     if (isFavoriteProd) {
       toast.success(t(`common:toast.favoritesRemoved`));
     } else {
@@ -89,7 +94,7 @@ export const VariantsSection: React.FC<Props> = ({
   };
 
   const isProductInCart = cart.some((item) => item.id === product?.id);
-  const isFavoriteProd = isFavorite(product);
+  const isFavoriteProd = isFavorite(product!);
 
   const isAccessories = categoryName === 'Accessories';
 
@@ -132,7 +137,7 @@ export const VariantsSection: React.FC<Props> = ({
                     [styles['selectedSquareImage']]: selectedImage === image,
                   })}
                   src={image}
-                  alt={product.name}
+                  alt={product?.name}
                 />
               )}
             </button>
@@ -156,7 +161,7 @@ export const VariantsSection: React.FC<Props> = ({
                   <img
                     key={`${image}_image`}
                     src={image}
-                    alt={product.name}
+                    alt={product?.name}
                     className={styles.selectedImage}
                   />
                 )}
@@ -171,8 +176,9 @@ export const VariantsSection: React.FC<Props> = ({
         <div className={styles.categoryText}>
           <p>{t(`common:product.availableColors`)}</p>
 
-          <span>ID: 802390</span>
-          {/* STATIC */}
+          <span>ID: {product?.id}</span>
+          {/* {console.log(product)} */}
+          {/* from public json*/}
         </div>
 
         <div className={styles.colorRadioWrapper}>
@@ -241,7 +247,7 @@ export const VariantsSection: React.FC<Props> = ({
 
           <div className={styles.buttonsContainer}>
             <Button
-              onClick={() => addToCartHandler(product)}
+              onClick={() => addToCartHandler(product!)}
               selected={isProductInCart}
             >
               {buttonText}
