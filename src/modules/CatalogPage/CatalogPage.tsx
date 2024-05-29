@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
+import { useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { getPathAndCategoryNameFromUrl } from '../../helpers/getPathAndCategoryNameFromUrl';
@@ -16,7 +17,6 @@ import { RangePriceFilter } from './RangePriceFilter/RangePriceFilter';
 import { getProductsByCategory as getProductsByCategoryBack } from '../../api/products';
 
 import styles from './CatalogPage.module.scss';
-import { useEffect, useRef } from 'react';
 
 export const CatalogPage: React.FC = () => {
   const { t } = useTranslation();
