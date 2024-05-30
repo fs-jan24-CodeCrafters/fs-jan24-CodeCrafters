@@ -6,6 +6,8 @@ Welcome to our Mobile Store project! This project is developed using Vite, React
 
 Check out the [DEMO](https://fs-jan24-codecrafters.github.io/fs-jan24-CodeCrafters/) to see the project in action!
 
+Also check out the back-end repo [BACKEND](https://github.com/FSCodeCrafters/fs-jan24-CodeCrafters-Server).
+
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -58,7 +60,7 @@ Before running the application, make sure you have the following installed on yo
    npm install
    ```
 
-### Installation
+### Running the App
 
 To run the application locally, use the following command:
 
