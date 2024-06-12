@@ -176,9 +176,7 @@ export const VariantsSection: React.FC<Props> = ({
         <div className={styles.categoryText}>
           <p>{t(`common:product.availableColors`)}</p>
 
-          <span>ID: {product?.id}</span>
-          {/* {console.log(product)} */}
-          {/* from public json*/}
+          {product?.id && <span>ID: {product.id}</span>}
         </div>
 
         <div className={styles.colorRadioWrapper}>
