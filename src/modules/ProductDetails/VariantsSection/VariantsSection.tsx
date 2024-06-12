@@ -176,7 +176,7 @@ export const VariantsSection: React.FC<Props> = ({
         <div className={styles.categoryText}>
           <p>{t(`common:product.availableColors`)}</p>
 
-          {product?.id && <span>ID: {product.id}</span>}
+          {/* <span>ID: {product?.id}</span> */}
         </div>
 
         <div className={styles.colorRadioWrapper}>
