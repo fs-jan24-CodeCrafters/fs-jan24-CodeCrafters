@@ -93,8 +93,11 @@ export const VariantsSection: React.FC<Props> = ({
     }
   };
 
-  const isProductInCart = cart.some((item) => item.id === product?.id);
-  const isFavoriteProd = isFavorite(product!);
+  const isProductInCart = product
+    ? cart.some((item) => item.id === product.id)
+    : false;
+
+  const isFavoriteProd = product ? isFavorite(product) : false;
 
   const isAccessories = categoryName === 'Accessories';
 
@@ -176,7 +179,7 @@ export const VariantsSection: React.FC<Props> = ({
         <div className={styles.categoryText}>
           <p>{t(`common:product.availableColors`)}</p>
 
-          {/* <span>ID: {product?.id}</span> */}
+          <span>ID: {product ? product.id : ''}</span>
         </div>
 
         <div className={styles.colorRadioWrapper}>
